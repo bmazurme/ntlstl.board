@@ -1,0 +1,34 @@
+.common {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  composes: common;
+  margin: 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  min-width: 160px;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.5s ease;
+}
+
+.button:hover {
+  background-color: #e1e1e1;
+  opacity: 1;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 18px;
+  cursor: pointer;
+  margin: 0 5px 0 0;
+  padding: 0;
+}

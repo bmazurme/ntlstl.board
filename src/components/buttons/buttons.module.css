@@ -1,0 +1,12 @@
+.common {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons {
+  composes: common;
+  justify-content: end;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}

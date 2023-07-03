@@ -1,0 +1,19 @@
+.root {
+  --width-none: 100%;
+  --width-sm: 640px;
+  --width-md: 768px;
+  --width-lg: 1024px;
+  --width-xl: 1280px;
+  --width-2xl: 1536px;
+  /* --header-bg-color: #1c1c21;
+  --background-color: #131316; */
+  --header-bg-color: #fff;
+  --background-color: #fff;
+  --background-overlay: rgb(0 0 0 / 60%);
+  --color: #000;
+
+  height: 100vh;
+  color: var(--color);
+  background-color: var(--background-color);
+  font-family: 'Inter','Helvetica Neue', Arial, sans-serif;
+}

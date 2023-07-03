@@ -1,0 +1,19 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.active {
+  background-color: aquamarine;
+}
+
+.tools {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,5 @@
+.modal {
+  --header-bg-color: #ececf1;
+  --background-overlay: rgb(0 0 0 / 60%);
+  font-family: 'Inter','Helvetica Neue', Arial, sans-serif;
+}

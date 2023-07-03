@@ -1,0 +1,33 @@
+.container {
+  width: 720px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--header-bg-color);
+  border-radius: 12px;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.close {
+  position: absolute;
+  justify-self: flex-end;
+  margin: 0;
+  padding: 0;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.close:hover {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
