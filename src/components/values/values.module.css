@@ -6,8 +6,6 @@
   box-sizing: border-box;
   font-size: 14px;
   font-weight: 400;
-  max-width: 100px;
-  width: auto;
   max-width: 50%;
   width: 100%;
   min-height: 200px;
@@ -32,3 +30,8 @@
   composes: common;
   background-color: bisque;
 }
+
+.value {
+
+}
+
