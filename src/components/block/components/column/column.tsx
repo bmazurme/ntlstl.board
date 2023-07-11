@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { useDrop } from 'react-dnd';
 
-import ColumnForm from '../column-form';
+import ColumnForm from '../../../column-form';
 
-import { getBackgroundColor, TYPE, COLOR } from '../../utils';
+import { getBackgroundColor, TYPE, COLOR } from '../../../../utils';
 
 import style from './column.module.css';
 

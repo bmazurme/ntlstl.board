@@ -1,13 +1,12 @@
-/* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import React, { useRef } from 'react';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
-import Column from '../column';
-import MovableItem from '../movablel-item';
+import Column from './components/column';
+import MovableItem from './components/movablel-item';
 
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, setBlocks } from '../../store/slices';
+import { selectBlocks, setMovedBlock, setMovedCard } from '../../store/slices';
 
 import { getBackgroundColor, TYPE, COLOR } from '../../utils';
 import { TypeBlock, TypeItem } from '../../mocks/blocks';
@@ -18,26 +17,15 @@ export default function Block({ block }: { block: number}) {
   const ref = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
   const blocks: TypeBlock = useAppSelector(selectBlocks);
-  const setItems = (data: TypeBlock) => dispatch(setBlocks(data));
   const moveCardHandler = (
     dragIndex: number,
     hoverIndex: number,
-    item: TypeItem & {
-      currentColumnIndex: number,
-      index: number,
-    },
+    item: TypeItem & { currentColumnIndex: number, index: number },
   ) => {
     const dragItem = blocks[item.currentColumnIndex].items[dragIndex];
 
     if (dragItem) {
-      const coppiedStateArray = [...blocks[item.currentColumnIndex].items];
-      const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
-      coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
-      const arr = coppiedStateArray.filter((x) => x);
-      setItems({
-        ...blocks,
-        [item.currentColumnIndex]: { ...blocks[item.currentColumnIndex], items: arr },
-      });
+      dispatch(setMovedCard({ dragIndex, hoverIndex, item, dragItem }));
     }
   };
 
@@ -60,20 +48,12 @@ export default function Block({ block }: { block: number}) {
   const moveBlockHandler = (
     dragIndex: number,
     hoverIndex: number,
-    item: TypeItem & {
-      currentColumnIndex: number,
-      index: number,
-    },
+    item: TypeItem & { currentColumnIndex: number, index: number },
   ) => {
     const dragItem = blocks[item.index];
 
     if (dragItem) {
-      const obj: TypeBlock = {};
-      const coppiedStateArray = [...Object.keys(blocks)].map((x) => Number(x));
-      coppiedStateArray.splice(hoverIndex, 1, dragIndex);
-      coppiedStateArray.splice(dragIndex, 1, hoverIndex);
-      coppiedStateArray.forEach((x, i: number) => obj[i] = { ...blocks[x], index: i });
-      setItems(obj);
+      dispatch(setMovedBlock({ dragIndex, hoverIndex, item }));
     }
   };
 

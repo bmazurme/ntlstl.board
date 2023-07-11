@@ -1,44 +1,24 @@
-/* eslint-disable max-len */
 import React, { useRef } from 'react';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
-import Item from '../item';
+import Item from '../../../item';
 
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, setBlocks } from '../../store/slices';
+import { useAppDispatch } from '../../../../hooks';
+import { setChangeItemColumn } from '../../../../store/slices';
 
-import { TYPE } from '../../utils';
-
-import { TypeBlock, TypeItem } from '../../mocks/blocks';
+import { TYPE } from '../../../../utils';
+import { TypeItem } from '../../../../mocks/blocks';
 
 export default function MovableItem({moveCardHandler, ...props }: any) {
   const childRef = useRef<HTMLLIElement | null>(null);
   const dispatch = useAppDispatch();
-  const items = useAppSelector(selectBlocks);
-  const setItems = (data: TypeBlock) => dispatch(setBlocks(data));
 
   const changeItemColumn = (
     currentItem: TypeItem & { currentColumnIndex: number, id: string },
     columnName: number,
   ) => {
-    // console.log(currentItem);
     if (columnName !== currentItem.currentColumnIndex) {
-      const index = currentItem.currentColumnIndex;
-      const item = items[index];
-
-      const obj = {
-        ...items,
-        [index]: {
-          ...item,
-          items: item.items.filter((x: TypeItem) => x.id !== currentItem.id),
-        },
-        [columnName]: {
-          ...items[columnName],
-          items: [...items[columnName].items, currentItem],
-        },
-      };
-
-      setItems(obj);
+      dispatch(setChangeItemColumn({ currentItem, columnName }));
     }
   };
 
@@ -91,7 +71,6 @@ export default function MovableItem({moveCardHandler, ...props }: any) {
     item: {
       id: props.id,
       item: props.item,
-      // index: props.index,
       values: props.values,
       result: props.result,
       currentColumnIndex: props.currentColumnIndex,

@@ -5,7 +5,9 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-import { blocks, TypeBlock, TypeValue } from '../../mocks/blocks';
+import {
+  blocks, TypeBlock, TypeItem, TypeValue,
+} from '../../mocks/blocks';
 
 type TypeBlocksState = { data: TypeBlock };
 type TypeItemValue = { index: number, id: string, item: OptionsOrGroups<string, GroupBase<string>> }
@@ -107,6 +109,67 @@ const slice = createSlice({
         },
       },
     }),
+    setChangeItemColumn: (
+      state,
+      { payload: data }: PayloadAction<{
+         currentItem: TypeItem & { currentColumnIndex: number, id: string },
+         columnName: number,
+      }>,
+    ) => {
+      const index = data.currentItem.currentColumnIndex;
+      const item = state.data[index];
+      return {
+      ...state,
+      data: {
+        ...state.data,
+        [index]: {
+          ...item,
+          items: item.items.filter((x: TypeItem) => x.id !== data.currentItem.id),
+        },
+        [data.columnName]: {
+          ...state.data[data.columnName],
+          items: [...state.data[data.columnName].items, data.currentItem],
+        },
+      },
+    }},
+    setMovedBlock: (
+      state,
+      { payload: data }: PayloadAction<{
+        dragIndex: number,
+        hoverIndex: number,
+        item: TypeItem & { currentColumnIndex: number, index: number },
+      }>,
+    ) => {
+      const obj: TypeBlock = {};
+      const coppiedStateArray = [...Object.keys(state.data)].map((x) => Number(x));
+      coppiedStateArray.splice(data.hoverIndex, 1, data.dragIndex);
+      coppiedStateArray.splice(data.dragIndex, 1, data.hoverIndex);
+      coppiedStateArray.forEach((x, i: number) => obj[i] = { ...state.data[x], index: i });
+
+      return {
+      ...state, data: obj,
+    }},
+    setMovedCard: (
+      state,
+      { payload: data }: PayloadAction<{
+        dragIndex: number,
+        hoverIndex: number,
+        item: TypeItem & { currentColumnIndex: number, index: number },
+        dragItem: TypeItem,
+      }>,
+    ) => {
+      const coppiedStateArray = [...state.data[data.item.currentColumnIndex].items];
+      const prevItem = coppiedStateArray.splice(data.hoverIndex, 1, data.dragItem);
+      coppiedStateArray.splice(data.dragIndex, 1, prevItem[0]);
+      const arr = coppiedStateArray.filter((x) => x);
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [data.item.currentColumnIndex]: { ...state.data[data.item.currentColumnIndex], items: arr }
+        },
+      }},
   },
 });
 
@@ -118,10 +181,13 @@ export const {
   changeInputValues,
   changeItemValue,
   getResult,
+  setChangeItemColumn,
+  setMovedBlock,
+  setMovedCard,
 } = slice.actions;
 
 export default slice.reducer;
 
 export const selectBlocks = (state: RootState) => state.blocks.data;
 
-// type TypeValue = { name: string; value: string | number; };
+//    currentItem: TypeItem & { currentColumnIndex: number, id: string },
