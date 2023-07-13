@@ -7,8 +7,6 @@ import Buttons from '../buttons';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { removeItem, selectBlocks, setItemPopup } from '../../store/slices';
 
-import { TypeBlock, TypeItem, TypeValue } from '../../mocks/blocks';
-
 import style from './item.module.css';
 
 type TypeItemData = {
@@ -16,8 +14,8 @@ type TypeItemData = {
     index: number,
     id: string,
     currentColumnIndex: number,
-    childRef: LegacyRef<HTMLDivElement> | undefined,
-    opacity: string,
+    childRef: unknown,
+    opacity: number,
   },
 };
 
@@ -37,7 +35,7 @@ export default function Item({ itemData }: TypeItemData) {
   ];
 
   return (
-    <div ref={childRef} className={style.item} style={{ opacity }}>
+    <div ref={childRef as LegacyRef<HTMLDivElement>} className={style.item} style={{ opacity }}>
       <div className={style.data}>
         <span className={style.position}>{index + 1}</span>
         <span className={style.title}>

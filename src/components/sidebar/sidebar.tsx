@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { GroupBase, OptionsOrGroups } from 'react-select';
 import classNames from 'classnames';
@@ -26,19 +25,19 @@ export default function Sidebar() {
       <div className={style.sidebar_header}>
         {isOpen
           && (
-          <div className={style.buttons}>
-            <CustomSelect options={modules} />
-            <IconButton {...addModule} />
-          </div>
+            <div className={style.buttons}>
+              <CustomSelect options={modules} />
+              <IconButton {...addModule} />
+            </div>
           )}
         <IconButton {...button} />
       </div>
       <div className={style.container}>
         {isOpen
           && (
-          <div>
-            {books.map(() => (<div key={uuidv4()} className={style.item}>Title book</div>))}
-          </div>
+            <div>
+              {books.map(() => (<div key={uuidv4()} className={style.item}>Title book</div>))}
+            </div>
           )}
       </div>
     </div>

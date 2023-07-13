@@ -5,9 +5,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-import {
-  blocks, TypeBlock, TypeItem, TypeValue,
-} from '../../mocks/blocks';
+import { blocks } from '../../mocks/blocks';
 
 type TypeBlocksState = { data: TypeBlock };
 type TypeItemValue = { index: number, id: string, item: OptionsOrGroups<string, GroupBase<string>> }

@@ -4,8 +4,6 @@ import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 
 import { getBackgroundColor, COLOR } from '../../utils';
 
-import { TypeValue, TypeBlock, TypeItem } from '../../mocks/blocks';
-
 import style from './values.module.css';
 
 function MovableItem({
@@ -22,7 +20,6 @@ function MovableItem({
     currentItem: { currentColumnName: string, name: string, index: number },
     columnName: string,
   ) => {
-    console.log(currentItem);
     setItems((prevState: TypeValue[]) => prevState.map((e: TypeValue) => ({
       ...e,
       column: e.name === currentItem.name ? columnName : e.column,

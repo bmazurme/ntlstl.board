@@ -1,27 +1,21 @@
-.common {
+.header {
   display: flex;
   flex-direction: row;
-  font-weight: 600;
-}
-
-.header {
-  composes: common;
-  margin: 10px 5px;
-  padding: 5px;
-}
-
-.title {
-  composes: common;
-  margin: 0;
-  padding: 5px 10px;
-  font-size: 18px;
-  min-width: 300px;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
-  border: 0;
-  border-radius: 4px;
+  margin: 0;
+  padding: 5px 0;
+  background-color: aliceblue;
+  width: 100%;
+  max-height: 42px;
 }
 
-.title:hover {
-  background-color: #e1e1e1;
+.header_menu {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  column-gap: 5px;
+  margin: 0;
+  padding: 0 5px;
 }

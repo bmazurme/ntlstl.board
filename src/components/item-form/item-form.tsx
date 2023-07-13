@@ -14,11 +14,8 @@ import {
   selectItems,
   setItemPopup,
   getResult,
-  // setChangeToHistory,
   setHistory,
 } from '../../store/slices';
-
-import { TypeItem, TypeValue, TypeBlock } from '../../mocks/blocks';
 
 import style from './item-form.module.css';
 
@@ -36,13 +33,6 @@ export default function ItemForm({ currentColumnIndex, id }: { currentColumnInde
       .items.find((x: TypeItem) => x.id === id)!
       .values.map((x: TypeValue, i: number) => ({ ...x, value: Number(values[`label${i}`]) }));
 
-    // const arr = blocks[currentColumnIndex].items
-    //   .find((x: TypeItem) => x.id === id)!.values
-    //   .map((x: TypeValue, i: number) => (x.value !== Number(values[`label${i}`])
-    //     ? { ...x, changedValue: values[`label${i}`] }
-    //     : null))
-    //   .filter((x: TypeValue | null) => x);
-
     dispatch(changeInputValues({ index: currentColumnIndex, id, values: newValues }));
     dispatch(getResult({ index: currentColumnIndex, id }));
 
@@ -55,18 +45,12 @@ export default function ItemForm({ currentColumnIndex, id }: { currentColumnInde
             : v)),
         }
         : x));
-      // .find((x: TypeItem) => x.id === id)!.values
-      // .map((x: TypeValue, i: number) => (x.value !== Number(values[`label${i}`])
-      //   ? { ...x, changedValue: values[`label${i}`] }
-      //   : null))
-      // .filter((x: TypeValue | null) => x);
 
     if (arr.length) {
       const obj: TypeBlock = {
         ...blocks,
         [currentColumnIndex]: { ...blocks[currentColumnIndex], items: arr },
       };
-      // dispatch(setChangeToHistory({ user: 'user', changes: { index: currentColumnIndex, values: arr } }));
       dispatch(setHistory({ user: 'user', state: obj }));
     }
 

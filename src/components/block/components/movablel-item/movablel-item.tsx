@@ -7,9 +7,8 @@ import { useAppDispatch } from '../../../../hooks';
 import { setChangeItemColumn } from '../../../../store/slices';
 
 import { TYPE } from '../../../../utils';
-import { TypeItem } from '../../../../mocks/blocks';
 
-export default function MovableItem({moveCardHandler, ...props }: any) {
+export default function MovableItem({ moveCardHandler, ...props }: TypeMovableItem) {
   const childRef = useRef<HTMLLIElement | null>(null);
   const dispatch = useAppDispatch();
 

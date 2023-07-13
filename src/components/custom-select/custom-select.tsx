@@ -2,12 +2,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import Select, { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
+import Select, { GroupBase, OptionsOrGroups, PropsValue, CommonProps, SingleValue } from 'react-select';
+import { ActionMeta, OnChangeValue } from "react-select/dist/declarations/src/types";
 
-export default function CustomSelect({ options, onChange, value }
-  : {
+export default function CustomSelect({ options, onChange, value }: {
     options: OptionsOrGroups<string, GroupBase<string>> | undefined,
-    onChange?: (o: any) => void,
+    onChange?: ((newValue: any, actionMeta: ActionMeta<string>) => void) | undefined,
     value?: PropsValue<string> | undefined,
   }) {
   const customSelectStyle = {

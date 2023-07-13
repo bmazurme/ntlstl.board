@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import ModalOverlay from '../modal-overlay';
+import ModalOverlay from './components/modal-overlay';
 
 import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG } from '../../utils';
 

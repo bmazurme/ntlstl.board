@@ -3,7 +3,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 
-import MainMenu from './components/main-menu';
+import Header from './components/header';
 import Container from './components/container';
 
 import { useAppSelector } from './hooks';
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <div className={style.app}>
-        <MainMenu />
+        <Header />
         <Container />
       </div>
     </DndProvider>

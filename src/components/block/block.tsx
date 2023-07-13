@@ -9,7 +9,6 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { selectBlocks, setMovedBlock, setMovedCard } from '../../store/slices';
 
 import { getBackgroundColor, TYPE, COLOR } from '../../utils';
-import { TypeBlock, TypeItem } from '../../mocks/blocks';
 
 import style from './block.module.css';
 

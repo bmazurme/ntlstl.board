@@ -4,8 +4,6 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-import { TypeBlock } from '../../mocks/blocks';
-
 type TypeHistory = { user: string, state: TypeBlock };
 type TypeHistoryState = { data: TypeHistory[] };
 
@@ -21,7 +19,8 @@ const slice = createSlice({
     setHistory: (
       state,
       { payload: data }: PayloadAction<TypeHistory>,
-    ) => ({ ...state, data: [...state.data, data] }),
+    ) => ({
+      ...state, data: [...state.data, data] }),
   },
 });
 

@@ -12,8 +12,6 @@ import {
 
 import { values as data } from '../../mocks/values';
 
-import { TypeBlock } from '../../mocks/blocks';
-
 import style from './column-form.module.css';
 
 export default function ColumnForm({ index, title }: { index: number, title: string }) {
