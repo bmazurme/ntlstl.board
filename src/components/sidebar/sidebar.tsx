@@ -6,6 +6,7 @@ import { ChevronRightIcon, ChevronLeftIcon, PlusIcon } from '@heroicons/react/24
 
 import IconButton from '../icon-button';
 import CustomSelect from '../custom-select';
+
 import { selectModules, selectBooks, setBooks } from '../../store/slices';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 

@@ -6,18 +6,21 @@ import Button from '../button';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { selectBlocks, setBlocks } from '../../store/slices';
 
-import style from './tools.module.css';
+import style from './workplace-tools.module.css';
 
-export default function Tools() {
+export default function WorkplaceTools() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectBlocks);
+
   const addBlock = () => {
     const index = Object.keys(items).length;
-    const obj = {
+
+    const newBlock = {
       ...items,
       [index]: { index, name: `BLOCK${index + 1}`, items: [] },
     };
-    dispatch(setBlocks(obj));
+
+    dispatch(setBlocks(newBlock));
   };
 
   return (

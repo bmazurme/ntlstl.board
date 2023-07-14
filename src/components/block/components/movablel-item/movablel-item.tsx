@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
-import Item from '../../../item';
+import Item from '../item';
 
 import { useAppDispatch } from '../../../../hooks';
 import { setChangeItemColumn } from '../../../../store/slices';

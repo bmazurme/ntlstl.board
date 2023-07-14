@@ -2,7 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import Block from '../block';
-import ItemForm from '../item-form';
+import ItemForm from '../../layouts/item-form';
 import Modal from '../modal';
 
 import { useAppSelector, useAppDispatch } from '../../hooks';

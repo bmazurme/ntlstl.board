@@ -1,15 +1,20 @@
 import React from 'react';
+import type { PropsWithChildren } from 'react';
 
+import Header from '../header';
 import Sidebar from '../sidebar';
-import Workplace from '../workplace';
 
 import style from './container.module.css';
 
-export default function Container() {
+export default function Container({ header, sidebar, children }
+  : PropsWithChildren & { header?: boolean, sidebar?: boolean }) {
   return (
-    <div className={style.container}>
-      <Sidebar />
-      <Workplace />
-    </div>
+    <>
+      {header && <Header />}
+      <div className={style.container}>
+        {sidebar && <Sidebar />}
+        {children}
+      </div>
+    </>
   );
 }

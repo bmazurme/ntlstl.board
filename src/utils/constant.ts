@@ -9,4 +9,9 @@ const COLOR = {
   VALUE: 'yellow',
 };
 
-export { TYPE, COLOR };
+const Urls = {
+  BASE: '/',
+  404: '*',
+};
+
+export { TYPE, COLOR, Urls };

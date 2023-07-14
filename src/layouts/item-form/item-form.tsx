@@ -2,8 +2,8 @@
 import React from 'react';
 import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
 
-import Button from '../button';
-import CustomSelect from '../custom-select';
+import Button from '../../components/button';
+import CustomSelect from '../../components/custom-select';
 
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useAppSelector, useAppDispatch } from '../../hooks';

@@ -4,7 +4,7 @@ import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 
 import { getBackgroundColor, COLOR } from '../../utils';
 
-import style from './values.module.css';
+import style from './settings.module.css';
 
 function MovableItem({
   name, index, currentColumnName, moveCardHandler, setItems,
@@ -126,7 +126,7 @@ function Column({ children, className, title }
   );
 }
 
-export default function Values({ values }: { values: TypeValue[] }) {
+export default function Settings({ values }: { values: TypeValue[] }) {
   const [items, setItems] = useState(values);
   const moveCardHandler = (dragIndex: number, hoverIndex: number) => {
     const dragItem = items[dragIndex];

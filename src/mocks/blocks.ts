@@ -2,23 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { values } from './values';
 
-// export type TypeValue = {
-//   id: number;
-//   name: string;
-//   value: number;
-//   column: string;
-// };
-//
-// export type TypeItem = {
-//   id: string,
-//   values: TypeValue[],
-//   result: number,
-//   item: { value: string, label: string },
-// };
-//
-// export type TypeBlockValue = { index: number, name: string, items: TypeItem[] };
-// export type TypeBlock = Record<number, TypeBlockValue>;
-
 const blocks: TypeBlock = {
   0: {
     index: 0,

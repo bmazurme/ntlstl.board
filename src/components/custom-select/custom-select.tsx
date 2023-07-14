@@ -1,9 +1,8 @@
-/* eslint-disable max-len */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import Select, { GroupBase, OptionsOrGroups, PropsValue, CommonProps, SingleValue } from 'react-select';
-import { ActionMeta, OnChangeValue } from "react-select/dist/declarations/src/types";
+import Select, { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
+import { ActionMeta } from 'react-select/dist/declarations/src/types';
 
 export default function CustomSelect({ options, onChange, value }: {
     options: OptionsOrGroups<string, GroupBase<string>> | undefined,

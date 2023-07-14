@@ -2,17 +2,17 @@ import React from 'react';
 import { useAppSelector } from '../../hooks';
 import { selectBook } from '../../store/slices';
 
-import Values from '../values';
+import Settings from '../../layouts/settings';
 import { values } from '../../mocks/values';
 
-import style from './book-form.module.css';
+import style from './workplace-form.module.css';
 
-export default function BookForm() {
+export default function WorkplaceForm() {
   const { name } = useAppSelector(selectBook);
   return (
     <>
       <h2>{name}</h2>
-      <Values values={values} />
+      <Settings values={values} />
     </>
   );
 }

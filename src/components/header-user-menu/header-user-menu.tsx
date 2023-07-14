@@ -5,9 +5,9 @@ import {
 
 import Buttons from '../buttons';
 
-import style from './user-menu.module.css';
+import style from './header-user-menu.module.css';
 
-export default function UserMenu() {
+export default function HeaderUserMenu() {
   const [isDark, setIsDark] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
 

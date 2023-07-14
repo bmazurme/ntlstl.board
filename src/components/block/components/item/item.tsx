@@ -2,10 +2,10 @@ import React, { LegacyRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { TrashIcon, PencilIcon } from '@heroicons/react/24/outline';
 
-import Buttons from '../buttons';
+import Buttons from '../../../buttons';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { removeItem, selectBlocks, setItemPopup } from '../../store/slices';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
+import { removeItem, selectBlocks, setItemPopup } from '../../../../store/slices';
 
 import style from './item.module.css';
 

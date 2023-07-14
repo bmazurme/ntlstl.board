@@ -2,15 +2,15 @@ import React from 'react';
 import { ArchiveBoxXMarkIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { v4 as uuidv4 } from 'uuid';
 
-import Buttons from '../buttons';
+import Buttons from '../../../buttons';
 
-import useFormWithValidation from '../../hooks/use-form-with-validation';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import useFormWithValidation from '../../../../hooks/use-form-with-validation';
+import { useAppSelector, useAppDispatch } from '../../../../hooks';
 import {
   selectBlocks, setBlocks, renameBlock, removeBlock,
-} from '../../store/slices';
+} from '../../../../store/slices';
 
-import { values as data } from '../../mocks/values';
+import { values as data } from '../../../../mocks/values';
 
 import style from './column-form.module.css';
 

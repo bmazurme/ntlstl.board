@@ -13,7 +13,7 @@ export default function Button({ icon: Icon, handler, title }
       {Icon
         && (
           <div className={style.box}>
-            <Icon className="h-6 w-6 text-blue-500" />
+            <Icon className="h-6 w-6" />
           </div>
         )}
       <span>{title}</span>

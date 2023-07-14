@@ -1,13 +1,13 @@
 import React from 'react';
 import {
+  UsersIcon,
   Squares2X2Icon,
   RectangleStackIcon,
-  UsersIcon,
   DocumentArrowDownIcon,
 } from '@heroicons/react/24/outline';
 
-import BookForm from '../book-form';
-import History from '../history';
+import WorkplaceForm from '../workplace-form';
+import History from '../../layouts/history';
 import Buttons from '../buttons';
 import Modal from '../modal';
 
@@ -16,9 +16,9 @@ import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { selectBook, setBookName, selectBlocks } from '../../store/slices';
 
-import style from './header-book.module.css';
+import style from './workplace-header.module.css';
 
-export default function HeaderBook() {
+export default function WorkplaceHeader() {
   const dispatch = useAppDispatch();
   const { name } = useAppSelector(selectBook);
   const blocks = useAppSelector(selectBlocks);
@@ -56,7 +56,7 @@ export default function HeaderBook() {
       />
       <Buttons buttons={buttons} />
       {isModalOpen
-        && (<Modal isOpen={isModalOpen} onClose={closeModal} children={<BookForm />} />)}
+        && (<Modal isOpen={isModalOpen} onClose={closeModal} children={<WorkplaceForm />} />)}
       {isOpenHistory
         && (<Modal isOpen={isOpenHistory} onClose={closeHistory} children={<History />} />)}
     </form>
