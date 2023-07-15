@@ -63,3 +63,7 @@
   margin: 0 0 0 5px;
   width: 100%;
 }
+
+.active {
+  background-color: antiquewhite;
+}
