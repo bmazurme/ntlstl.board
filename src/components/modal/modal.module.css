@@ -1,8 +1,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 720px;
-  min-height: 480px;
+  min-width: 300px;
+  min-height: 320px;
+  max-height: 90vh;
+  max-width: 90vw;
+  height: 100%;
+  width: 100%;
   position: relative;
   background-color: var(--header-bg-color);
   border-radius: 12px;

@@ -51,7 +51,7 @@ export default function Modal({
           >
             {title && <h2 className="">{title}</h2>}
             <button type="button" className={style.close} data-test="close-button">
-              <XMarkIcon className="h-6 w-6 text-blue-500" onClick={onClose} />
+              <XMarkIcon className="h-6 w-6" onClick={onClose} />
             </button>
             {children}
           </motion.div>
