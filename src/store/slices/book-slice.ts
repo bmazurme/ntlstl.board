@@ -4,8 +4,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-type TypeBook =  { name: string };
-type TypeBookState =  { data: TypeBook };
+type TypeBook = { name: string };
+type TypeBookState = { data: TypeBook };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: TypeBookState = {
