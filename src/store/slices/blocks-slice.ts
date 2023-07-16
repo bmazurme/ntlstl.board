@@ -22,15 +22,14 @@ const slice = createSlice({
     setBlocks: (
       state,
       { payload: data }: PayloadAction<TypeBlock>,
-    ) => ({
-      ...state, data,
-    }),
+    ) => ({ ...state, data }),
     removeBlock: (
       state,
       { payload: data }: PayloadAction<{ index: number }>,
     ) => {
       const obj = { ...state.data };
       delete obj[data.index];
+
       return { ...state, data: obj };
     },
     removeItem: (
