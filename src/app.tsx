@@ -11,11 +11,13 @@ import NotFoundPage from './pages/not-found-page';
 
 import { useAppSelector } from './hooks';
 import { selectHistory } from './store/slices';
+import useWindowDimensions, { getVisualProps } from './hooks/use-window-dimensions';
 
 import { Urls } from './utils';
 
 export default function App() {
-  const isMobile = window.innerWidth < 600;
+  const { blocks } = getVisualProps(useWindowDimensions());
+  const isMobile = blocks === 1;
 
   const history = useAppSelector(selectHistory);
   console.log(history);
