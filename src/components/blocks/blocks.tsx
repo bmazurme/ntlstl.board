@@ -10,13 +10,13 @@ import { selectBlocks, selectItemPopup, setItemPopup } from '../../store/slices'
 
 export default function Blocks() {
   const dispatch = useAppDispatch();
-  const items = useAppSelector(selectBlocks);
+  const blocks = useAppSelector(selectBlocks);
   const { id, index, isOpen } = useAppSelector(selectItemPopup);
   const closeModal = () => dispatch(setItemPopup({ index: null, id: null, isOpen: false }));
 
   return (
     <>
-      {Object.keys(items)
+      {Object.keys(blocks)
         .map((x) => Number(x))
         .sort((a, b) => a - b)
         .map((block: number) => (<Block block={block} key={uuidv4()} />))}
