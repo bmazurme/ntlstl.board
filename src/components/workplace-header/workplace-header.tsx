@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   UsersIcon,
   Squares2X2Icon,
@@ -43,6 +43,10 @@ export default function WorkplaceHeader() {
       resetForm({ name });
     }
   };
+
+  useMemo(() => {
+    resetForm({ name });
+  }, [name])
 
   return (
     <form className={style.header}>
