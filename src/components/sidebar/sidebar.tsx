@@ -30,7 +30,6 @@ export default function Sidebar() {
 
     if (book?.name) {
       dispatch(setBookName(book.name));
-      console.log(123);
     }
   };
 
