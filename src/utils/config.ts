@@ -24,8 +24,4 @@ const MODAL_CONFIG = {
   },
 };
 
-export {
-  ESC_CLOSE_ON,
-  OVERLAY_CLOSE_ON,
-  MODAL_CONFIG,
-};
+export { ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG };
