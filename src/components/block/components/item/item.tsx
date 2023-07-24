@@ -38,6 +38,7 @@ export default function Item({ itemData }: TypeItemData) {
     <div ref={childRef as LegacyRef<HTMLDivElement>} className={style.item} style={{ opacity }}>
       <div className={style.data}>
         <span className={style.position}>{index + 1}</span>
+
         <span className={style.title}>
           {block.items.find((x: TypeItem) => x.id === id)!.item.label}
         </span>
@@ -50,6 +51,7 @@ export default function Item({ itemData }: TypeItemData) {
         <span className={style.value}>
           {`Result - ${block.items.find((x: TypeItem) => x.id === id)!.result}`}
         </span>
+
       </div>
       <Buttons buttons={buttons} />
     </div>
