@@ -19,13 +19,13 @@ export default function HeaderMenu() {
   const isMobile = blocks === 1;
 
   const dispatch = useAppDispatch();
-  const project = useAppSelector(selectWorkplace) as unknown as PropsValue<string>;
-  const projects = useAppSelector(selectWorkplaces) as unknown as OptionsOrGroups<string, GroupBase<string>>;
+  const workplace = useAppSelector(selectWorkplace) as unknown as PropsValue<string>;
+  const workplaces = useAppSelector(selectWorkplaces) as unknown as OptionsOrGroups<string, GroupBase<string>>;
 
   const addProject = () => dispatch(setWorkplaces(
     {
-      value: `project${projects.length + 1}`,
-      label: `Project${projects.length + 1}`,
+      value: `Workplace${workplaces.length + 1}`,
+      label: `Workplace${workplaces.length + 1}`,
     },
   ));
 
@@ -34,8 +34,8 @@ export default function HeaderMenu() {
       ? <MobileMenu />
       : <div className={style.header_menu}>
           <CustomSelect
-            options={projects}
-            value={project}
+            options={workplaces}
+            value={workplace}
             onChange={(pr) => dispatch(setWorkplace(pr))}
           />
           <Button handler={addProject} title="Add project" icon={PlusIcon} />
