@@ -9,6 +9,8 @@ import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main-page';
 import NotFoundPage from './pages/not-found-page';
 
+import ErrorBoundaryWrapper from '../src/components/error-boundary';
+
 import { useAppSelector } from './hooks';
 import { selectHistory } from './store/slices';
 import useWindowDimensions, { getVisualProps } from './hooks/use-window-dimensions';
@@ -23,11 +25,13 @@ export default function App() {
   console.log(history);
 
   return (
-    <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-      <Routes>
-        <Route index element={(<MainPage />)} />
-        <Route path={Urls[404]} element={(<NotFoundPage />)} />
-      </Routes>
-    </DndProvider>
+    <ErrorBoundaryWrapper>
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+        <Routes>
+          <Route index element={(<MainPage />)} />
+          <Route path={Urls[404]} element={(<NotFoundPage />)} />
+        </Routes>
+      </DndProvider>
+    </ErrorBoundaryWrapper>
   );
 }
