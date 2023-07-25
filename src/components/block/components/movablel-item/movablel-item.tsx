@@ -67,13 +67,7 @@ export default function MovableItem({ moveCardHandler, ...props }: TypeMovableIt
 
   const [{ opacity }, drag] = useDrag({
     type: TYPE.ITEM,
-    item: {
-      id: props.id,
-      item: props.item,
-      values: props.values,
-      result: props.result,
-      currentColumnIndex: props.currentColumnIndex,
-    },
+    item: { ...props },
     end: (item, monitor) => {
       const dropResult: { name: number } = monitor.getDropResult()!;
 

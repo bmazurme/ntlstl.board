@@ -5,15 +5,11 @@
 
 .box {
   composes: common;
-  margin: 0;
-  padding: 0;
   align-items: center;
 }
 
 .items {
   composes: common;
-  margin: 0;
-  padding: 0;
   list-style: none;
   width: 100%;
   overflow-x: auto;
