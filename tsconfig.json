@@ -19,7 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     "allowUmdGlobalAccess": true,
     "strict": true,
-    "module": "esnext",
+    // "module": "esnext",
     "moduleResolution": "node",
     "target": "es6",
     "jsx": "react",
