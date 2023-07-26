@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "w.i",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
@@ -49,7 +49,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "cypress:open": "./node_modules/.bin/cypress open",
-    "test": "jest"
+    "test": "jest",
+    "cy:run": "cypress run",
+    "prepare:run": "npm run cy:run --record --key --spec & npm run build"
   },
   "eslintConfig": {
     "extends": [
