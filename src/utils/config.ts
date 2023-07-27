@@ -1,3 +1,5 @@
+const BASE_API = 'http://localhost:3001';
+const WSS_API = 'ws://localhost:3002';
 const ESC_CLOSE_ON = false;
 const OVERLAY_CLOSE_ON = false;
 
@@ -24,4 +26,6 @@ const MODAL_CONFIG = {
   },
 };
 
-export { ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG };
+export {
+  ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG, WSS_API, BASE_API,
+};
