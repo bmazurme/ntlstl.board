@@ -1,3 +1,11 @@
+html {
+  --header-bg-color: #f0f8ff;
+}
+
+html[data-theme="dark"] {
+  --header-bg-color: #5a5a5a;
+}
+
 .root {
   --width-none: 100%;
   --width-sm: 640px;
@@ -5,7 +13,6 @@
   --width-lg: 1024px;
   --width-xl: 1280px;
   --width-2xl: 1536px;
-  --header-bg-color: #fff;
   --background-color: #fff;
   --background-overlay: rgb(0 0 0 / 60%);
   --color: #000;
