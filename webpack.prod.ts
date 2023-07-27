@@ -62,10 +62,26 @@ const clientConfig: Configuration = {
 };
 
 const serverConfig: Configuration = {
+  name: 'server',
   target: 'node',
-  externals: [nodeExternals()],
-  entry: './src/server/server.ts',
+  entry: './src/server/index.ts',
+  externals: [nodeExternals({ allowlist: [/\.(?!(?:tsx?|json)$).{1,5}$/i] })],
   mode: 'production',
+  resolve: {
+    extensions: ['.js', '.ts'],
+    modules: ['node_modules'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader',
+        },
+      },
+    ],
+  },
   output: {
     filename: 'server.js',
     path: path.resolve('build'),
@@ -74,6 +90,11 @@ const serverConfig: Configuration = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 };
 
