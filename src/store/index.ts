@@ -3,7 +3,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from '@reduxjs/toolkit/query/react';
-
 import { compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
@@ -15,22 +14,17 @@ import itemSlice from './slices/item-slice';
 import itemsSlice from './slices/items-slice';
 import itemPopupSlice from './slices/item-popup-slice';
 import modulesSlice from './slices/modules-slice';
+import notificationSlice from './slices/notification-slice';
 import workplaceSlice from './slices/workplace-slice';
 import workplacesSlice from './slices/workplaces-slice';
+
+import { authApiEndpoints as authApi, notificationApi } from './api';
 
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }
 }
-
-// import { authApiEndpoints as authApi } from './api/auth-api/endpoints';
-
-// declare global {
-//   interface Window {
-//     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-//   }
-// }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const enhancer = composeEnhancers(applyMiddleware(thunk));
@@ -45,15 +39,17 @@ export const store = configureStore({
     items: itemsSlice,
     itempopup: itemPopupSlice,
     modules: modulesSlice,
+    notification: notificationSlice,
     workplace: workplaceSlice,
     workplaces: workplacesSlice,
-
     // Add the generated reducer as a specific top-level slice
-    // [authApi.reducerPath]: authApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+    [notificationApi.reducerPath]: notificationApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(
-      // authApi.middleware,
+      authApi.middleware,
+      notificationApi.middleware,
     ),
   devTools: true,
 });
