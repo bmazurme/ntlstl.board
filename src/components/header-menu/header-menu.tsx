@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
 import { PlusIcon } from '@heroicons/react/24/outline';
@@ -32,7 +33,8 @@ export default function HeaderMenu() {
   return (
     isMobile
       ? <MobileMenu />
-      : <div className={style.header_menu}>
+      : (
+        <div className={style.header_menu}>
           <CustomSelect
             options={workplaces}
             value={workplace}
@@ -40,5 +42,6 @@ export default function HeaderMenu() {
           />
           <Button handler={addProject} title="Add project" icon={PlusIcon} />
         </div>
+      )
   );
 }
