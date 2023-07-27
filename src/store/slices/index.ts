@@ -6,5 +6,6 @@ export * from './history-slice';
 export * from './item-popup-slice';
 export * from './items-slice';
 export * from './modules-slice';
+export * from './notification-slice';
 export * from './workplace-slice';
 export * from './workplaces-slice';
