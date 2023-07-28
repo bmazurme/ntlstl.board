@@ -15,6 +15,32 @@
   box-sizing: border-box;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 3px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+  background-color: #fbfbfb;
+}
+
 .close {
   position: absolute;
   justify-self: flex-end;

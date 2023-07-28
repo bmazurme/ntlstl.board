@@ -53,7 +53,9 @@ export default function Modal({
             <button type="button" className={style.close} data-test="close-button">
               <XMarkIcon className="h-6 w-6" onClick={onClose} />
             </button>
-            {children}
+            <div className={style.wrapper}>
+              {children}
+            </div>
           </motion.div>
         )}
       </ModalOverlay>
