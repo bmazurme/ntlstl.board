@@ -11,6 +11,18 @@ const COLOR = {
 
 const Urls = {
   BASE: '/',
+  CHART: {
+    INDEX: '/chart',
+  },
+  PROFILE: {
+    INDEX: '/profile',
+  },
+  SUPPORT: {
+    INDEX: '/support',
+  },
+  USERS: {
+    INDEX: '/users',
+  },
   404: '*',
 };
 
