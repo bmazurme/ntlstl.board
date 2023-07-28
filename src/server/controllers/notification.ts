@@ -11,14 +11,4 @@ const getMockData = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const plusMockData = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    mock.push({ ...mock[0], id: mock.length });
-
-    return res.send(mock);
-  } catch (err) {
-    next(err);
-  }
-};
-
-export { getMockData, plusMockData };
+export { mock, getMockData };
