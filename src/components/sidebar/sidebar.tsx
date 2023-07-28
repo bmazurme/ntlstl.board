@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { GroupBase, OptionsOrGroups } from 'react-select';
 import classNames from 'classnames';
@@ -7,22 +10,21 @@ import { ChevronRightIcon, ChevronLeftIcon, PlusIcon } from '@heroicons/react/24
 import IconButton from '../icon-button';
 import CustomSelect from '../custom-select';
 
-import {
-  selectModules, selectBooks, setBooks, setBookName,
-} from '../../store/slices';
+import { selectModules, setBookName } from '../../store/slices';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useGetBooksQuery, useAddBookMutation } from '../../store/api';
 
 import style from './sidebar.module.css';
 
 export default function Sidebar() {
   const dispatch = useAppDispatch();
   const modules = useAppSelector(selectModules) as unknown as OptionsOrGroups<string, GroupBase<string>>;
-  const books: Record<string, string>[] = useAppSelector(selectBooks);
+  const { data: books = [], isError, isLoading } = useGetBooksQuery();
+  const [addBook] = useAddBookMutation();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
   const button = { handler: toggleOpen, component: isOpen ? ChevronLeftIcon : ChevronRightIcon };
-  const addModule = { handler: () => dispatch(setBooks({ name: 'book', id: books.length.toString() })), component: PlusIcon };
-
+  const addModule = { handler: () => addBook({ name: 'book', id: books?.length.toString() }), component: PlusIcon };
   const [currentBook, setCurrentBook] = useState<Record<string, string> | null>(null);
 
   const setCurrent = (book: Record<string, string> | null) => {
@@ -47,7 +49,8 @@ export default function Sidebar() {
       </div>
       <div className={style.container}>
         {isOpen
-          && (<div>
+          && (
+          <div>
             {books.map((x: Record<string, string>) => (
               <div
                 key={uuidv4()}
@@ -57,7 +60,8 @@ export default function Sidebar() {
                 {x.name}
               </div>
             ))}
-          </div>)}
+          </div>
+          )}
       </div>
     </div>
   );
