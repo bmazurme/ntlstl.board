@@ -11,5 +11,5 @@
 ![Cyppress](https://img.shields.io/badge/-Cypress-black?style=flat-square&logo=cypress)
 ![Jest](https://img.shields.io/badge/-Jest-black?style=flat-square&logo=jest)
 
-- react-dnd, uuidv4, classnames, framer-motion
+- react-dnd, uuidv4, classnames, framer-motion, recharts
 
