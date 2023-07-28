@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   UsersIcon,
   Squares2X2Icon,
@@ -16,10 +17,13 @@ import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { selectBook, setBookName, selectBlocks } from '../../store/slices';
 
+import { downloadAsJson, Urls } from '../../utils';
+
 import style from './workplace-header.module.css';
 
 export default function WorkplaceHeader() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { name } = useAppSelector(selectBook);
   const blocks = useAppSelector(selectBlocks);
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -30,10 +34,13 @@ export default function WorkplaceHeader() {
   } = useModal();
   const openPopup = () => openModal();
   const { values, handleChange, resetForm } = useFormWithValidation({ name });
+  const onSave = () => downloadAsJson(blocks, `${name}.json`, 'text/plain');
+  const goToUsers = () => navigate(Urls.USERS.INDEX, { state: { pathname: location.pathname } });
+
   const buttons = [
-    { handler: () => console.log(blocks), component: DocumentArrowDownIcon },
+    { handler: onSave, component: DocumentArrowDownIcon },
     { handler: openHistory, component: RectangleStackIcon },
-    { handler: () => console.log('u'), component: UsersIcon },
+    { handler: goToUsers, component: UsersIcon },
     { handler: openPopup, component: Squares2X2Icon },
   ];
   const renameBook = () => {
