@@ -40,7 +40,7 @@ export default function HeaderMenu() {
             value={workplace}
             onChange={(pr) => dispatch(setWorkplace(pr))}
           />
-          <Button handler={addProject} title="Add project" icon={PlusIcon} />
+          <Button handler={addProject} title="Add workplace" icon={PlusIcon} />
         </div>
       )
   );

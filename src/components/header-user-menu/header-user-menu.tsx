@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   UserIcon, MoonIcon, BookOpenIcon, BellIcon, SunIcon, BellAlertIcon,
 } from '@heroicons/react/24/outline';
@@ -7,10 +8,18 @@ import ThemeContext from '../../context/theme-context';
 import { useGetNotificationQuery } from '../../store/api';
 
 import Buttons from '../buttons';
+import Modal from '../modal';
+import Notification from '../../layouts/notification';
+// import Support from '../../layouts/support';
+
+import { useModal } from '../../hooks/use-modal';
+import { Urls } from '../../utils';
 
 import style from './header-user-menu.module.css';
 
 export default function HeaderUserMenu() {
+  const navigate = useNavigate();
+  const { isModalOpen, openModal, closeModal } = useModal();
   const { data = [] } = useGetNotificationQuery('all');
   const { isDark, setIsDark } = useContext(ThemeContext);
   const [isAlert, setIsAlert] = useState(false);
@@ -21,24 +30,27 @@ export default function HeaderUserMenu() {
     localStorage.setItem('data-theme', isDark === 'light' ? 'dark' : 'light');
   };
 
+  const openNotification = () => {
+    setIsAlert((pre) => !pre);
+    openModal();
+  };
+  const alertIcon = isAlert || data.length > 0 ? BellAlertIcon : BellIcon;
+  const darkIcon = isDark === 'light' ? SunIcon : MoonIcon;
+  const goToSupport = () => navigate(Urls.SUPPORT.INDEX, { state: { pathname: location.pathname } });
+  const goToProfile = () => navigate(Urls.PROFILE.INDEX, { state: { pathname: location.pathname } });
+
   const buttons = [
-    {
-      handler: () => setIsAlert((pre) => !pre),
-      component: isAlert || data.length > 0 ? BellAlertIcon : BellIcon,
-    },
-    {
-      handler: () => console.log(1),
-      component: BookOpenIcon,
-    },
-    {
-      handler: toggleTheme,
-      component: isDark === 'light' ? SunIcon : MoonIcon,
-    },
-    {
-      handler: () => console.log(1),
-      component: UserIcon,
-    },
+    { handler: openNotification, component: alertIcon },
+    { handler: goToSupport, component: BookOpenIcon },
+    { handler: toggleTheme, component: darkIcon },
+    { handler: goToProfile, component: UserIcon },
   ];
 
-  return (<Buttons buttons={buttons} extraClass={style.menu} />);
+  return (
+    <>
+      <Buttons buttons={buttons} extraClass={style.menu} />
+      {isModalOpen
+        && (<Modal isOpen={isModalOpen} onClose={closeModal} children={<Notification />} />)}
+    </>
+  );
 }
