@@ -18,7 +18,12 @@ import notificationSlice from './slices/notification-slice';
 import workplaceSlice from './slices/workplace-slice';
 import workplacesSlice from './slices/workplaces-slice';
 
-import { authApiEndpoints as authApi, notificationApi } from './api';
+import {
+  authApiEndpoints as authApi,
+  bookApiEndpoints as bookApi,
+  notificationApi,
+  userApiEndpoints as userApi,
+} from './api';
 
 declare global {
   interface Window {
@@ -44,12 +49,16 @@ export const store = configureStore({
     workplaces: workplacesSlice,
     // Add the generated reducer as a specific top-level slice
     [authApi.reducerPath]: authApi.reducer,
+    [bookApi.reducerPath]: bookApi.reducer,
     [notificationApi.reducerPath]: notificationApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(
       authApi.middleware,
+      bookApi.middleware,
       notificationApi.middleware,
+      userApi.middleware,
     ),
   devTools: true,
 });
