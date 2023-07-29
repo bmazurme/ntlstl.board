@@ -1,7 +1,7 @@
 const options = [
-  { value: 'workplace1', label: 'Workplace1' },
-  { value: 'workplace2', label: 'Workplace2' },
-  { value: 'workplace3', label: 'Workplace3' },
+  { value: 'project1', label: 'Project1' },
+  { value: 'project2', label: 'Project2' },
+  { value: 'project3', label: 'Project3' },
 ];
 
 export { options };
