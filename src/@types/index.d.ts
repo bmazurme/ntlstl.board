@@ -2,6 +2,21 @@ declare module '*.css';
 
 declare module 'interpolate-html-plugin';
 
+type TypeUser = {
+  name: string;
+  email: string;
+  active: boolean;
+  paid: string;
+  project: { value: string; label: string; } | null;
+};
+
+type TypeNotification = {
+  id: number;
+  title: string;
+  notification: string;
+  read: boolean;
+};
+
 type TypeValue = {
   id: number;
   name: string;
