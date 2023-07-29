@@ -12,10 +12,11 @@ import { getBackgroundColor, TYPE, COLOR } from '../../utils';
 
 import style from './block.module.css';
 
-export default function Block({ block }: { block: number}) {
+export default function Block({ block }: { block: number; }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
   const blocks: TypeBlock = useAppSelector(selectBlocks);
+
   const moveCardHandler = (
     dragIndex: number,
     hoverIndex: number,
