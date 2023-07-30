@@ -12,7 +12,9 @@ export default function Container({ header, sidebar, children }
     <>
       {header && <Header />}
       <div className={style.container}>
-        {sidebar && <Sidebar />}
+        {sidebar &&
+          <Sidebar />
+        }
         {children}
       </div>
     </>
