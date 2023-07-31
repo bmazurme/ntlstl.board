@@ -19,8 +19,7 @@ const slice = createSlice({
     setHistory: (
       state,
       { payload: data }: PayloadAction<TypeHistory>,
-    ) => ({
-      ...state, data: [...state.data, data] }),
+    ) => ({ ...state, data: [...state.data, data] }),
   },
 });
 
