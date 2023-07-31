@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-return-assign */
 import { createSlice } from '@reduxjs/toolkit';
 import { GroupBase, OptionsOrGroups } from 'react-select';
 
@@ -5,14 +7,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-import { blocks } from '../../mocks/blocks';
+import { blocksApiEndpoints } from '../api';
 
 type TypeBlocksState = { data: TypeBlock };
 type TypeItemValue = { index: number, id: string, item: OptionsOrGroups<string, GroupBase<string>> }
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: TypeBlocksState = {
-  data: blocks,
+  data: {},
 };
 
 const slice = createSlice({
@@ -116,19 +118,20 @@ const slice = createSlice({
       const index = data.currentItem.currentColumnIndex;
       const item = state.data[index];
       return {
-      ...state,
-      data: {
-        ...state.data,
-        [index]: {
-          ...item,
-          items: item.items.filter((x: TypeItem) => x.id !== data.currentItem.id),
+        ...state,
+        data: {
+          ...state.data,
+          [index]: {
+            ...item,
+            items: item.items.filter((x: TypeItem) => x.id !== data.currentItem.id),
+          },
+          [data.columnName]: {
+            ...state.data[data.columnName],
+            items: [...state.data[data.columnName].items, data.currentItem],
+          },
         },
-        [data.columnName]: {
-          ...state.data[data.columnName],
-          items: [...state.data[data.columnName].items, data.currentItem],
-        },
-      },
-    }},
+      };
+    },
     setMovedBlock: (
       state,
       { payload: data }: PayloadAction<{
@@ -144,8 +147,9 @@ const slice = createSlice({
       coppiedStateArray.forEach((x, i: number) => obj[i] = { ...state.data[x], index: i });
 
       return {
-      ...state, data: obj,
-    }},
+        ...state, data: obj,
+      };
+    },
     setMovedCard: (
       state,
       { payload: data }: PayloadAction<{
@@ -164,9 +168,39 @@ const slice = createSlice({
         ...state,
         data: {
           ...state.data,
-          [data.item.currentColumnIndex]: { ...state.data[data.item.currentColumnIndex], items: arr }
+          [data.item.currentColumnIndex]: { ...state.data[data.item.currentColumnIndex], items: arr },
         },
-      }},
+      };
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addMatcher(
+        blocksApiEndpoints.endpoints.getBlocks.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload,
+        }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.getBlocks.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.getBlocksById.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload,
+        }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.getBlocksById.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
+      );
   },
 });
 
@@ -186,5 +220,3 @@ export const {
 export default slice.reducer;
 
 export const selectBlocks = (state: RootState) => state.blocks.data;
-
-//    currentItem: TypeItem & { currentColumnIndex: number, id: string },
