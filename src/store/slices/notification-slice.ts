@@ -4,13 +4,6 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-export type TypeNotification = {
-  id: number;
-  title: string;
-  notification: string;
-  read: boolean;
-};
-
 export type TypeNotificationState = { data: TypeNotification[] };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
