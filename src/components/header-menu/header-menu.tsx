@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
 import { PlusIcon } from '@heroicons/react/24/outline';
@@ -7,28 +6,22 @@ import Button from '../button';
 import CustomSelect from '../custom-select';
 import MobileMenu from './components/mobile-menu';
 
-import { useAppSelector, useAppDispatch } from '../../hooks';
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import {
-  selectWorkplaces, setWorkplaces, selectWorkplace, setWorkplace,
-} from '../../store/slices';
+  useGetProjectsQuery, useAddProjectMutation, useGetUserMeQuery, useUpdateUserMutation,
+} from '../../store/api';
 
 import style from './header-menu.module.css';
 
 export default function HeaderMenu() {
+  const { data: options = [] } = useGetProjectsQuery();
+  const { data: user } = useGetUserMeQuery();
+  const [addProject] = useAddProjectMutation();
+  const [updateUser] = useUpdateUserMutation();
   const { blocks } = getVisualProps(useWindowDimensions());
+
   const isMobile = blocks === 1;
-
-  const dispatch = useAppDispatch();
-  const workplace = useAppSelector(selectWorkplace) as unknown as PropsValue<string>;
-  const workplaces = useAppSelector(selectWorkplaces) as unknown as OptionsOrGroups<string, GroupBase<string>>;
-
-  const addProject = () => dispatch(setWorkplaces(
-    {
-      value: `Workplace${workplaces.length + 1}`,
-      label: `Workplace${workplaces.length + 1}`,
-    },
-  ));
+  const value = user?.project as PropsValue<string>;
 
   return (
     isMobile
@@ -36,11 +29,11 @@ export default function HeaderMenu() {
       : (
         <div className={style.header_menu}>
           <CustomSelect
-            options={workplaces}
-            value={workplace}
-            onChange={(pr) => dispatch(setWorkplace(pr))}
+            options={options as unknown as OptionsOrGroups<string, GroupBase<string>>}
+            value={value}
+            onChange={async (pr) => updateUser({ ...user, project: pr })}
           />
-          <Button handler={addProject} title="Add workplace" icon={PlusIcon} />
+          <Button handler={addProject} title="Add project" icon={PlusIcon} />
         </div>
       )
   );
