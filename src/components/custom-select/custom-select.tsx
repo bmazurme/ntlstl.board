@@ -20,9 +20,13 @@ export default function CustomSelect({ options, onChange, value }: {
       backgroundColor: '#f0f1f3',
       color: '#000',
     }),
+    valueContainer: (baseStyles: any) => ({
+      ...baseStyles,
+      padding: '1px 8px',
+    }),
     dropdownIndicator: (base: any) => ({
       ...base,
-      padding: 2,
+      padding: 3,
       minHeight: 28,
       maxHeight: 30,
     }),
