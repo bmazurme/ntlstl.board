@@ -14,17 +14,18 @@ import Modal from '../modal';
 
 import { useModal } from '../../hooks/use-modal';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBook, setBookName, selectBlocks } from '../../store/slices';
+import { useAppSelector } from '../../hooks';
+import { selectBookId, selectBlocks } from '../../store/slices';
+import { useRenameBookMutation } from '../../store/api';
 
 import { downloadAsJson, Urls } from '../../utils';
 
 import style from './workplace-header.module.css';
 
 export default function WorkplaceHeader() {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { name } = useAppSelector(selectBook);
+  const [renameBook] = useRenameBookMutation();
+  const { name, id } = useAppSelector(selectBookId)!;
   const blocks = useAppSelector(selectBlocks);
   const { isModalOpen, openModal, closeModal } = useModal();
   const {
@@ -43,27 +44,31 @@ export default function WorkplaceHeader() {
     { handler: goToUsers, component: UsersIcon },
     { handler: openPopup, component: Squares2X2Icon },
   ];
-  const renameBook = () => {
+  const rename = async () => {
     if (values.name !== '') {
-      dispatch(setBookName(values.name));
+      const res = await renameBook({ name: values.name, id });
     } else {
-      resetForm({ name });
+      resetForm({name});
     }
   };
 
   useMemo(() => {
     resetForm({ name });
-  }, [name])
+  }, [name]);
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+  };
 
   return (
-    <form className={style.header}>
+    <form className={style.header} onSubmit={onSubmit}>
       <input
         type="text"
         name="name"
         value={values.name}
         onChange={handleChange}
         className={style.title}
-        onBlur={renameBook}
+        onBlur={rename}
       />
       <Buttons buttons={buttons} />
       {isModalOpen
