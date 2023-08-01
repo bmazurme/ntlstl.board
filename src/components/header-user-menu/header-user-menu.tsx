@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable max-len */
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -23,7 +25,7 @@ export default function HeaderUserMenu() {
   const { data = [] } = useGetNotificationQuery('all');
   const { isDark, setIsDark } = useContext(ThemeContext);
   const [isAlert, setIsAlert] = useState(false);
-  console.log(data);
+  // console.log(data);
 
   const toggleTheme = () => {
     setIsDark(isDark === 'light' ? 'dark' : 'light');
@@ -34,6 +36,7 @@ export default function HeaderUserMenu() {
     setIsAlert((pre) => !pre);
     openModal();
   };
+
   const alertIcon = isAlert || data.length > 0 ? BellAlertIcon : BellIcon;
   const darkIcon = isDark === 'light' ? SunIcon : MoonIcon;
   const goToSupport = () => navigate(Urls.SUPPORT.INDEX, { state: { pathname: location.pathname } });
