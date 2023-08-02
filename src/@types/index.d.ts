@@ -33,6 +33,7 @@ type TypeItem = {
 
 type TypeBlockValue = { index: number, name: string, items: TypeItem[] };
 type TypeBlock = Record<number, TypeBlockValue>;
+type TypeBook = { name: string; id: string; projectId: string; };
 
 type TypeMovableItem = {
   currentColumnIndex: number;
