@@ -13,7 +13,7 @@ const MODAL_CONFIG = {
     scale: 1,
     transition: {
       ease: 'easeOut',
-      duration: 0.45,
+      duration: 0.35,
     },
   },
   EXIT: {
@@ -21,7 +21,7 @@ const MODAL_CONFIG = {
     scale: 0.75,
     transition: {
       ease: 'easeIn',
-      duration: 0.45,
+      duration: 0.35,
     },
   },
 };
