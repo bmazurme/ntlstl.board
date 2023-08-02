@@ -1,17 +1,13 @@
-import React, { useCallback }  from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import Modal from '../../components/modal';
 
 import { useGetUserMeQuery } from '../../store/api';
 
-import { TypeUser } from '../../store/api';
-
 import { Urls } from '../../utils';
 
 import style from './profile-modal.module.css';
-
-
 
 function ProfileBody() {
   const { data } = useGetUserMeQuery() as unknown as { data: TypeUser };
