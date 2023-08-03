@@ -6,11 +6,11 @@ import ItemForm from '../../layouts/item-form';
 import Modal from '../modal';
 
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, selectItemPopup, setItemPopup } from '../../store/slices';
+import { selectItemPopup, setItemPopup, selectBlocks } from '../../store/slices';
 
 export default function Blocks() {
   const dispatch = useAppDispatch();
-  const blocks = useAppSelector(selectBlocks);
+  const blocks: TypeBlock = useAppSelector(selectBlocks);
   const { id, index, isOpen } = useAppSelector(selectItemPopup);
   const closeModal = () => dispatch(setItemPopup({ index: null, id: null, isOpen: false }));
 
