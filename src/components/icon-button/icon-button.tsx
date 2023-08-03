@@ -6,10 +6,15 @@ type TypeIcon = React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGP
   & { title?: string, titleId?: string }
   & React.RefAttributes<SVGSVGElement>>;
 
-export default function IconButton({ handler, component: Component }
-  : { handler: () => void, component: TypeIcon }) {
+export default function IconButton({ handler, component: Component, disabled }
+  : { handler: () => void, component: TypeIcon, disabled?: boolean }) {
   return (
-    <button type="button" className={style.button} onClick={handler}>
+    <button
+      type="button"
+      className={style.button}
+      onClick={handler}
+      disabled={disabled}
+    >
       <Component className="h-6 w-6" />
     </button>
   );
