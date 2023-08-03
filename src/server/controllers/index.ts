@@ -1,12 +1,12 @@
-import { getBooks, addBook } from './book';
+import { getBooks, addBook } from './book-controller';
 import { getMockData, plusMockData } from './mock';
-import { getUserMe, updateUser, addUser } from './user';
+import { getUserMe, updateUser, addUser } from './user-controller';
 import {
   getWorkplace,
   renameWorkplace,
   updateWorkplace,
   moveToArchive,
-} from './workplace';
+} from './workplace-controller';
 
 export {
   getMockData,

@@ -1,6 +1,15 @@
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
 
+let user = {
+  id: 'id',
+  name: 'User Name',
+  email: 'User Email',
+  active: true,
+  paid: '01.01.2024',
+  project: null,
+};
+
 const addUser = (req: Request, res: Response, next: NextFunction) => {
   try {
     return res.send('user created');
@@ -10,14 +19,6 @@ const addUser = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const getUserMe = (req: Request, res: Response, next: NextFunction) => {
-  const user = {
-    id: 'id',
-    name: 'User Name',
-    email: 'User Email',
-    active: true,
-    paid: '01.01.2024',
-  };
-
   try {
     return res.send(user);
   } catch (err) {
@@ -26,8 +27,16 @@ const getUserMe = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const updateUser = (req: Request, res: Response, next: NextFunction) => {
+  const {
+    id, name, email, active, paid, project,
+  } = req.body;
+
+  user = {
+    id, name, email, active, paid, project,
+  };
+
   try {
-    return res.send('updated');
+    return res.send(user);
   } catch (err) {
     next(err);
   }
