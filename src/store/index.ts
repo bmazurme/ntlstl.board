@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 
 import blocksSlice from './slices/blocks-slice';
 import bookSlice from './slices/book-slice';
+import bookidSlice from './slices/bookid-slice';
 import booksSlice from './slices/books-slice';
 import historySlice from './slices/history-slice';
 import itemSlice from './slices/item-slice';
@@ -15,12 +16,14 @@ import itemsSlice from './slices/items-slice';
 import itemPopupSlice from './slices/item-popup-slice';
 import modulesSlice from './slices/modules-slice';
 import notificationSlice from './slices/notification-slice';
+import userSlice from './slices/user-slice';
 import workplaceSlice from './slices/workplace-slice';
-import workplacesSlice from './slices/workplaces-slice';
 
 import {
   authApiEndpoints as authApi,
+  blocksApiEndpoints as blocksApi,
   bookApiEndpoints as bookApi,
+  projectApiEndpoints as projectApi,
   notificationApi,
   userApiEndpoints as userApi,
 } from './api';
@@ -39,24 +42,29 @@ export const store = configureStore({
     blocks: blocksSlice,
     book: bookSlice,
     books: booksSlice,
+    bookid: bookidSlice,
     history: historySlice,
     item: itemSlice,
     items: itemsSlice,
     itempopup: itemPopupSlice,
     modules: modulesSlice,
     notification: notificationSlice,
+    user: userSlice,
     workplace: workplaceSlice,
-    workplaces: workplacesSlice,
     // Add the generated reducer as a specific top-level slice
     [authApi.reducerPath]: authApi.reducer,
+    [blocksApi.reducerPath]: blocksApi.reducer,
     [bookApi.reducerPath]: bookApi.reducer,
+    [projectApi.reducerPath]: projectApi.reducer,
     [notificationApi.reducerPath]: notificationApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(
       authApi.middleware,
+      blocksApi.middleware,
       bookApi.middleware,
+      projectApi.middleware,
       notificationApi.middleware,
       userApi.middleware,
     ),
