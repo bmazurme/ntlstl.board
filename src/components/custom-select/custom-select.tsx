@@ -1,11 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import Select, { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
+import Select, { PropsValue } from 'react-select';
 import { ActionMeta } from 'react-select/dist/declarations/src/types';
 
+import { TypeModule } from '../../store/slices';
+
 export default function CustomSelect({ options, onChange, value }: {
-    options: OptionsOrGroups<string, GroupBase<string>> | undefined,
+    options: unknown,
     onChange?: ((newValue: any, actionMeta: ActionMeta<string>) => void) | undefined,
     value?: PropsValue<string> | undefined,
   }) {
@@ -52,7 +54,7 @@ export default function CustomSelect({ options, onChange, value }: {
   return (
     <Select
       styles={customSelectStyle}
-      options={options}
+      options={options as TypeModule}
       onChange={onChange}
       value={value}
     />
