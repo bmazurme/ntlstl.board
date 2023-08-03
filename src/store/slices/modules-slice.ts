@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import type { PayloadAction } from '@reduxjs/toolkit';
+
+import { GroupBase, OptionsOrGroups } from 'react-select';
 
 import { RootState } from '..';
 
 import { modules } from '../../mocks/modules';
 
-type TypeModules = { value: string, label: string };
-type TypeModulesState = { data: TypeModules[] };
+export type TypeModule = OptionsOrGroups<string, GroupBase<string>>;
+// { value: string; label: string; };
+type TypeModulesState = { data: TypeModule[] };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: TypeModulesState = {
@@ -20,7 +22,7 @@ const slice = createSlice({
   reducers: {
     setModules: (
       state,
-      { payload: data }: PayloadAction<TypeModules>,
+      { payload: data }: PayloadAction<TypeModule>,
     ) => ({ ...state, data: [...state.data, data] }),
   },
 });
