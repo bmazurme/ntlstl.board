@@ -10,7 +10,7 @@ import { RootState } from '..';
 import { blocksApiEndpoints } from '../api';
 
 type TypeBlocksState = { data: TypeBlock };
-type TypeItemValue = { index: number, id: string, item: OptionsOrGroups<string, GroupBase<string>> }
+type TypeItemValue = { index: number; id: string; item: OptionsOrGroups<string, GroupBase<string>>; }
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: TypeBlocksState = {
