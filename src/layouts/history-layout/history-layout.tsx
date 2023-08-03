@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../hooks';
 import { selectHistory } from '../../store/slices';
 
-import style from './history.module.css';
+import style from './history-layout.module.css';
 
-export default function History() {
+export default function HistoryLayout() {
   const history = useAppSelector(selectHistory);
   console.log(history);
 
