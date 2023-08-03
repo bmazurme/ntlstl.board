@@ -1,7 +1,7 @@
 // https://github.com/phryneas/cli-mqtt-chatclient/blob/main/src/api.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { setNotification, TypeNotification } from '../../slices';
+import { setNotification } from '../../slices';
 
 import { WSS_API } from '../../../utils';
 

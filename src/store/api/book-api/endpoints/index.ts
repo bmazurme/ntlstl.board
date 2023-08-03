@@ -1,8 +1,5 @@
+import { omit } from 'cypress/types/lodash';
 import bookApi from '..';
-
-type TypeBook = {
-  name: string;
-};
 
 const bookApiEndpoints = bookApi
   .enhanceEndpoints({
@@ -10,17 +7,32 @@ const bookApiEndpoints = bookApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getBooks: builder.query<TypeBook[], void>({
-        query: () => ({
-          url: '/api/books',
+      getBooks: builder.query<TypeBook[], string>({
+        query: (id) => ({
+          url: `/api/books/${id}`,
           method: 'GET',
         }),
         providesTags: ['book'],
       }),
+      getBookById: builder.mutation({
+        query: (id) => ({
+          url: `/api/books/${id}`,
+          method: 'GET',
+        }),
+        invalidatesTags: ['book'],
+      }),
       addBook: builder.mutation({
-        query: (data) => ({
+        query: (data: Omit<TypeBook, 'id'>) => ({
           url: '/api/books',
           method: 'POST',
+          body: data,
+        }),
+        invalidatesTags: ['book'],
+      }),
+      renameBook: builder.mutation({
+        query: (data) => ({
+          url: '/api/books',
+          method: 'PATCH',
           body: data,
         }),
         invalidatesTags: ['book'],
@@ -28,5 +40,10 @@ const bookApiEndpoints = bookApi
     }),
   });
 
-export const { useGetBooksQuery, useAddBookMutation } = bookApiEndpoints;
+export const {
+  useGetBooksQuery,
+  useAddBookMutation,
+  useRenameBookMutation,
+  useGetBookByIdMutation,
+} = bookApiEndpoints;
 export { bookApiEndpoints };

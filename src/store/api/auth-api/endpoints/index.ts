@@ -1,10 +1,5 @@
 import authApi from '..';
 
-type TypeUser = {
-  name: string;
-  email: string;
-};
-
 type ResponseToken = {
   accessToken: string;
   refreshToken: string;

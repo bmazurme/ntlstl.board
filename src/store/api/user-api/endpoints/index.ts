@@ -1,26 +1,28 @@
 import userApi from '..';
 
-export type TypeUser = {
-  name: string;
-  email: string;
-  active: boolean;
-  paid: string;
-};
-
 const userApiEndpoints = userApi
   .enhanceEndpoints({
     addTagTypes: ['user'],
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getUserMe: builder.query<{ user: TypeUser }, void>({
+      getUserMe: builder.query<TypeUser, void>({
         query: () => ({
           url: '/api/user',
           method: 'GET',
         }),
+        providesTags: ['user'],
+      }),
+      updateUser: builder.mutation({
+        query: (data) => ({
+          url: '/api/user',
+          method: 'PATCH',
+          body: data,
+        }),
+        invalidatesTags: ['user'],
       }),
     }),
   });
 
-export const { useGetUserMeQuery } = userApiEndpoints;
+export const { useGetUserMeQuery, useUpdateUserMutation } = userApiEndpoints;
 export { userApiEndpoints };
