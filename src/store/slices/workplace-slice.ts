@@ -6,7 +6,7 @@ import { RootState } from '..';
 
 import { options } from '../../mocks/options';
 
-type TypeWorkplace = { value: string, label: string };
+type TypeWorkplace = { value: string; label: string; };
 type TypeWorkplaceState = { data: TypeWorkplace };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
