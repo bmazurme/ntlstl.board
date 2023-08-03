@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-type TypePopup = { index: number | null, id: string | null, isOpen: boolean };
+type TypePopup = { index: number | null; id: string | null; isOpen: boolean; };
 type TypePopupState = { data: TypePopup };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
