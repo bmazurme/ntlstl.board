@@ -1,9 +1,13 @@
 html {
   --header-bg-color: #f0f8ff;
+  --sidebar-bg-color: #f6f6f6;
+  --color: #000;
 }
 
 html[data-theme="dark"] {
-  --header-bg-color: #5a5a5a;
+  --header-bg-color: #1b1b1e;
+  --sidebar-bg-color: #1b1b1e;
+  --color: #d6d6d6;
 }
 
 .root {
@@ -15,7 +19,7 @@ html[data-theme="dark"] {
   --width-2xl: 1536px;
   --background-color: #fff;
   --background-overlay: rgb(0 0 0 / 60%);
-  --color: #000;
+  /* --color: #000; */
 
   height: 100vh;
   color: var(--color);
