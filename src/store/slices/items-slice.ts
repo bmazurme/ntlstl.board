@@ -6,7 +6,7 @@ import { RootState } from '..';
 
 import { items } from '../../mocks/items';
 
-type TypeItems = { value: string, label: string }[];
+type TypeItems = { value: string; label: string; }[];
 type TypeItemsState = { data: TypeItems };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
