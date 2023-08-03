@@ -10,12 +10,24 @@ const COLOR = {
 };
 
 const Urls = {
-  BASE: '/',
+  BASE: {
+    INDEX: '/projects',
+    PROJECT: '/projects/:projectId/:bookId',
+  },
   CHART: {
     INDEX: '/chart',
   },
+  PASSWORD: {
+    FORGOT: '/password/forgot',
+    CONFIRM: '/password/:token',
+    RESET: '/password',
+  },
   PROFILE: {
     INDEX: '/profile',
+  },
+  SIGN: {
+    IN: '/signin',
+    UP: '/signup',
   },
   SUPPORT: {
     INDEX: '/support',
