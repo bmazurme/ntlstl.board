@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-type TypeHistory = { user: string, state: TypeBlock };
+type TypeHistory = { user: string; state: TypeBlock; };
 type TypeHistoryState = { data: TypeHistory[] };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
