@@ -38,7 +38,7 @@ export default function HeaderUserMenu() {
   };
 
   const alertIcon = isAlert || data.length > 0 ? BellAlertIcon : BellIcon;
-  const darkIcon = isDark === 'light' ? SunIcon : MoonIcon;
+  const darkIcon = isDark === 'dark' ? SunIcon : MoonIcon;
   const goToSupport = () => navigate(Urls.SUPPORT.INDEX, { state: { pathname: location.pathname } });
   const goToProfile = () => navigate(Urls.PROFILE.INDEX, { state: { pathname: location.pathname } });
 
