@@ -6,9 +6,9 @@ import { InformationCircleIcon, CheckCircleIcon } from '@heroicons/react/24/outl
 import { useAppSelector } from '../../hooks';
 import { selectNotification } from '../../store/slices';
 
-import style from './notification.module.css';
+import style from './notification-layout.module.css';
 
-export default function Notification() {
+export default function NotificationLayout() {
   const data = useAppSelector(selectNotification);
   console.log(data);
 
