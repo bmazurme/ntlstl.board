@@ -5,12 +5,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { bookApiEndpoints } from '../api';
 
-type TypeBook = { name: string; id: string; }
 type TypeBookState = { data: TypeBook };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: TypeBookState = {
-  data: { name: '', id: '' },
+  data: { name: '', id: '', projectId: '' },
 };
 
 const slice = createSlice({
