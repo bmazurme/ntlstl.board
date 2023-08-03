@@ -1,16 +1,20 @@
 import { Router } from 'express';
 
-import authRoute from './auth';
-import bookRoute from './book';
+import authRoute from './auth-route';
+import blockRoute from './block-route';
+import bookRoute from './book-route';
+import projectRoute from './project-route';
 import mockRoute from './mock';
-import notificationRoute from './notification';
-import userRoute from './user';
-import workplaceRoute from './workplace';
+import notificationRoute from './notification-route';
+import userRoute from './user-route';
+import workplaceRoute from './workplace-route';
 
 const router = Router();
 
 router.use('/', authRoute);
+router.use('/', blockRoute);
 router.use('/', bookRoute);
+router.use('/', projectRoute);
 router.use('/', mockRoute);
 router.use('/', notificationRoute);
 router.use('/', userRoute);
