@@ -3,6 +3,7 @@ import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import bodyParser from 'body-parser';
 import { config as dotEnvConfig } from 'dotenv';
 import http from 'http';
 import WebSocket from 'ws';
@@ -25,6 +26,8 @@ const app = express();
 
 app.use(cors(corsOptions));
 app.use(helmet.contentSecurityPolicy(helmetConfig));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // initialize a simple http server
 const server = http.createServer(app);
