@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 import { Urls } from '../../utils';
 
-import style from './not-found.module.css';
+import style from './not-found-layout.module.css';
 
-export default function NotFound() {
+export default function NotFoundLayout() {
   return (
     <div className={style.container}>
       <h2 className={classNames(style.title)}>
@@ -15,7 +15,7 @@ export default function NotFound() {
           Not found page
         </span>
       </h2>
-      <NavLink className="" to={Urls.BASE}>
+      <NavLink className="" to={Urls.BASE.INDEX}>
         Go to main page
       </NavLink>
     </div>
