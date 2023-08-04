@@ -47,6 +47,19 @@ const slice = createSlice({
         (state, action) => {
           console.log('rejected', state, action);
         },
+      )
+      .addMatcher(
+      bookApiEndpoints.endpoints.renameBook.matchFulfilled,
+      (state, action) => ({
+        ...state,
+        data: state.data.map((x) => (action.payload.id === x.id ? action.payload : x)),
+      }),
+    )
+      .addMatcher(
+        bookApiEndpoints.endpoints.renameBook.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
       );
   },
 });

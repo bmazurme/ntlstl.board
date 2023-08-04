@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 
 import blocksSlice from './slices/blocks-slice';
 import bookSlice from './slices/book-slice';
-import bookidSlice from './slices/bookid-slice';
+import bookidSlice from './slices/book-current-slice';
 import booksSlice from './slices/books-slice';
 import historySlice from './slices/history-slice';
 import itemSlice from './slices/item-slice';

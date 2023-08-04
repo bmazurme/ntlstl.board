@@ -1,6 +1,6 @@
 export * from './blocks-slice';
 export * from './book-slice';
-export * from './bookid-slice';
+export * from './book-current-slice';
 export * from './books-slice';
 export * from './item-slice';
 export * from './history-slice';

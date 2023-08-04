@@ -4,8 +4,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-type TypeBookId = Record<string, string> | null;
-type TypeBookIdState = { data: TypeBookId };
+// type TypeBookId = TypeBook | null;
+type TypeBookIdState = { data: TypeBook | null };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: TypeBookIdState = {
@@ -13,18 +13,18 @@ const initialState: TypeBookIdState = {
 };
 
 const slice = createSlice({
-  name: 'bookid',
+  name: 'book',
   initialState,
   reducers: {
-    setBookId: (
+    setCurrentBook: (
       state,
-      { payload: data }: PayloadAction<TypeBookId>,
+      { payload: data }: PayloadAction<TypeBook>,
     ) => ({ ...state, data }),
   },
 });
 
-export const { setBookId } = slice.actions;
+export const { setCurrentBook } = slice.actions;
 
 export default slice.reducer;
 
-export const selectBookId = (state: RootState) => state.bookid.data;
+export const selectCurrentBook = (state: RootState) => state.bookid.data;
