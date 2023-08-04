@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Chart from '../../layouts/chart';
+import ChartLayout from '../../layouts/chart-layout';
 
 import withUser from '../../hocs/with-user';
 
 function ChartPage() {
-  return (<Chart />);
+  return (<ChartLayout />);
 }
 
 export default withUser(ChartPage, false);

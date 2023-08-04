@@ -1,3 +1,3 @@
-import ChartPage from './chart';
+import ChartPage from './chart-page';
 
 export default ChartPage;
