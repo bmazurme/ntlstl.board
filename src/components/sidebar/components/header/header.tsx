@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
 import IconButton from '../../../icon-button';
@@ -16,12 +16,19 @@ type TypeIcon = React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGP
 
 export default function Header({ isOpen, button }
   : { isOpen: boolean, button: { handler: () => void; component: TypeIcon } }) {
+  const [typeBook, setTypeBook] = useState(null);
   const user = useAppSelector(selectCurrentUser)!;
   const [addBook] = useAddBookMutation();
   const modules = useAppSelector(selectModules);
-
   const addModule = {
-    handler: async () => addBook({ name: 'book', projectId: user.project!.value }),
+    handler: async () => {
+      addBook({
+        name: 'book',
+        projectId: user.project!.value,
+        typeBook: (typeBook as unknown as { value: string; label: string; }).value,
+      });
+      setTypeBook(null);
+    },
     component: PlusIcon,
   };
 
@@ -30,8 +37,12 @@ export default function Header({ isOpen, button }
       {isOpen
         && (
           <div className={style.buttons}>
-            <CustomSelect options={modules} />
-            <IconButton {...addModule} />
+            <CustomSelect
+              options={modules}
+              value={typeBook}
+              onChange={(pr) => setTypeBook(pr)}
+            />
+            <IconButton {...addModule} disabled={!typeBook} />
           </div>
         )}
       <IconButton {...button} />
