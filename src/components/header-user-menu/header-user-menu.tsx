@@ -11,7 +11,7 @@ import { useGetNotificationQuery } from '../../store/api';
 
 import Buttons from '../buttons';
 import Modal from '../modal';
-import Notification from '../../layouts/notification';
+import Notification from '../../layouts/notification-layout';
 // import Support from '../../layouts/support';
 
 import { useModal } from '../../hooks/use-modal';
