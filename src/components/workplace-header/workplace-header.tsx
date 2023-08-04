@@ -8,14 +8,14 @@ import {
 } from '@heroicons/react/24/outline';
 
 import WorkplaceForm from '../workplace-form';
-import History from '../../layouts/history';
+import HistoryLayout from '../../layouts/history-layout';
 import Buttons from '../buttons';
 import Modal from '../modal';
 
 import { useModal } from '../../hooks/use-modal';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useAppSelector } from '../../hooks';
-import { selectBookId, selectBlocks } from '../../store/slices';
+import { selectCurrentBook, selectBlocks } from '../../store/slices';
 import { useRenameBookMutation } from '../../store/api';
 
 import { downloadAsJson, Urls } from '../../utils';
@@ -25,7 +25,7 @@ import style from './workplace-header.module.css';
 export default function WorkplaceHeader() {
   const navigate = useNavigate();
   const [renameBook] = useRenameBookMutation();
-  const { name, id } = useAppSelector(selectBookId)!;
+  const { name, id } = useAppSelector(selectCurrentBook)!;
   const blocks = useAppSelector(selectBlocks);
   const { isModalOpen, openModal, closeModal } = useModal();
   const {
@@ -74,7 +74,7 @@ export default function WorkplaceHeader() {
       {isModalOpen
         && (<Modal isOpen={isModalOpen} onClose={closeModal} children={<WorkplaceForm />} />)}
       {isOpenHistory
-        && (<Modal isOpen={isOpenHistory} onClose={closeHistory} children={<History />} />)}
+        && (<Modal isOpen={isOpenHistory} onClose={closeHistory} children={<HistoryLayout />} />)}
     </form>
   );
 }
