@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Main from '../../layouts/main';
+import MainLayout from '../../layouts/main-layout';
 
 import withUser from '../../hocs/with-user';
 
 function MainPage() {
   // throw new Error('...');
-  return (<Main />);
+  return (<MainLayout />);
 }
 
 export default withUser(MainPage, false);
