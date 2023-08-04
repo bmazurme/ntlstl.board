@@ -1,4 +1,3 @@
-import { omit } from 'cypress/types/lodash';
 import bookApi from '..';
 
 const bookApiEndpoints = bookApi
