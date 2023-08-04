@@ -1,9 +1,11 @@
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
 
-import { blocks } from '../block-controller';
+import { blocks } from '../../mocks/db';
 
-let books: TypeBook[] = [{ name: 'Title book', id: '0', projectId: '0' }];
+let books: TypeBook[] = [{
+  name: 'Title book', id: '0', projectId: '0', typeBook: '0',
+}];
 
 const getBooks = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -17,12 +19,13 @@ const getBooks = (req: Request, res: Response, next: NextFunction) => {
 
 const addBook = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { projectId } = req.body;
+    const { projectId, typeBook } = req.body;
 
     books.push({
       id: books.length.toString(),
       name: 'book',
       projectId,
+      typeBook,
     });
 
     blocks.push({

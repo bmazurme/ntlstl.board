@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
 
-import { mock } from '../../mocks/mock';
+import { mock } from '../../mocks/db';
 
 const getMockData = (req: Request, res: Response, next: NextFunction) => {
   try {

@@ -1,14 +1,7 @@
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
 
-let user = {
-  id: 'id',
-  name: 'User Name',
-  email: 'User Email',
-  active: true,
-  paid: '01.01.2024',
-  project: null,
-};
+import { user } from '../../mocks/db';
 
 const addUser = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -31,9 +24,13 @@ const updateUser = (req: Request, res: Response, next: NextFunction) => {
     id, name, email, active, paid, project,
   } = req.body;
 
-  user = {
-    id, name, email, active, paid, project,
-  };
+  console.log(id);
+
+  user.name = name;
+  user.email = email;
+  user.active = active;
+  user.paid = paid;
+  user.project = project;
 
   try {
     return res.send(user);
