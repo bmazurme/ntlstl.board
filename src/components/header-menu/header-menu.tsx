@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
@@ -14,6 +15,7 @@ import {
 import style from './header-menu.module.css';
 
 export default function HeaderMenu() {
+  const navigate = useNavigate();
   const { data: options = [] } = useGetProjectsQuery();
   const { data: user } = useGetUserMeQuery();
   const [addProject] = useAddProjectMutation();
@@ -23,6 +25,11 @@ export default function HeaderMenu() {
   const isMobile = blocks === 1;
   const value = user?.project as PropsValue<string>;
 
+  const onChange = async (project: any) => {
+    updateUser({ ...user, project });
+    navigate(`/projects`);
+  };
+
   return (
     isMobile
       ? <MobileMenu />
@@ -31,7 +38,7 @@ export default function HeaderMenu() {
           <CustomSelect
             options={options as unknown as OptionsOrGroups<string, GroupBase<string>>}
             value={value}
-            onChange={async (pr) => updateUser({ ...user, project: pr })}
+            onChange={onChange}
           />
           <Button handler={addProject} title="Add project" icon={PlusIcon} />
         </div>
