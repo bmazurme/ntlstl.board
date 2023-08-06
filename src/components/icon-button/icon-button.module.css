@@ -17,3 +17,8 @@
   background-color: #e1e1e1;
   opacity: 1;
 }
+
+.disabled {
+  cursor: default;
+  /* background-color: yellow; */
+}

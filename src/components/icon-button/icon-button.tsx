@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import style from './icon-button.module.css';
 
@@ -11,7 +12,7 @@ export default function IconButton({ handler, component: Component, disabled }
   return (
     <button
       type="button"
-      className={style.button}
+      className={classNames(style.button, { [style.disabled]: disabled })}
       onClick={handler}
       disabled={disabled}
     >
