@@ -1,13 +1,17 @@
 html {
   --header-bg-color: #f0f8ff;
   --sidebar-bg-color: #f6f6f6;
+  --border-color: #ccc;
   --color: #000;
+  --item-active: #b8b8b8;
 }
 
 html[data-theme="dark"] {
-  --header-bg-color: #1b1b1e;
+  --header-bg-color: #202124;
   --sidebar-bg-color: #1b1b1e;
-  --color: #d6d6d6;
+  --border-color: #2e2e2e;
+  --color: #626265;
+  --item-active: #2d2e31;
 }
 
 .root {
@@ -19,7 +23,6 @@ html[data-theme="dark"] {
   --width-2xl: 1536px;
   --background-color: #fff;
   --background-overlay: rgb(0 0 0 / 60%);
-  /* --color: #000; */
 
   height: 100vh;
   color: var(--color);
