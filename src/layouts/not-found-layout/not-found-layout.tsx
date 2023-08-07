@@ -15,7 +15,7 @@ export default function NotFoundLayout() {
           Not found page
         </span>
       </h2>
-      <NavLink className="" to={Urls.BASE.INDEX}>
+      <NavLink className={style.link} to={Urls.BASE.INDEX}>
         Go to main page
       </NavLink>
     </div>
