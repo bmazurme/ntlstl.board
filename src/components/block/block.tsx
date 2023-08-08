@@ -1,18 +1,23 @@
+/* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import React, { useRef } from 'react';
+import { useParams } from 'react-router';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
 import Column from './components/column';
 import MovableItem from './components/movablel-item';
 
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, setMovedBlock, setMovedCard } from '../../store/slices';
+import { selectBlocks, setMovedCard } from '../../store/slices';
+import { useSetMovedBlockMutation } from '../../store/api';
 
 import { getBackgroundColor, TYPE, COLOR } from '../../utils';
 
 import style from './block.module.css';
 
 export default function Block({ block }: { block: number; }) {
+  const { bookId } = useParams();
+  const [setMovedBlock] = useSetMovedBlockMutation();
   const ref = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
   const blocks: TypeBlock = useAppSelector(selectBlocks);
@@ -25,7 +30,9 @@ export default function Block({ block }: { block: number; }) {
     const dragItem = blocks[item.currentColumnIndex].items[dragIndex];
 
     if (dragItem) {
-      dispatch(setMovedCard({ dragIndex, hoverIndex, item, dragItem }));
+      dispatch(setMovedCard({
+        dragIndex, hoverIndex, item, dragItem,
+      }));
     }
   };
 
@@ -53,7 +60,9 @@ export default function Block({ block }: { block: number; }) {
     const dragItem = blocks[item.index];
 
     if (dragItem) {
-      dispatch(setMovedBlock({ dragIndex, hoverIndex, item }));
+      setMovedBlock({
+        dragIndex, hoverIndex, item, bookId, // item !!!
+      });
     }
   };
 
