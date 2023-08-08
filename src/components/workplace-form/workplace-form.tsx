@@ -9,6 +9,7 @@ import style from './workplace-form.module.css';
 
 export default function WorkplaceForm() {
   const { name } = useAppSelector(selectCurrentBook)!;
+
   return (
     <>
       <h2>{name}</h2>
