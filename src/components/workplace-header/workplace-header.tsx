@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -48,7 +49,7 @@ export default function WorkplaceHeader() {
     if (values.name !== '') {
       const res = await renameBook({ name: values.name, id });
     } else {
-      resetForm({name});
+      resetForm({ name });
     }
   };
 
