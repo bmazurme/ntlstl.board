@@ -15,7 +15,7 @@ import style from './list.module.css';
 export default function List({ isOpen, isLoading }
   : { isOpen: boolean; isLoading: boolean; }) {
   const { bookId } = useParams();
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
   const user = useAppSelector(selectCurrentUser)!;
   const books: TypeBook[] = useAppSelector(selectBooks);
 
