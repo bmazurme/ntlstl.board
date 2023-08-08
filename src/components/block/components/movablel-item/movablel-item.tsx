@@ -1,23 +1,25 @@
+/* eslint-disable max-len */
 import React, { useRef } from 'react';
+import { useParams } from 'react-router';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
 import Item from '../item';
 
-import { useAppDispatch } from '../../../../hooks';
-import { setChangeItemColumn } from '../../../../store/slices';
+import { useUpdateBlocksMutation } from '../../../../store/api';
 
 import { TYPE } from '../../../../utils';
 
 export default function MovableItem({ moveCardHandler, ...props }: TypeMovableItem) {
   const childRef = useRef<HTMLLIElement | null>(null);
-  const dispatch = useAppDispatch();
+  const [updateBlocks] = useUpdateBlocksMutation();
+  const { bookId } = useParams();
 
-  const changeItemColumn = (
+  const changeItemColumn = async (
     currentItem: TypeItem & { currentColumnIndex: number, id: string },
     columnName: number,
   ) => {
     if (columnName !== currentItem.currentColumnIndex) {
-      dispatch(setChangeItemColumn({ currentItem, columnName }));
+      await updateBlocks({ currentItem, columnName, id: bookId! });
     }
   };
 
