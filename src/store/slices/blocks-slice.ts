@@ -21,45 +21,6 @@ const slice = createSlice({
   name: 'blocks',
   initialState,
   reducers: {
-    setBlocks: (
-      state,
-      { payload: data }: PayloadAction<TypeBlock>,
-    ) => ({ ...state, data }),
-    removeBlock: (
-      state,
-      { payload: data }: PayloadAction<{ index: number }>,
-    ) => {
-      const obj = { ...state.data };
-      delete obj[data.index];
-
-      return { ...state, data: obj };
-    },
-    removeItem: (
-      state,
-      { payload: data }: PayloadAction<{ block: number, id: string }>,
-    ) => ({
-      ...state,
-      data: {
-        ...state.data,
-        [data.block]: {
-          ...state.data[data.block],
-          items: state.data[data.block].items.filter((x) => x.id !== data.id),
-        },
-      },
-    }),
-    renameBlock: (
-      state,
-      { payload: data }: PayloadAction<{ index: number, name: string }>,
-    ) => ({
-      ...state,
-      data: {
-        ...state.data,
-        [data.index]: {
-          ...state.data[data.index],
-          name: data.name,
-        },
-      },
-    }),
     changeInputValues: (
       state,
       { payload: data }: PayloadAction<{ index: number, id: string, values: TypeValue[] }>,
@@ -108,48 +69,6 @@ const slice = createSlice({
         },
       },
     }),
-    setChangeItemColumn: (
-      state,
-      { payload: data }: PayloadAction<{
-         currentItem: TypeItem & { currentColumnIndex: number, id: string },
-         columnName: number,
-      }>,
-    ) => {
-      const index = data.currentItem.currentColumnIndex;
-      const item = state.data[index];
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          [index]: {
-            ...item,
-            items: item.items.filter((x: TypeItem) => x.id !== data.currentItem.id),
-          },
-          [data.columnName]: {
-            ...state.data[data.columnName],
-            items: [...state.data[data.columnName].items, data.currentItem],
-          },
-        },
-      };
-    },
-    setMovedBlock: (
-      state,
-      { payload: data }: PayloadAction<{
-        dragIndex: number,
-        hoverIndex: number,
-        item: TypeItem & { currentColumnIndex: number, index: number },
-      }>,
-    ) => {
-      const obj: TypeBlock = {};
-      const coppiedStateArray = [...Object.keys(state.data)].map((x) => Number(x));
-      coppiedStateArray.splice(data.hoverIndex, 1, data.dragIndex);
-      coppiedStateArray.splice(data.dragIndex, 1, data.hoverIndex);
-      coppiedStateArray.forEach((x, i: number) => obj[i] = { ...state.data[x], index: i });
-
-      return {
-        ...state, data: obj,
-      };
-    },
     setMovedCard: (
       state,
       { payload: data }: PayloadAction<{
@@ -177,44 +96,73 @@ const slice = createSlice({
     builder
       .addMatcher(
         blocksApiEndpoints.endpoints.getBlocks.matchFulfilled,
-        (state, action) => ({
-          ...state,
-          data: action.payload,
-        }),
+        (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
         blocksApiEndpoints.endpoints.getBlocks.matchRejected,
-        (state, action) => {
-          console.log('rejected', state, action);
-        },
+        (state, action) => console.log('rejected', state, action),
       )
       .addMatcher(
         blocksApiEndpoints.endpoints.getBlocksById.matchFulfilled,
-        (state, action) => ({
-          ...state,
-          data: action.payload,
-        }),
+        (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
         blocksApiEndpoints.endpoints.getBlocksById.matchRejected,
-        (state, action) => {
-          console.log('rejected', state, action);
-        },
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.updateBlocks.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.updateBlocks.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.removeItem.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.removeItem.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.removeBlock.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.removeBlock.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.addBlock.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.addBlock.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.renameBlocks.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.renameBlocks.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.setMovedBlock.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.setMovedBlock.matchRejected,
+        (state, action) => console.log('rejected', state, action),
       );
   },
 });
 
 export const {
-  setBlocks,
-  removeBlock,
-  removeItem,
-  renameBlock,
-  changeInputValues,
-  changeItemValue,
-  getResult,
-  setChangeItemColumn,
-  setMovedBlock,
-  setMovedCard,
+  changeInputValues, changeItemValue, getResult, setMovedCard,
 } = slice.actions;
 
 export default slice.reducer;
