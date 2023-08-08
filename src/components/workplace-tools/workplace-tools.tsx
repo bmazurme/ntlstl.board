@@ -1,16 +1,19 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
 import Button from '../button';
 
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, setBlocks } from '../../store/slices';
+import { useAppSelector } from '../../hooks';
+import { selectBlocks } from '../../store/slices';
+import { useAddBlockMutation } from '../../store/api';
 
 import style from './workplace-tools.module.css';
 
 export default function WorkplaceTools() {
-  const dispatch = useAppDispatch();
   const items = useAppSelector(selectBlocks);
+  const [setBlocks] = useAddBlockMutation();
+  const { bookId } = useParams();
 
   const addBlock = () => {
     const index = Object.keys(items).length;
@@ -20,7 +23,7 @@ export default function WorkplaceTools() {
       [index]: { index, name: `BLOCK${index + 1}`, items: [] },
     };
 
-    dispatch(setBlocks(newBlock));
+    setBlocks({ data: newBlock, bookId });
   };
 
   return (
