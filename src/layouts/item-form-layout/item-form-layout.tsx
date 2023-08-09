@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
+import { useParams } from 'react-router';
 import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
 
 import Button from '../../components/button';
@@ -7,20 +8,19 @@ import CustomSelect from '../../components/custom-select';
 
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useChangeItemValuesMutation, useChangeItemValueMutation, useGetItemResultMutation } from '../../store/api';
 import {
-  changeInputValues,
-  changeItemValue,
-  selectBlocks,
-  selectItems,
-  setItemPopup,
-  getResult,
-  setHistory,
+  selectBlocks, selectItems, setItemPopup, setHistory,
 } from '../../store/slices';
 
 import style from './item-form-layout.module.css';
 
 export default function ItemFormLayout({ currentColumnIndex, id }: { currentColumnIndex: number, id: string }) {
+  const { bookId } = useParams();
   const dispatch = useAppDispatch();
+  const [changeItemValues] = useChangeItemValuesMutation();
+  const [changeItemValue] = useChangeItemValueMutation();
+  const [getItemResult] = useGetItemResultMutation();
   const blocks: TypeBlock = useAppSelector(selectBlocks);
   const items = useAppSelector(selectItems) as unknown as OptionsOrGroups<string, GroupBase<string>>;
   const vls: TypeValue[] = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.values;
@@ -28,13 +28,15 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
     vls.reduce((a: { [x: number]: number; }, x: TypeValue, i: number) => ({ ...a, [`label${i}`]: x.value }), {}),
   );
 
-  const changeValue = () => {
+  const changeValue = async () => {
     const newValues: TypeValue[] = blocks[currentColumnIndex]
       .items.find((x: TypeItem) => x.id === id)!
       .values.map((x: TypeValue, i: number) => ({ ...x, value: Number(values[`label${i}`]) }));
 
-    dispatch(changeInputValues({ index: currentColumnIndex, id, values: newValues }));
-    dispatch(getResult({ index: currentColumnIndex, id }));
+    await changeItemValues({
+      index: currentColumnIndex, id, values: newValues, bookId,
+    });
+    await getItemResult({ index: currentColumnIndex, id, bookId });
 
     const arr = blocks[currentColumnIndex].items
       .map((x: TypeItem) => (x.id === id
@@ -51,6 +53,7 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
         ...blocks,
         [currentColumnIndex]: { ...blocks[currentColumnIndex], items: arr },
       };
+
       dispatch(setHistory({ user: 'user', state: obj }));
     }
 
@@ -63,7 +66,9 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
         <div className={style.title}>
           <CustomSelect
             options={items}
-            onChange={(pr: OptionsOrGroups<string, GroupBase<string>>) => dispatch(changeItemValue({ id, item: pr, index: currentColumnIndex }))}
+            onChange={(pr: OptionsOrGroups<string, GroupBase<string>>) => changeItemValue({
+              id, item: pr, index: currentColumnIndex, bookId,
+            })}
             value={blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.item as unknown as PropsValue<string> | undefined}
           />
         </div>
