@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 
 import Column from './components/column';
-import MovableItem from './components/movablel-item';
+import MoveableItem from './components/moveable-item';
 
 import { useAppSelector } from '../../hooks';
 import { selectBlocks } from '../../store/slices';
@@ -40,7 +40,7 @@ export default function Block({ block }: { block: number; }) {
     .map(({
       id, item, values, result,
     }: TypeItem, index: number) => (
-      <MovableItem
+      <MoveableItem
         key={id}
         id={id}
         currentColumnIndex={columnName}
