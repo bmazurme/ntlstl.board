@@ -1,7 +1,8 @@
 import { Router } from 'express';
 
 import authRoute from './auth-route';
-import blockRoute from './block-route';
+import blocksRoute from './blocks-route';
+import itemsRoute from './items-route';
 import bookRoute from './book-route';
 import projectRoute from './project-route';
 import notificationRoute from './notification-route';
@@ -11,7 +12,8 @@ import workplaceRoute from './workplace-route';
 const router = Router();
 
 router.use('/', authRoute);
-router.use('/', blockRoute);
+router.use('/', blocksRoute);
+router.use('/', itemsRoute);
 router.use('/', bookRoute);
 router.use('/', projectRoute);
 router.use('/', notificationRoute);
