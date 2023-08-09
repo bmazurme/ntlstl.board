@@ -19,7 +19,7 @@ export default function MovableItem({ moveCardHandler, ...props }: TypeMovableIt
     columnName: number,
   ) => {
     if (columnName !== currentItem.currentColumnIndex) {
-      await updateBlocks({ currentItem, columnName, id: bookId! });
+      await updateBlocks({ currentItem, columnName, bookId: bookId! });
     }
   };
 
