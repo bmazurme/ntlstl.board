@@ -7,9 +7,9 @@ import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 import Column from './components/column';
 import MovableItem from './components/movablel-item';
 
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, setMovedCard } from '../../store/slices';
-import { useSetMovedBlockMutation } from '../../store/api';
+import { useAppSelector } from '../../hooks';
+import { selectBlocks } from '../../store/slices';
+import { useSetMovedBlockMutation, useSetMovedItemMutation } from '../../store/api';
 
 import { getBackgroundColor, TYPE, COLOR } from '../../utils';
 
@@ -18,11 +18,11 @@ import style from './block.module.css';
 export default function Block({ block }: { block: number; }) {
   const { bookId } = useParams();
   const [setMovedBlock] = useSetMovedBlockMutation();
+  const [setMovedItem] = useSetMovedItemMutation();
   const ref = useRef<HTMLDivElement | null>(null);
-  const dispatch = useAppDispatch();
   const blocks: TypeBlock = useAppSelector(selectBlocks);
 
-  const moveCardHandler = (
+  const moveCardHandler = async (
     dragIndex: number,
     hoverIndex: number,
     item: TypeItem & { currentColumnIndex: number, index: number },
@@ -30,9 +30,9 @@ export default function Block({ block }: { block: number; }) {
     const dragItem = blocks[item.currentColumnIndex].items[dragIndex];
 
     if (dragItem) {
-      dispatch(setMovedCard({
-        dragIndex, hoverIndex, item, dragItem,
-      }));
+      await setMovedItem({
+        dragIndex, hoverIndex, item, dragItem, bookId,
+      });
     }
   };
 
@@ -52,7 +52,7 @@ export default function Block({ block }: { block: number; }) {
       />
     ));
 
-  const moveBlockHandler = (
+  const moveBlockHandler = async (
     dragIndex: number,
     hoverIndex: number,
     item: TypeItem & { currentColumnIndex: number, index: number },
@@ -60,7 +60,7 @@ export default function Block({ block }: { block: number; }) {
     const dragItem = blocks[item.index];
 
     if (dragItem) {
-      setMovedBlock({
+      await setMovedBlock({
         dragIndex, hoverIndex, item, bookId, // item !!!
       });
     }
