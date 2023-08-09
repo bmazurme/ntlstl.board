@@ -21,6 +21,7 @@ import { corsOptions } from './utils/cors-options';
 dotEnvConfig();
 
 const port = process.env.PORT ?? 3001;
+const portWss = process.env.PORT_WSS ?? 3002;
 
 const app = express();
 
@@ -56,10 +57,10 @@ app.use(errorLogger);
 app.use(errorHandler);
 
 // start our server
-server.listen(3002, () => {
-  console.log('Server started on port 3002');
+server.listen(portWss, () => {
+  console.log(`WSS listening on port ${portWss}`);
 });
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`HTTP listening on port ${port}`);
 });
