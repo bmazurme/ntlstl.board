@@ -26,6 +26,7 @@ import {
   projectApiEndpoints as projectApi,
   notificationApi,
   userApiEndpoints as userApi,
+  itemsApiEndpoints as itemsApi,
 } from './api';
 
 declare global {
@@ -54,6 +55,7 @@ export const store = configureStore({
     // Add the generated reducer as a specific top-level slice
     [authApi.reducerPath]: authApi.reducer,
     [blocksApi.reducerPath]: blocksApi.reducer,
+    [itemsApi.reducerPath]: itemsApi.reducer,
     [bookApi.reducerPath]: bookApi.reducer,
     [projectApi.reducerPath]: projectApi.reducer,
     [notificationApi.reducerPath]: notificationApi.reducer,
@@ -63,6 +65,7 @@ export const store = configureStore({
     .concat(
       authApi.middleware,
       blocksApi.middleware,
+      itemsApi.middleware,
       bookApi.middleware,
       projectApi.middleware,
       notificationApi.middleware,
