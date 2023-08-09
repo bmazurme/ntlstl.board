@@ -26,18 +26,10 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      updateBlocks: builder.mutation<TypeBlock, TypeTest>({
+      updateBlocks: builder.mutation<TypeBlock, any>({
         query: (data) => ({
           url: '/api/blocks',
           method: 'PATCH',
-          body: data,
-        }),
-        invalidatesTags: ['blocks'],
-      }),
-      removeItem: builder.mutation<TypeBlock, any>({
-        query: (data) => ({
-          url: '/api/blocks',
-          method: 'PUT',
           body: data,
         }),
         invalidatesTags: ['blocks'],
@@ -74,7 +66,6 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      // setMovedBlock
     }),
   });
 
@@ -82,10 +73,9 @@ export const {
   useGetBlocksQuery,
   useGetBlocksByIdMutation,
   useUpdateBlocksMutation,
-  useRemoveItemMutation,
-  useRemoveBlockMutation,
   useAddBlockMutation,
   useRenameBlocksMutation,
+  useRemoveBlockMutation,
   useSetMovedBlockMutation,
 } = blocksApiEndpoints;
 export { blocksApiEndpoints };
