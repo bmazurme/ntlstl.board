@@ -6,6 +6,7 @@ html {
   --color: #000;
   --error-color: indianred;
   --item-active: #b8b8b8;
+  --title-color-hover: #e1e1e1;
 }
 
 html[data-theme="dark"] {
@@ -16,6 +17,7 @@ html[data-theme="dark"] {
   --color: #626265;
   --error-color: indianred;
   --item-active: #2d2e31;
+  --title-color-hover: #2d2e31;
 }
 
 .root {
