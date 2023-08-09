@@ -1,97 +1,20 @@
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import { createSlice } from '@reduxjs/toolkit';
-import { GroupBase, OptionsOrGroups } from 'react-select';
-
-import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-import { blocksApiEndpoints } from '../api';
+import { blocksApiEndpoints, itemsApiEndpoints } from '../api';
 
 type TypeBlocksState = { data: TypeBlock };
-type TypeItemValue = { index: number; id: string; item: OptionsOrGroups<string, GroupBase<string>>; }
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
-const initialState: TypeBlocksState = {
-  data: {},
-};
+const initialState: TypeBlocksState = { data: {} };
 
 const slice = createSlice({
   name: 'blocks',
   initialState,
-  reducers: {
-    changeInputValues: (
-      state,
-      { payload: data }: PayloadAction<{ index: number, id: string, values: TypeValue[] }>,
-    ) => ({
-      ...state,
-      data: {
-        ...state.data,
-        [data.index]: {
-          ...state.data[data.index],
-          items: [...state.data[data.index].items]
-            .map((x) => (x.id === data.id ? { ...x, values: data.values } : x)),
-        },
-      },
-    }),
-    changeItemValue: (
-      state,
-      { payload: data }: PayloadAction<TypeItemValue>,
-    ) => ({
-      ...state,
-      data: {
-        ...state.data,
-        [data.index]: {
-          ...state.data[data.index],
-          items: [...state.data[data.index].items]
-            .map((x) => (x.id === data.id
-              ? { ...x, item: (data.item as unknown as { value: string, label: string }) }
-              : x)),
-        },
-      },
-    }),
-    getResult: (
-      state,
-      { payload: data }: PayloadAction<{ index: number, id: string }>,
-    ) => ({
-      ...state,
-      data: {
-        ...state.data,
-        [data.index]: {
-          ...state.data[data.index],
-          items: [...state.data[data.index].items]
-            .map((x) => (x.id === data.id ? {
-              ...x,
-              // some calc
-              result: x.values.reduce((a: number, i: { value: number }) => a + Number(i.value), 0),
-            } : x)),
-        },
-      },
-    }),
-    setMovedCard: (
-      state,
-      { payload: data }: PayloadAction<{
-        dragIndex: number,
-        hoverIndex: number,
-        item: TypeItem & { currentColumnIndex: number, index: number },
-        dragItem: TypeItem,
-      }>,
-    ) => {
-      const coppiedStateArray = [...state.data[data.item.currentColumnIndex].items];
-      const prevItem = coppiedStateArray.splice(data.hoverIndex, 1, data.dragItem);
-      coppiedStateArray.splice(data.dragIndex, 1, prevItem[0]);
-      const arr = coppiedStateArray.filter((x) => x);
-
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          [data.item.currentColumnIndex]: { ...state.data[data.item.currentColumnIndex], items: arr },
-        },
-      };
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -119,11 +42,11 @@ const slice = createSlice({
         (state, action) => console.log('rejected', state, action),
       )
       .addMatcher(
-        blocksApiEndpoints.endpoints.removeItem.matchFulfilled,
+        itemsApiEndpoints.endpoints.removeItem.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
-        blocksApiEndpoints.endpoints.removeItem.matchRejected,
+        itemsApiEndpoints.endpoints.removeItem.matchRejected,
         (state, action) => console.log('rejected', state, action),
       )
       .addMatcher(
@@ -157,14 +80,41 @@ const slice = createSlice({
       .addMatcher(
         blocksApiEndpoints.endpoints.setMovedBlock.matchRejected,
         (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.setMovedItem.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.setMovedItem.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.changeItemValues.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.changeItemValues.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.changeItemValue.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.changeItemValue.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.getItemResult.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.getItemResult.matchRejected,
+        (state, action) => console.log('rejected', state, action),
       );
   },
 });
 
-export const {
-  changeInputValues, changeItemValue, getResult, setMovedCard,
-} = slice.actions;
-
 export default slice.reducer;
-
 export const selectBlocks = (state: RootState) => state.blocks.data;
