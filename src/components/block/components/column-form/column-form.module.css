@@ -24,8 +24,10 @@
   min-height: 30px;
   border: 0;
   border-radius: 4px;
+  background-color: var(--sidebar-bg-color);
+  color: var(--color);
 }
 
 .title:hover {
-  background-color: #e1e1e1;
+  background-color: var(--title-color-hover);
 }
