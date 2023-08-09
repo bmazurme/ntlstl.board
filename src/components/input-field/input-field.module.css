@@ -1,0 +1,27 @@
+.inputfield {
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.error {
+  padding: 5px 0;
+  font-size: 12px;
+  color: var(--error-color);
+  height: auto;
+}
+
+.input {
+  height: 40px;
+  width: 100%;
+  margin: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
