@@ -48,3 +48,13 @@ type TypeMovableItem = {
   result: number;
   values: TypeValue[];
 };
+
+type TypeItemData = {
+  itemData: {
+    index: number,
+    id: string,
+    currentColumnIndex: number,
+    childRef: unknown,
+    opacity: number,
+  },
+};
