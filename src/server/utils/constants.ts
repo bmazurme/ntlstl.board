@@ -1,5 +1,6 @@
 const WHITE_LIST = [
   'http://localhost:3000',
+  'https://oauth.yandex.ru/token',
 ];
 
 const METHODS = [
