@@ -9,7 +9,9 @@ type TypeBookState = { data: TypeBook };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: TypeBookState = {
-  data: { name: '', id: '', projectId: '', typeBook: '' },
+  data: {
+    name: '', id: '', projectId: '', typeBook: '',
+  },
 };
 
 const slice = createSlice({
