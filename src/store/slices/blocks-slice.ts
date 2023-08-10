@@ -2,6 +2,8 @@
 /* eslint-disable no-return-assign */
 import { createSlice } from '@reduxjs/toolkit';
 
+import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { RootState } from '..';
 
 import { blocksApiEndpoints, itemsApiEndpoints } from '../api';
@@ -14,7 +16,30 @@ const initialState: TypeBlocksState = { data: {} };
 const slice = createSlice({
   name: 'blocks',
   initialState,
-  reducers: {},
+  reducers: {
+    setMovedCard: (
+      state,
+      { payload: data }: PayloadAction<{
+        dragIndex: number,
+        hoverIndex: number,
+        item: TypeItem & { currentColumnIndex: number, index: number },
+        dragItem: TypeItem,
+      }>,
+    ) => {
+      const coppiedStateArray = [...state.data[data.item.currentColumnIndex].items];
+      const prevItem = coppiedStateArray.splice(data.hoverIndex, 1, data.dragItem);
+      coppiedStateArray.splice(data.dragIndex, 1, prevItem[0]);
+      const arr = coppiedStateArray.filter((x) => x);
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [data.item.currentColumnIndex]: { ...state.data[data.item.currentColumnIndex], items: arr },
+        },
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -82,6 +107,14 @@ const slice = createSlice({
         (state, action) => console.log('rejected', state, action),
       )
       .addMatcher(
+        blocksApiEndpoints.endpoints.setBlocks.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        blocksApiEndpoints.endpoints.setBlocks.matchRejected,
+        (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
         itemsApiEndpoints.endpoints.setMovedItem.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
       )
@@ -112,9 +145,18 @@ const slice = createSlice({
       .addMatcher(
         itemsApiEndpoints.endpoints.getItemResult.matchRejected,
         (state, action) => console.log('rejected', state, action),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.addItem.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        itemsApiEndpoints.endpoints.addItem.matchRejected,
+        (state, action) => console.log('rejected', state, action),
       );
   },
 });
 
+export const { setMovedCard } = slice.actions;
 export default slice.reducer;
 export const selectBlocks = (state: RootState) => state.blocks.data;
