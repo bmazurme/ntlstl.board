@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 
-const decode = (value) => JSON.stringify(value);
+const decode = (value: any) => JSON.stringify(value);
 
-const encode = (value) => JSON.parse(value);
+const encode = (value: any) => JSON.parse(value);
 
-const useLocalStorage = (key, defaultState) => {
+const useLocalStorage = (key: string, defaultState: string | boolean) => {
   const [value, setValue] = useState(encode(localStorage.getItem(key) || null) || defaultState);
 
   useEffect(() => {
