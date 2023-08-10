@@ -52,4 +52,8 @@ const user = {
   project: { value: '0', label: 'Project 1' },
 };
 
-export { blocks, mock, user };
+const users: { defaultEmail: string }[] = [];
+
+export {
+  blocks, mock, user, users,
+};
