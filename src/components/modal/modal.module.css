@@ -39,6 +39,7 @@
 
 .wrapper::-webkit-scrollbar-track {
   background-color: #fbfbfb;
+  border-radius: 3px;
 }
 
 .close {
