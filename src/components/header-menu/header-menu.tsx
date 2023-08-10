@@ -27,7 +27,7 @@ export default function HeaderMenu() {
 
   const onChange = async (project: any) => {
     updateUser({ ...user, project });
-    navigate(`/projects`);
+    navigate('/projects');
   };
 
   return (

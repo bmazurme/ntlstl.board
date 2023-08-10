@@ -12,7 +12,6 @@ import { useGetNotificationQuery } from '../../store/api';
 import Buttons from '../buttons';
 import Modal from '../modal';
 import Notification from '../../layouts/notification-layout';
-// import Support from '../../layouts/support';
 
 import { useModal } from '../../hooks/use-modal';
 import { Urls } from '../../utils';
@@ -25,7 +24,6 @@ export default function HeaderUserMenu() {
   const { data = [] } = useGetNotificationQuery('all');
   const { isDark, setIsDark } = useContext(ThemeContext);
   const [isAlert, setIsAlert] = useState(false);
-  // console.log(data);
 
   const toggleTheme = () => {
     setIsDark(isDark === 'light' ? 'dark' : 'light');
