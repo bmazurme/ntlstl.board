@@ -52,6 +52,14 @@ const itemsApiEndpoints = itemsApi
         }),
         invalidatesTags: ['blocks'],
       }),
+      addItem: builder.mutation<TypeBlock, any>({
+        query: (data) => ({
+          url: '/api/items',
+          method: 'POST',
+          body: data,
+        }),
+        invalidatesTags: ['blocks'],
+      }),
     }),
   });
 
@@ -61,5 +69,6 @@ export const {
   useChangeItemValuesMutation,
   useChangeItemValueMutation,
   useGetItemResultMutation,
+  useAddItemMutation,
 } = itemsApiEndpoints;
 export { itemsApiEndpoints };
