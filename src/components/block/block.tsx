@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import React, { useRef } from 'react';
@@ -7,9 +8,9 @@ import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 import Column from './components/column';
 import MoveableItem from './components/moveable-item';
 
-import { useAppSelector } from '../../hooks';
-import { selectBlocks } from '../../store/slices';
-import { useSetMovedBlockMutation, useSetMovedItemMutation } from '../../store/api';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { selectBlocks, setMovedCard } from '../../store/slices';
+import { useSetMovedBlockMutation, useSetBlocksMutation } from '../../store/api';
 
 import { getBackgroundColor, TYPE, COLOR } from '../../utils';
 
@@ -17,8 +18,9 @@ import style from './block.module.css';
 
 export default function Block({ block }: { block: number; }) {
   const { bookId } = useParams();
+  const dispatch = useAppDispatch();
   const [setMovedBlock] = useSetMovedBlockMutation();
-  const [setMovedItem] = useSetMovedItemMutation();
+  const [setBlock] = useSetBlocksMutation();
   const ref = useRef<HTMLDivElement | null>(null);
   const blocks: TypeBlock = useAppSelector(selectBlocks);
 
@@ -30,11 +32,13 @@ export default function Block({ block }: { block: number; }) {
     const dragItem = blocks[item.currentColumnIndex].items[dragIndex];
 
     if (dragItem) {
-      await setMovedItem({
-        dragIndex, hoverIndex, item, dragItem, bookId,
-      });
+      dispatch(setMovedCard({
+        dragIndex, hoverIndex, item, dragItem,
+      }));
     }
   };
+
+  const moveItemDrop = async () => await setBlock({ data: blocks, bookId: bookId! });
 
   const returnItemsForColumn = (columnName: number) => blocks[columnName].items
     .map(({
@@ -49,6 +53,7 @@ export default function Block({ block }: { block: number; }) {
         item={item}
         result={result}
         moveCardHandler={moveCardHandler}
+        moveItemDrop={moveItemDrop}
       />
     ));
 
@@ -68,7 +73,7 @@ export default function Block({ block }: { block: number; }) {
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: TYPE.BLOCK,
-    hover(item: TypeItem & {
+    async hover(item: TypeItem & {
       currentColumnIndex: number,
       index: number,
     }, monitor: DropTargetMonitor<TypeItem & { currentColumnIndex: number, index: number }, unknown>) {
@@ -102,7 +107,7 @@ export default function Block({ block }: { block: number; }) {
         return;
       }
       // // Time to actually perform the action
-      moveBlockHandler(dragIndex, hoverIndex, item);
+      await moveBlockHandler(dragIndex, hoverIndex, item);
       // Note: we're mutating the monitor item here!
       // Generally it's better to avoid mutations,
       // but it's good here for the sake of performance
