@@ -4,8 +4,8 @@ const TYPE = {
 };
 
 const COLOR = {
-  BLOCK: 'rgb(193,248,161)',
-  ITEM: 'rgb(188,251,255)',
+  BLOCK: 'rgba(150,252,92,0.8)',
+  ITEM: 'rgba(243,224,205,0.8)',
   VALUE: 'yellow',
 };
 
@@ -25,9 +25,13 @@ const Urls = {
   PROFILE: {
     INDEX: '/profile',
   },
+  OAUTH: {
+    INDEX: 'oauth',
+  },
   SIGN: {
     IN: '/signin',
     UP: '/signup',
+    OAUTH: 'https://oauth.yandex.ru/authorize?response_type=code&client_id=c709762dfe3e447999beb343da0bee9f',
   },
   SUPPORT: {
     INDEX: '/support',
