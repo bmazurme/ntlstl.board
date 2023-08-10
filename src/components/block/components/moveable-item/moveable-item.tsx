@@ -9,7 +9,7 @@ import { useUpdateBlocksMutation } from '../../../../store/api';
 
 import { TYPE } from '../../../../utils';
 
-export default function MovableItem({ moveCardHandler, ...props }: TypeMovableItem) {
+export default function MovableItem({ moveCardHandler, moveItemDrop, ...props }: TypeMovableItem | any) {
   const childRef = useRef<HTMLLIElement | null>(null);
   const [updateBlocks] = useUpdateBlocksMutation();
   const { bookId } = useParams();
@@ -64,18 +64,24 @@ export default function MovableItem({ moveCardHandler, ...props }: TypeMovableIt
       // but it's good here for the sake of performance
       // to avoid expensive index searches.
       item.index = hoverIndex;
+      if (monitor.didDrop()) alert(1);
     },
+    collect: (monitor) => ({ isOver: monitor.isOver(), canDrop: monitor.canDrop() }),
+    async drop(item, monitor) {
+      await moveItemDrop();
+    },
+    canDrop: () => true,
   });
 
   const [{ opacity }, drag] = useDrag({
     type: TYPE.ITEM,
     item: { ...props },
-    end: (item, monitor) => {
+    end: async (item, monitor) => {
       const dropResult: { name: number } = monitor.getDropResult()!;
 
       if (dropResult) {
         const { name: currName } = dropResult;
-        changeItemColumn(item, currName);
+        await changeItemColumn(item, currName);
       }
     },
     collect: (monitor) => ({ opacity: monitor.isDragging() ? 0.4 : 1 }),

@@ -6,20 +6,10 @@ import { TrashIcon, PencilIcon } from '@heroicons/react/24/outline';
 import Buttons from '../../../buttons';
 
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
-import { useRemoveItemMutation } from '../../../../store/api';
 import { selectBlocks, setItemPopup } from '../../../../store/slices';
+import { useRemoveItemMutation } from '../../../../store/api';
 
 import style from './item.module.css';
-
-type TypeItemData = {
-  itemData: {
-    index: number,
-    id: string,
-    currentColumnIndex: number,
-    childRef: unknown,
-    opacity: number,
-  },
-};
 
 export default function Item({ itemData }: TypeItemData) {
   const {
@@ -27,7 +17,6 @@ export default function Item({ itemData }: TypeItemData) {
   } = itemData;
   const { bookId } = useParams();
   const [removeItem] = useRemoveItemMutation();
-
   const dispatch = useAppDispatch();
   const blocks: TypeBlock = useAppSelector(selectBlocks);
   const block = blocks[currentColumnIndex];
@@ -42,7 +31,6 @@ export default function Item({ itemData }: TypeItemData) {
     <div ref={childRef as LegacyRef<HTMLDivElement>} className={style.item} style={{ opacity }}>
       <div className={style.data}>
         <span className={style.position}>{index + 1}</span>
-
         <span className={style.title}>
           {block.items.find((x: TypeItem) => x.id === id)!.item.label}
         </span>
@@ -55,7 +43,6 @@ export default function Item({ itemData }: TypeItemData) {
         <span className={style.value}>
           {`Result - ${block.items.find((x: TypeItem) => x.id === id)!.result}`}
         </span>
-
       </div>
       <Buttons buttons={buttons} />
     </div>

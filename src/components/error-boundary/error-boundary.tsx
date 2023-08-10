@@ -1,11 +1,12 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
 
-type ErrorBoundaryWrapperProps = PropsWithChildren<unknown>;
-
 import style from './error-boundary.module.css';
+
+type ErrorBoundaryWrapperProps = PropsWithChildren<unknown>;
 
 function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   );
 }
 
-export default function ErrorBoundaryWrapper({ children, }: ErrorBoundaryWrapperProps) {
+export default function ErrorBoundaryWrapper({ children }: ErrorBoundaryWrapperProps) {
   return (
     <ErrorBoundary onReset={() => console.log('reset')} FallbackComponent={ErrorFallback}>
       {children}
