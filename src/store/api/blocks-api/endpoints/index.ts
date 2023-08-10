@@ -42,6 +42,14 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
+      setBlocks: builder.mutation<TypeBlock, any>({
+        query: (data) => ({
+          url: '/api/blocks',
+          method: 'PUT',
+          body: data,
+        }),
+        invalidatesTags: ['blocks'],
+      }),
       addBlock: builder.mutation<TypeBlock, any>({
         query: (data) => ({
           url: '/api/blocks',
@@ -77,5 +85,6 @@ export const {
   useRenameBlocksMutation,
   useRemoveBlockMutation,
   useSetMovedBlockMutation,
+  useSetBlocksMutation,
 } = blocksApiEndpoints;
 export { blocksApiEndpoints };
