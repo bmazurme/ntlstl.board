@@ -24,8 +24,6 @@ const updateUser = (req: Request, res: Response, next: NextFunction) => {
     id, name, email, active, paid, project,
   } = req.body;
 
-  console.log(id);
-
   user.name = name;
   user.email = email;
   user.active = active;
