@@ -14,6 +14,7 @@ import ProfileModalPage from './pages/profile-modal-page';
 import SignInPage from './pages/signin-page';
 import SignUpPage from './pages/signup-page';
 import SupportModalPage from './pages/support-modal-page';
+import OauthPage from './pages/oauth-page';
 import UsersModalPage from './pages/users-modal-page';
 import NotFoundPage from './pages/not-found-page';
 
@@ -57,6 +58,7 @@ export default function App() {
           <Route path={Urls.PASSWORD.RESET} element={(<PasswordResetPage />)} />
           <Route path={Urls.SIGN.IN} element={(<SignInPage />)} />
           <Route path={Urls.SIGN.UP} element={(<SignUpPage />)} />
+          <Route path={Urls.OAUTH.INDEX} element={(<OauthPage />)} />
           <Route path={Urls[404]} element={(<NotFoundPage />)} />
         </Routes>
 
