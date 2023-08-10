@@ -13,12 +13,23 @@ const getBlocks = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const setBlocks = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { bookId, data } = req.body;
+    blocks[bookId].value = data;
+
+    return res.send(blocks[bookId].value);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const updateBlocks = (req: Request, res: Response, next: NextFunction) => {
   try {
     const { bookId, currentItem, columnName } = req.body;
     const index = currentItem.currentColumnIndex;
     const item = blocks[bookId].value[index];
-    const newData = {
+    blocks[bookId].value = {
       ...blocks[bookId].value,
       [index]: {
         ...item,
@@ -29,7 +40,6 @@ const updateBlocks = (req: Request, res: Response, next: NextFunction) => {
         items: [...blocks[bookId].value[columnName].items, currentItem],
       },
     };
-    blocks[bookId].value = newData;
 
     return res.send(blocks[bookId].value);
   } catch (err) {
@@ -50,8 +60,13 @@ const removeBlock = (req: Request, res: Response, next: NextFunction) => {
 
 const addBlock = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { bookId, data } = req.body;
-    blocks[bookId].value = data;
+    const { bookId } = req.body;
+    const block = blocks[bookId].value;
+    const index = Object.keys(block).length;
+    blocks[bookId].value = {
+      ...block,
+      [index]: { index, name: `BLOCK${index + 1}`, items: [] },
+    };
 
     return res.send(blocks[bookId].value);
   } catch (err) {
@@ -62,11 +77,10 @@ const addBlock = (req: Request, res: Response, next: NextFunction) => {
 const renameBlock = (req: Request, res: Response, next: NextFunction) => {
   try {
     const { bookId, index, name } = req.body;
-    const data = {
+    blocks[bookId].value = {
       ...blocks[bookId].value,
       [index]: { ...blocks[bookId].value[index], name },
     };
-    blocks[bookId].value = data;
 
     return res.send(blocks[bookId].value);
   } catch (err) {
@@ -101,4 +115,5 @@ export {
   addBlock,
   renameBlock,
   setMovedBlock,
+  setBlocks,
 };
