@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import InputField from '../../components/input-field';
+import Button from '../../components/button';
 import Footer from '../../components/footer';
 
 import { Urls } from '../../utils';
@@ -18,7 +19,7 @@ export default function SignInLayout() {
       id: uuidv4(), help: 'Забыли пароль?', to: Urls.PASSWORD.FORGOT, label: 'Восстановить',
     },
     {
-      id: uuidv4(), help: 'Войти по', to: Urls.BASE.INDEX, label: 'OAUTH',
+      id: uuidv4(), help: 'Войти по', to: Urls.SIGN.OAUTH, label: 'OAUTH',
     },
   ];
 
@@ -26,15 +27,13 @@ export default function SignInLayout() {
     <div className={style.layout}>
       <div className={style.container}>
         <h2 className={style.title}>Вход</h2>
-
         <form className={style.form}>
           <div className={style.fields}>
             <InputField name="login" type="text" errors={errors} />
             <InputField name="password" type="password" errors={errors} />
           </div>
-          <button className={style.button} type="submit">Войти</button>
+          <Button type="submit" title="Войти" extraClass={style.button} />
         </form>
-
         <Footer links={links} />
       </div>
     </div>
