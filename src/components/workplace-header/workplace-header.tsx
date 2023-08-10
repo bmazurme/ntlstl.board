@@ -2,10 +2,7 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  UsersIcon,
-  Squares2X2Icon,
-  RectangleStackIcon,
-  DocumentArrowDownIcon,
+  UsersIcon, Squares2X2Icon, RectangleStackIcon, DocumentArrowDownIcon,
 } from '@heroicons/react/24/outline';
 
 import WorkplaceForm from '../workplace-form';
@@ -13,8 +10,8 @@ import HistoryLayout from '../../layouts/history-layout';
 import Buttons from '../buttons';
 import Modal from '../modal';
 
-import { useModal } from '../../hooks/use-modal';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
+import { useModal } from '../../hooks/use-modal';
 import { useAppSelector } from '../../hooks';
 import { selectCurrentBook, selectBlocks } from '../../store/slices';
 import { useRenameBookMutation } from '../../store/api';
@@ -26,8 +23,8 @@ import style from './workplace-header.module.css';
 export default function WorkplaceHeader() {
   const navigate = useNavigate();
   const [renameBook] = useRenameBookMutation();
-  const { name, id } = useAppSelector(selectCurrentBook)!;
   const blocks = useAppSelector(selectBlocks);
+  const { name, id } = useAppSelector(selectCurrentBook)!;
   const { isModalOpen, openModal, closeModal } = useModal();
   const {
     isModalOpen: isOpenHistory,
@@ -45,6 +42,7 @@ export default function WorkplaceHeader() {
     { handler: goToUsers, component: UsersIcon },
     { handler: openPopup, component: Squares2X2Icon },
   ];
+
   const rename = async () => {
     if (values.name !== '') {
       const res = await renameBook({ name: values.name, id });
