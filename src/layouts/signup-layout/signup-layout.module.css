@@ -7,8 +7,8 @@
 
 .layout {
   composes: common;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
@@ -16,7 +16,6 @@
   min-width: 300px;
   max-width: 320px;
   width: 100%;
-  min-height: 480px;
   box-sizing: border-box;
   padding: 30px;
   border-radius: 10px;
