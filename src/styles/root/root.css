@@ -29,7 +29,8 @@ html[data-theme="dark"] {
   --width-2xl: 1536px;
   --background-overlay: rgb(0 0 0 / 60%);
   
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   color: var(--color);
   background-color: var(--background-color);
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
