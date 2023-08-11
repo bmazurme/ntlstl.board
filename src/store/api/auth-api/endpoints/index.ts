@@ -25,6 +25,13 @@ const authApiEndpoints = authApi
           body,
         }),
       }),
+      signInWitOauthYa: builder.mutation({
+        query: (body) => ({
+          url: '/api/oauth',
+          method: 'POST',
+          body,
+        }),
+      }),
       signOut: builder.mutation({
         query: (refreshToken) => ({
           url: '/auth/logout',
@@ -57,5 +64,6 @@ export const {
   useSignOutMutation,
   useRefreshTokenMutation,
   useGetUserMutation,
+  useSignInWitOauthYaMutation,
 } = authApiEndpoints;
 export { authApiEndpoints };
