@@ -21,6 +21,7 @@ import workplaceSlice from './slices/workplace-slice';
 
 import {
   authApiEndpoints as authApi,
+  oauthApiEndpoints as oauthApi,
   blocksApiEndpoints as blocksApi,
   bookApiEndpoints as bookApi,
   projectApiEndpoints as projectApi,
@@ -54,6 +55,7 @@ export const store = configureStore({
     workplace: workplaceSlice,
     // Add the generated reducer as a specific top-level slice
     [authApi.reducerPath]: authApi.reducer,
+    [oauthApi.reducerPath]: oauthApi.reducer,
     [blocksApi.reducerPath]: blocksApi.reducer,
     [itemsApi.reducerPath]: itemsApi.reducer,
     [bookApi.reducerPath]: bookApi.reducer,
@@ -64,6 +66,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(
       authApi.middleware,
+      oauthApi.middleware,
       blocksApi.middleware,
       itemsApi.middleware,
       bookApi.middleware,
