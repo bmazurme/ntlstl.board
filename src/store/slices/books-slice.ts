@@ -49,12 +49,12 @@ const slice = createSlice({
         },
       )
       .addMatcher(
-      bookApiEndpoints.endpoints.renameBook.matchFulfilled,
-      (state, action) => ({
-        ...state,
-        data: state.data.map((x) => (action.payload.id === x.id ? action.payload : x)),
-      }),
-    )
+        bookApiEndpoints.endpoints.renameBook.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: state.data.map((x) => (action.payload.id === x.id ? action.payload : x)),
+        }),
+      )
       .addMatcher(
         bookApiEndpoints.endpoints.renameBook.matchRejected,
         (state, action) => {
