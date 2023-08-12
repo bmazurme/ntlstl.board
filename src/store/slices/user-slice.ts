@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { RootState } from '..';
-import { userApiEndpoints } from '../api/user-api/endpoints';
+import { userApiEndpoints, authApiEndpoints } from '../api';
 
 export type AuthState = {
   data: TypeUser | null
@@ -17,6 +17,13 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addMatcher(authApiEndpoints.endpoints.signInWitOauthYa.matchFulfilled, (state, action) => {
+        console.log('fulfilled', action);
+        return { ...state, data: action.payload };
+      })
+      .addMatcher(authApiEndpoints.endpoints.signInWitOauthYa.matchRejected, (state, action) => {
+        console.log('rejected', action);
+      })
       .addMatcher(userApiEndpoints.endpoints.getUserMe.matchFulfilled, (state, action) => {
         console.log('fulfilled', action);
         return { ...state, data: action.payload };
