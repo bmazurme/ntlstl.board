@@ -21,8 +21,15 @@ const userApiEndpoints = userApi
         }),
         invalidatesTags: ['user'],
       }),
+      getIam: builder.mutation<TypeUser, void>({
+        query: () => ({
+          url: 'api/user',
+          method: 'GET',
+        }),
+        invalidatesTags: ['user'],
+      }),
     }),
   });
 
-export const { useGetUserMeQuery, useUpdateUserMutation } = userApiEndpoints;
+export const { useGetUserMeQuery, useUpdateUserMutation, useGetIamMutation } = userApiEndpoints;
 export { userApiEndpoints };
