@@ -48,13 +48,6 @@ const authApiEndpoints = authApi
           body: { token },
         }),
       }),
-      getUser: builder.mutation<{ user: TypeUser }, void>({
-        query: () => ({
-          url: 'auth/user',
-          method: 'GET',
-        }),
-        invalidatesTags: ['auth'],
-      }),
     }),
   });
 
@@ -63,7 +56,6 @@ export const {
   useSignInMutation,
   useSignOutMutation,
   useRefreshTokenMutation,
-  useGetUserMutation,
   useSignInWitOauthYaMutation,
 } = authApiEndpoints;
 export { authApiEndpoints };
