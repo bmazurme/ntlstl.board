@@ -7,6 +7,9 @@ let projects: TypeProject[] = [{ value: '0', label: 'Project 1' }];
 
 const getProjects = (req: Request, res: Response, next: NextFunction) => {
   try {
+    // @ts-ignore
+    // console.log(req.user);
+
     return res.send(projects);
   } catch (err) {
     next(err);
