@@ -3,6 +3,7 @@ import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { config as dotEnvConfig } from 'dotenv';
 import http from 'http';
@@ -15,7 +16,7 @@ import { NotFoundError } from './errors';
 import { errorLogger } from './middlewares/logger';
 import errorHandler from './middlewares/error-handler';
 
-import { helmetConfig } from './utils/helmet-config';
+// import { helmetConfig } from './utils/helmet-config';
 import { corsOptions } from './utils/cors-options';
 
 dotEnvConfig();
@@ -26,7 +27,8 @@ const portWss = process.env.PORT_WSS ?? 3002;
 const app = express();
 
 app.use(cors(corsOptions));
-app.use(helmet.contentSecurityPolicy(helmetConfig));
+// app.use(helmet.contentSecurityPolicy(helmetConfig));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -39,14 +41,13 @@ const wss = new WebSocket.Server({ server });
 wss.on('connection', (ws: WebSocket) => onConnection(ws));
 
 app.use('/static', express.static(path.resolve(process.cwd(), 'static')));
-
 app.use(express.static(path.resolve(__dirname), { extensions: ['css', 'js', 'woff', 'woff2'] }));
+
+app.use('/api/', index);
 
 app.get('/:page', (_req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
 });
-
-app.use('/api/', index);
 
 app.use('*', () => {
   throw new NotFoundError('HTTP 404 Not Found');
