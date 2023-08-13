@@ -44,6 +44,13 @@ const slice = createSlice({
       )
       .addMatcher(userApiEndpoints.endpoints.updateUser.matchRejected, (state, action) => {
         console.log('rejected', action);
+      })
+      .addMatcher(
+        authApiEndpoints.endpoints.signOut.matchFulfilled,
+        (state, action) => ({ ...state, data: null }),
+      )
+      .addMatcher(authApiEndpoints.endpoints.signOut.matchRejected, (state, action) => {
+        console.log('rejected', action);
       });
   },
 });
