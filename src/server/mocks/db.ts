@@ -43,17 +43,12 @@ const mock = [{
   read: false,
 }];
 
-const user = {
-  id: 'id',
-  name: 'User Name',
-  email: 'User Email',
-  active: true,
-  paid: '01.01.2024',
-  project: { value: '0', label: 'Project 1' },
-};
+const users: TypeUser[] = [
+  {
+    defaultEmail: 'str-22@yandex.ru',
+    paid: '01.01.2024',
+    project: { value: '0', label: 'Project 1' },
+  },
+];
 
-const users: { defaultEmail: string }[] = [];
-
-export {
-  blocks, mock, user, users,
-};
+export { blocks, mock, users };
