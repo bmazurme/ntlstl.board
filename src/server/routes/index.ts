@@ -10,16 +10,18 @@ import notificationRoute from './notification-route';
 import userRoute from './user-route';
 import workplaceRoute from './workplace-route';
 
+import authMiddleware from '../middlewares/auth';
+
 const router = Router();
 
 router.use('/', authRoute);
-router.use('/', blocksRoute);
-router.use('/', itemsRoute);
-router.use('/', bookRoute);
 router.use('/', oauthRoute);
-router.use('/', projectRoute);
-router.use('/', notificationRoute);
-router.use('/', userRoute);
-router.use('/', workplaceRoute);
+router.use('/', authMiddleware, blocksRoute);
+router.use('/', authMiddleware, itemsRoute);
+router.use('/', authMiddleware, bookRoute);
+router.use('/', authMiddleware, projectRoute);
+router.use('/', authMiddleware, notificationRoute);
+router.use('/', authMiddleware, userRoute);
+router.use('/', authMiddleware, workplaceRoute);
 
 export default router;
