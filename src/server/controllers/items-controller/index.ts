@@ -12,8 +12,10 @@ const removeItem = (req: Request, res: Response, next: NextFunction) => {
     const item = blocks[blockId].value;
     blocks[blockId].value = {
       ...item,
-      [block]: {...item[block],
-      items: item[block].items.filter((x) => x.id !== id)},
+      [block]: {
+        ...item[block],
+        items: item[block].items.filter((x) => x.id !== id),
+      },
     };
 
     return res.send(blocks[blockId].value);
@@ -51,7 +53,7 @@ const changeItemValues = (req: Request, res: Response, next: NextFunction) => {
       ...item,
       [index]: {
         ...item[index],
-        items: [...item[index].items].map((x) => (x.id === id ? {...x, values} : x)),
+        items: [...item[index].items].map((x) => (x.id === id ? { ...x, values } : x)),
       },
     };
 
@@ -72,7 +74,7 @@ const changeItemValue = (req: Request, res: Response, next: NextFunction) => {
         ...blocks[bookId].value[index],
         items: [...blocks[bookId].value[index].items]
           .map((x) => (x.id === id
-            ? {...x, item: (item as unknown as { value: string, label: string })}
+            ? { ...x, item: (item as unknown as { value: string, label: string }) }
             : x)),
       },
     };
