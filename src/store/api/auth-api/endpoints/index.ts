@@ -32,13 +32,10 @@ const authApiEndpoints = authApi
           body,
         }),
       }),
-      signOut: builder.mutation({
-        query: (refreshToken) => ({
-          url: '/auth/logout',
+      signOut: builder.mutation<void, void>({
+        query: () => ({
+          url: '/api/logout',
           method: 'POST',
-          body: {
-            token: refreshToken,
-          },
         }),
       }),
       refreshToken: builder.mutation<ResponseToken, Record<string, string>>({
