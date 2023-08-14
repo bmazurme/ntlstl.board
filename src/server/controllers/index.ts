@@ -1,5 +1,7 @@
 import { getBooks, addBook } from './book-controller';
-import { getUserMe, updateUser, addUser } from './user-controller';
+import {
+  getUserMe, updateUser, addUser,
+} from './user-controller';
 import {
   getWorkplace,
   renameWorkplace,
