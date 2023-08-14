@@ -1,17 +1,12 @@
 import React, { useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import Users from '../../components/users';
 import Modal from '../../components/modal';
 
 import { Urls } from '../../utils';
 
-import style from './profile-modal-layout.module.css';
-
-function UsersBody() {
-  return (
-    <h2>Users</h2>
-  );
-}
+import style from './users-modal-layout.module.css';
 
 export default function UsersModal() {
   const navigate = useNavigate();
@@ -20,5 +15,5 @@ export default function UsersModal() {
     navigate(location.state || Urls.BASE.INDEX);
   }, [location.state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={<UsersBody />} />);
+  return (<Modal isOpen onClose={handleClose} children={<Users />} />);
 }
