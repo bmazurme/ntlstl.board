@@ -51,4 +51,9 @@ const users: TypeUser[] = [
   },
 ];
 
-export { blocks, mock, users };
+type TypeProject = { userId: string; items: { value: string; label: string; }[]; };
+const projects: TypeProject[] = [{ userId: '0', items: [{ value: '0', label: 'Project 1' }] }];
+
+export {
+  blocks, mock, users, projects,
+};
