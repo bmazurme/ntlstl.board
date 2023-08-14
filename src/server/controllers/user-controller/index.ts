@@ -23,7 +23,7 @@ const getUserMe = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const updateUser = (req: Request, res: Response, next: NextFunction) => {
-  const { id, defaultEmail, project } = req.body;
+  const { defaultEmail, project } = req.body;
   try {
     const user = users.find((u) => u.defaultEmail === defaultEmail)!;
     user.defaultEmail = defaultEmail;
@@ -35,4 +35,6 @@ const updateUser = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export { getUserMe, updateUser, addUser };
+export {
+  getUserMe, updateUser, addUser,
+};
