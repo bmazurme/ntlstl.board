@@ -27,16 +27,11 @@ const slice = createSlice({
     builder
       .addMatcher(
         bookApiEndpoints.endpoints.renameBook.matchFulfilled,
-        (state, action) => ({
-          ...state,
-          data: action.payload,
-        }),
+        (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
         bookApiEndpoints.endpoints.renameBook.matchRejected,
-        (state, action) => {
-          console.log('rejected', state, action);
-        },
+        (state, action) => { console.log('rejected', state, action); },
       );
   },
 });
