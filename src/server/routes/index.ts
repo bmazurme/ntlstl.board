@@ -14,8 +14,8 @@ import authMiddleware from '../middlewares/auth';
 
 const router = Router();
 
-router.use('/', authRoute);
 router.use('/', oauthRoute);
+router.use('/', authRoute);
 router.use('/', authMiddleware, blocksRoute);
 router.use('/', authMiddleware, itemsRoute);
 router.use('/', authMiddleware, bookRoute);
