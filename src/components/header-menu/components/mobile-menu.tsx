@@ -11,7 +11,7 @@ export default function MobileMenu() {
 
   return (
     <>
-      <IconButton component={ChevronDownIcon} handler={openModal}/>
+      <IconButton component={ChevronDownIcon} handler={openModal} />
       {isModalOpen
         && (<Modal isOpen={isModalOpen} onClose={closeModal} children={<div>menu</div>} />)}
     </>
