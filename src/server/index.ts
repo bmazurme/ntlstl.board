@@ -16,7 +16,7 @@ import { NotFoundError } from './errors';
 import { errorLogger } from './middlewares/logger';
 import errorHandler from './middlewares/error-handler';
 
-// import { helmetConfig } from './utils/helmet-config';
+import { helmetConfig } from './utils/helmet-config';
 import { corsOptions } from './utils/cors-options';
 
 dotEnvConfig();
@@ -27,17 +27,15 @@ const portWss = process.env.PORT_WSS ?? 3002;
 const app = express();
 
 app.use(cors(corsOptions));
-// app.use(helmet.contentSecurityPolicy(helmetConfig));
+app.use(helmet.contentSecurityPolicy(helmetConfig));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // initialize a simple http server
 const server = http.createServer(app);
-
 // initialize the WebSocket server instance
 const wss = new WebSocket.Server({ server });
-
 wss.on('connection', (ws: WebSocket) => onConnection(ws));
 
 app.use('/static', express.static(path.resolve(process.cwd(), 'static')));
@@ -57,7 +55,7 @@ app.use(errorLogger);
 // app.use(errors());
 app.use(errorHandler);
 
-// start our server
+// start server
 server.listen(portWss, () => {
   console.log(`WSS listening on port ${portWss}`);
 });
