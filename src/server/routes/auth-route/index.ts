@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-// import { } from '../controllers';
+import { logout } from '../../controllers/auth-controller';
 
 const router = Router();
 
-router.post('/auth', () => console.log(''));
+router.post('/logout', logout);
 
 export default router;
