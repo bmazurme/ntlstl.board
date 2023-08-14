@@ -1,16 +1,15 @@
+/* eslint-disable max-len */
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
 
-type TypeProject = { value: string; label: string; };
-
-let projects: TypeProject[] = [{ value: '0', label: 'Project 1' }];
+import { projects } from '../../mocks/db';
 
 const getProjects = (req: Request, res: Response, next: NextFunction) => {
   try {
-    // @ts-ignore
-    // console.log(req.user);
+    const userId = '0';
+    const { items } = projects[userId];
 
-    return res.send(projects);
+    return res.send(items);
   } catch (err) {
     next(err);
   }
@@ -18,7 +17,8 @@ const getProjects = (req: Request, res: Response, next: NextFunction) => {
 
 const addProject = (req: Request, res: Response, next: NextFunction) => {
   try {
-    projects.push({
+    const userId = '0';
+    projects[userId].items.push({
       value: (projects.length).toString(),
       label: `Project ${projects.length + 1}`,
     });
@@ -32,8 +32,9 @@ const addProject = (req: Request, res: Response, next: NextFunction) => {
 const renameProject = (req: Request, res: Response, next: NextFunction) => {
   try {
     const { value, label } = req.body;
-    projects = projects.map((x) => (value === x.value ? { ...x, label } : x));
-    const book = projects.find((x) => x.value === value);
+    const userId = '0';
+    projects[userId].items = projects[userId].items.map((x) => (value === x.value ? { ...x, label } : x));
+    const book = projects[userId].items.find((x) => x.value === value);
 
     return res.send(book);
   } catch (err) {
