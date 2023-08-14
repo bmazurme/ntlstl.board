@@ -14,11 +14,10 @@ export default function Oauth() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [getYaToken] = useGetYaTokenMutation();
-  const [signInWitOauthYa] = useSignInWitOauthYaMutation();
+  const [signInWitOauthYa, { isError, isLoading }] = useSignInWitOauthYaMutation();
 
   const code = searchParams.get('code')!;
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<Record<string, string> | null>(null);
 
   useEffect(() => {
     const getToken = async () => {
@@ -44,7 +43,6 @@ export default function Oauth() {
         const { data }: any = await signInWitOauthYa({ token });
 
         if (data) {
-          setUser(data);
           setTimeout(() => navigate(Urls.BASE.INDEX), 3000);
         }
       }
