@@ -8,8 +8,10 @@ import CustomSelect from '../custom-select';
 import MobileMenu from './components/mobile-menu';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
+import { useAppSelector } from '../../hooks';
+import { selectCurrentUser } from '../../store/slices';
 import {
-  useGetProjectsQuery, useAddProjectMutation, useGetUserMeQuery, useUpdateUserMutation,
+  useGetProjectsQuery, useAddProjectMutation, useUpdateUserMutation,
 } from '../../store/api';
 
 import style from './header-menu.module.css';
@@ -17,13 +19,13 @@ import style from './header-menu.module.css';
 export default function HeaderMenu() {
   const navigate = useNavigate();
   const { data: options = [] } = useGetProjectsQuery();
-  const { data: user } = useGetUserMeQuery();
+  const user = useAppSelector(selectCurrentUser);
   const [addProject] = useAddProjectMutation();
   const [updateUser] = useUpdateUserMutation();
   const { blocks } = getVisualProps(useWindowDimensions());
 
   const isMobile = blocks === 1;
-  const value = user?.project as PropsValue<string>;
+  const value = user?.project as unknown as PropsValue<string>;
 
   const onChange = async (project: any) => {
     updateUser({ ...user, project });
