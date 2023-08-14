@@ -24,10 +24,7 @@ const slice = createSlice({
     builder
       .addMatcher(
         bookApiEndpoints.endpoints.getBookById.matchFulfilled,
-        (state, action) => ({
-          ...state,
-          data: action.payload,
-        }),
+        (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
         bookApiEndpoints.endpoints.getBookById.matchRejected,
@@ -37,10 +34,7 @@ const slice = createSlice({
       )
       .addMatcher(
         bookApiEndpoints.endpoints.addBook.matchFulfilled,
-        (state, action) => ({
-          ...state,
-          data: action.payload,
-        }),
+        (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
         bookApiEndpoints.endpoints.addBook.matchRejected,
