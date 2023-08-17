@@ -1,12 +1,7 @@
-import { getBooks, addBook } from './book-controller';
+import { getBooks, addBook } from './books-controller';
+import { getUserMe, updateUser } from './user-controller';
 import {
-  getUserMe, updateUser, addUser,
-} from './user-controller';
-import {
-  getWorkplace,
-  renameWorkplace,
-  updateWorkplace,
-  moveToArchive,
+  getWorkplace, renameWorkplace, updateWorkplace, moveToArchive,
 } from './workplace-controller';
 
 export {
@@ -16,7 +11,6 @@ export {
   updateWorkplace,
   moveToArchive,
   updateUser,
-  addUser,
   getBooks,
   addBook,
 };
