@@ -21,7 +21,7 @@ export default function List({ isOpen, isLoading }
 
   const setCurrent = async (book: TypeBook | null) => {
     if (book?.name) {
-      navigate(bookId === book?.id ? '/projects' : `/projects/${user.project!.value}/${book.id}`);
+      navigate(bookId === book?.id ? '/projects' : `/projects/${user.projectId}/${book.id}`);
     }
   };
 

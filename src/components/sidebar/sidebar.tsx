@@ -24,9 +24,9 @@ export default function Sidebar() {
 
   useEffect(() => {
     const getData = async () => {
-      if (user && 'project' in user && user?.project?.value) {
+      if (user && 'projectId' in user && user?.projectId) {
         try {
-          await getBookById(user?.project?.value);
+          await getBookById(user?.projectId);
         } catch (e) {
           console.log(e);
         }
@@ -34,7 +34,7 @@ export default function Sidebar() {
     };
 
     getData();
-  }, [user?.project?.value]);
+  }, [user?.projectId]);
 
   return (
     <div className={classNames(style.sidebar, { [style.sidebar_open]: isOpen })}>

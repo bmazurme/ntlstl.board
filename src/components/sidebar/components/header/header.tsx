@@ -24,7 +24,7 @@ export default function Header({ isOpen, button }
     handler: async () => {
       addBook({
         name: 'book',
-        projectId: user.project!.value,
+        projectId: user.projectId,
         typeBook: (typeBook as unknown as { value: string; label: string; }).value,
       });
       setTypeBook(null);
