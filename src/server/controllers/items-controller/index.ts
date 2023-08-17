@@ -3,6 +3,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
+import { addItem } from './items-controller';
+
 import { blocks } from '../../mocks/db';
 import { values as data } from '../../../mocks/values';
 
@@ -106,34 +108,34 @@ const getItemResult = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const addItem = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { bookId, index } = req.body;
-    const currentItem = blocks[bookId].value[index];
-    blocks[bookId].value = {
-      ...blocks[bookId].value,
-      [index]: {
-        ...currentItem,
-        items: [
-          ...currentItem.items,
-          {
-            id: uuidv4(),
-            item: {
-              value: `${currentItem.items.length}`,
-              label: `Item ${currentItem.items.length + 1}`,
-            },
-            values: data,
-            result: 0,
-          },
-        ],
-      },
-    };
+// const addItem = (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const { bookId, index } = req.body;
+//     const currentItem = blocks[bookId].value[index];
+//     blocks[bookId].value = {
+//       ...blocks[bookId].value,
+//       [index]: {
+//         ...currentItem,
+//         items: [
+//           ...currentItem.items,
+//           {
+//             id: uuidv4(),
+//             item: {
+//               value: `${currentItem.items.length}`,
+//               label: `Item ${currentItem.items.length + 1}`,
+//             },
+//             values: data,
+//             result: 0,
+//           },
+//         ],
+//       },
+//     };
 
-    return res.send(blocks[bookId].value);
-  } catch (err) {
-    next(err);
-  }
-};
+//     return res.send(blocks[bookId].value);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 export {
   removeItem,
