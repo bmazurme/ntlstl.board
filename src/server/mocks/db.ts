@@ -26,12 +26,21 @@ const blocks: { id: string; value: TypeBlock }[] = [
             id: uuidv4(), item: { value: '4', label: 'Item 5' }, values, result: 0,
           },
         ],
+        blockId: '0',
       },
       1: {
         index: 1,
         name: 'BLOCK2',
         items: [],
+        blockId: '1',
       },
+    //   {
+    //     "bookId": "64dd1196a9a4c499925a9791",
+    //     "index": 0,
+    //     "name": "BLOCK1",
+    //     "_id": "64dd1d1da2ea0b9b29aea414",
+    //     "__v": 0
+    // }
     },
   },
 ];
@@ -47,7 +56,7 @@ const users: TypeUser[] = [
   {
     defaultEmail: 'str-22@yandex.ru',
     paid: '01.01.2024',
-    project: { value: '0', label: 'Project 1' },
+    projectId: '0',
   },
 ];
 
