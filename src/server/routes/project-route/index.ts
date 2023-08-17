@@ -1,11 +1,13 @@
 import { Router } from 'express';
 
-import { getProjects, addProject, renameProject } from '../../controllers/project-controller';
+import { getProjects, addProject, updateProject } from '../../controllers/projects-controller';
+
+// import { UrlsApi } from '../../utils/routers';
 
 const router = Router();
 
 router.get('/projects', getProjects);
 router.post('/projects', addProject);
-router.patch('/projects', renameProject);
+router.patch('/projects', updateProject);
 
 export default router;
