@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import cors from 'cors';
 
 import { ALLOWED_HEADERS, METHODS, WHITE_LIST } from './constants';
