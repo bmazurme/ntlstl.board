@@ -23,11 +23,13 @@ const blocks: TypeBlock = {
         id: uuidv4(), item: { value: '4', label: 'Item 5' }, values, result: 0,
       },
     ],
+    blockId: '0',
   },
   1: {
     index: 1,
     name: 'BLOCK2',
     items: [],
+    blockId: '1',
   },
 };
 
