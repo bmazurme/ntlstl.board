@@ -12,7 +12,7 @@ declare module 'interpolate-html-plugin';
 type TypeUser = {
   defaultEmail: string;
   paid: string;
-  project: { value: string; label: string; };
+  projectId: string;
 };
 
 type TypeNotification = {
@@ -36,7 +36,7 @@ type TypeItem = {
   item: { value: string, label: string },
 };
 
-type TypeBlockValue = { index: number, name: string, items: TypeItem[] };
+type TypeBlockValue = { index: number, name: string, items: TypeItem[]; blockId: string; };
 type TypeBlock = Record<number, TypeBlockValue>;
 type TypeBook = { name: string; id: string; projectId: string; typeBook: string; };
 
