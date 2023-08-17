@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import express from 'express';
+import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
@@ -21,10 +22,16 @@ import { corsOptions } from './utils/cors-options';
 
 dotEnvConfig();
 
+const pth = process.env.PTH ?? 'mongodb://127.0.0.1:27017/wapi';
 const port = process.env.PORT ?? 3001;
 const portWss = process.env.PORT_WSS ?? 3002;
 
 const app = express();
+
+mongoose.connect(pth, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+} as ConnectOptions);
 
 app.use(cors(corsOptions));
 app.use(helmet.contentSecurityPolicy(helmetConfig));
