@@ -7,6 +7,7 @@ import validator from 'validator';
 
 export interface IUser extends Document {
   defaultEmail: string;
+  projectId: Schema.Types.ObjectId;
 }
 
 export interface UserModel extends Model<IUser> {
@@ -24,6 +25,11 @@ const UserSchema = new Schema({
       },
       defaultEmail: 'Введён некорректный email',
     },
+  },
+  projectId: {
+    type: Schema.Types.ObjectId,
+    ref: 'project',
+    // required: true,
   },
 });
 
