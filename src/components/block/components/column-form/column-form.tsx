@@ -12,14 +12,15 @@ import {
 
 import style from './column-form.module.css';
 
-export default function ColumnForm({ index, title }: { index: number, title: string }) {
+export default function ColumnForm({ index, title, blockId }
+  : { index: number, title: string; blockId: string; }) {
   const { bookId } = useParams();
   const { values, handleChange, resetForm } = useFormWithValidation({ name: title });
   const [addItem] = useAddItemMutation();
   const [renameBlock] = useRenameBlocksMutation();
   const [removeBlock] = useRemoveBlockMutation();
 
-  const onAddItem = async () => await addItem({ bookId, index });
+  const onAddItem = async () => await addItem({ bookId, index, blockId });
   const onDeleteBlock = async () => await removeBlock({ index, bookId });
   const onRenameBlock = async () => {
     if (values.name !== '') {

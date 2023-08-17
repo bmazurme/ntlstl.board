@@ -7,8 +7,11 @@ import { getBackgroundColor, TYPE, COLOR } from '../../../../utils';
 
 import style from './column.module.css';
 
-export default function Column({ children, index, title }
-  : { children: ReactNode, index: number, title: string }) {
+export default function Column({
+  children, index, title, blockId,
+}: {
+  children: ReactNode, index: number, title: string; blockId: string;
+}) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: [TYPE.ITEM, TYPE.BLOCK],
     drop: () => ({ name: index }),
@@ -22,7 +25,7 @@ export default function Column({ children, index, title }
       style={{ backgroundColor: getBackgroundColor(isOver, canDrop, COLOR.ITEM) }}
       className={style.box}
     >
-      <ColumnForm index={index} title={title} />
+      <ColumnForm index={index} title={title} blockId={blockId} />
       <div className={style.items}>{children}</div>
     </div>
   );

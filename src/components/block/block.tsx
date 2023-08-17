@@ -132,7 +132,7 @@ export default function Block({ block }: { block: number; }) {
       className={style.block}
       style={{ backgroundColor: getBackgroundColor(isOver, canDrop, COLOR.BLOCK), opacity }}
     >
-      <Column index={blocks[block].index} title={blocks[block].name}>
+      <Column index={blocks[block].index} title={blocks[block].name} blockId={blocks[block].blockId}>
         {returnItemsForColumn(block)}
       </Column>
     </div>
