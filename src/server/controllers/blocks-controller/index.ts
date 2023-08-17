@@ -2,16 +2,11 @@
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
 
-import { blocks } from '../../mocks/db';
+import {
+  getBlocks, addBlock, deleteBlock, renameBlock,
+} from './blocks-controller';
 
-const getBlocks = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    // @ts-ignore
-    return res.send(blocks[req.params.id].value);
-  } catch (err) {
-    next(err);
-  }
-};
+import { blocks } from '../../mocks/db';
 
 const setBlocks = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -47,51 +42,10 @@ const updateBlocks = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const removeBlock = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { bookId, index } = req.body;
-    delete blocks[bookId].value[index];
-
-    return res.send(blocks[bookId].value);
-  } catch (err) {
-    next(err);
-  }
-};
-
-const addBlock = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { bookId } = req.body;
-    const block = blocks[bookId].value;
-    const index = Object.keys(block).length;
-    blocks[bookId].value = {
-      ...block,
-      [index]: { index, name: `BLOCK${index + 1}`, items: [] },
-    };
-
-    return res.send(blocks[bookId].value);
-  } catch (err) {
-    next(err);
-  }
-};
-
-const renameBlock = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { bookId, index, name } = req.body;
-    blocks[bookId].value = {
-      ...blocks[bookId].value,
-      [index]: { ...blocks[bookId].value[index], name },
-    };
-
-    return res.send(blocks[bookId].value);
-  } catch (err) {
-    next(err);
-  }
-};
-
 const setMovedBlock = (req: Request, res: Response, next: NextFunction) => {
   try {
     const {
-      bookId, dragIndex, hoverIndex, item, // !!!
+      bookId, dragIndex, hoverIndex, //  item, // !!!
     } = req.body;
 
     const data = blocks[bookId].value;
@@ -111,7 +65,7 @@ const setMovedBlock = (req: Request, res: Response, next: NextFunction) => {
 export {
   getBlocks,
   updateBlocks,
-  removeBlock,
+  deleteBlock,
   addBlock,
   renameBlock,
   setMovedBlock,
