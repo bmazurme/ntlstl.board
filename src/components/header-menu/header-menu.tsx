@@ -25,10 +25,12 @@ export default function HeaderMenu() {
   const { blocks } = getVisualProps(useWindowDimensions());
 
   const isMobile = blocks === 1;
-  const value = user?.project as unknown as PropsValue<string>;
+  // @ts-ignore
+  const projectId = user?.projectId;
+  const value: any = options.find((x) => x.value === projectId);
 
   const onChange = async (project: any) => {
-    updateUser({ ...user, project });
+    updateUser({ ...user, projectId: project.value });
     navigate('/projects');
   };
 
