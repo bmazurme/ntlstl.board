@@ -159,6 +159,7 @@ const renameBlock = async (req: any, res: Response, next: NextFunction) => {
 const setBlocks = async (req: any, res: Response, next: NextFunction) => {
   try {
     const { bookId, data: init } = req.body;
+    const data = {};
 
     // Object.keys(init).forEach((k) => init[k].items.forEach((x) => {
     //   x.id, x.index
