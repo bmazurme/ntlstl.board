@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import {
-  removeItem,
+  deleteItem,
   setMovedItem,
   changeItemValues,
   changeItemValue,
@@ -13,7 +13,7 @@ import {
 
 const router = Router();
 
-router.delete('/items', removeItem);
+router.delete('/items', deleteItem);
 router.patch('/items', setMovedItem);
 router.patch('/items/values', changeItemValues);
 router.patch('/items/value', changeItemValue);
