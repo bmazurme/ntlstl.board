@@ -3,21 +3,21 @@
 import { NextFunction, Request, Response } from 'express';
 
 import {
-  getBlocks, addBlock, deleteBlock, renameBlock,
+  getBlocks, addBlock, deleteBlock, renameBlock, setBlocks,
 } from './blocks-controller';
 
 import { blocks } from '../../mocks/db';
 
-const setBlocks = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { bookId, data } = req.body;
-    blocks[bookId].value = data;
+// const setBlocks = (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const { bookId, data } = req.body;
+//     blocks[bookId].value = data;
 
-    return res.send(blocks[bookId].value);
-  } catch (err) {
-    next(err);
-  }
-};
+//     return res.send(blocks[bookId].value);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 const updateBlocks = (req: Request, res: Response, next: NextFunction) => {
   try {
