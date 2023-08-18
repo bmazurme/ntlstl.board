@@ -21,7 +21,7 @@ export default function Item({ itemData }: TypeItemData) {
   const blocks: TypeBlock = useAppSelector(selectBlocks);
   const block = blocks[currentColumnIndex];
   const openPopup = () => dispatch(setItemPopup({ index: currentColumnIndex, id, isOpen: true }));
-  const deleteItem = () => removeItem({ block: currentColumnIndex, id, blockId: bookId });
+  const deleteItem = () => removeItem({ block: currentColumnIndex, id, bookId });
   const buttons = [
     { handler: openPopup, component: PencilIcon },
     { handler: deleteItem, component: TrashIcon },
