@@ -1,36 +1,19 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
-import { addItem } from './items-controller';
+import { addItem, deleteItem } from './items-controller';
 
 import { blocks } from '../../mocks/db';
-import { values as data } from '../../../mocks/values';
-
-const removeItem = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { id, block, blockId } = req.body;
-    const item = blocks[blockId].value;
-    blocks[blockId].value = {
-      ...item,
-      [block]: {
-        ...item[block],
-        items: item[block].items.filter((x) => x.id !== id),
-      },
-    };
-
-    return res.send(blocks[blockId].value);
-  } catch (err) {
-    next(err);
-  }
-};
+// import { values as data } from '../../../mocks/values';
 
 const setMovedItem = (req: Request, res: Response, next: NextFunction) => {
   try {
     const {
       bookId, dragIndex, hoverIndex, item, dragItem,
     } = req.body;
+
     const coppiedStateArray = [...blocks[bookId].value[item.currentColumnIndex].items];
     const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
     coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
@@ -138,7 +121,7 @@ const getItemResult = (req: Request, res: Response, next: NextFunction) => {
 // };
 
 export {
-  removeItem,
+  deleteItem,
   setMovedItem,
   changeItemValues,
   changeItemValue,
