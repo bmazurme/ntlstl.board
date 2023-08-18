@@ -1,9 +1,9 @@
 import {
-  Schema, Document, model, Model,
+  Schema, Document, model, Model, Types,
 } from 'mongoose';
 
 export interface IBlock extends Document {
-  bookId: Schema.Types.ObjectId;
+  bookId: Types.ObjectId;
   // block: number;
   index: number;
   name: string;
@@ -15,7 +15,7 @@ export interface BlockModel extends Model<IBlock> {
 
 const BlockSchema = new Schema({
   bookId: {
-    type: Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'book',
     required: true,
   },
