@@ -1,9 +1,9 @@
 import {
-  Schema, Document, model, Model,
+  Schema, Document, model, Model, Types,
 } from 'mongoose';
 
 export interface IField extends Document {
-  itemId: Schema.Types.ObjectId;
+  itemId: Types.ObjectId;
   label: string;
   value: number;
 }
@@ -13,12 +13,17 @@ export interface FieldModel extends Model<IField> {
 }
 
 const FieldSchema = new Schema({
+  bookId: {
+    type: Types.ObjectId,
+    ref: 'book',
+    required: true,
+  },
   itemId: {
-    type: Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'item',
     required: true,
   },
-  label: {
+  name: {
     type: String,
     required: true,
     minlength: 2,
