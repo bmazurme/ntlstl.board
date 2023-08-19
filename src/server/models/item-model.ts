@@ -5,6 +5,8 @@ import {
 export interface IItem extends Document {
   blockId: Types.ObjectId;
   bookId: Types.ObjectId;
+  itemId: Types.ObjectId;
+  itemType: Types.ObjectId;
   index: number;
   result: number;
 }
@@ -27,6 +29,11 @@ const ItemSchema = new Schema({
   index: {
     type: Number,
     required: true,
+  },
+  itemType: {
+    type: Types.ObjectId,
+    ref: 'itemType',
+    // required: true,
   },
   result: {
     type: Number,
