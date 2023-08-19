@@ -17,6 +17,24 @@ const slice = createSlice({
   name: 'blocks',
   initialState,
   reducers: {
+    setMovedBlock: (
+      state,
+      { payload: data }: PayloadAction<{
+        dragIndex: number,
+        hoverIndex: number,
+        item: TypeItem & { currentColumnIndex: number, index: number },
+      }>,
+    ) => {
+      const obj: TypeBlock = {};
+      const coppiedStateArray = [...Object.keys(state.data)].map((x) => Number(x));
+      coppiedStateArray.splice(data.hoverIndex, 1, data.dragIndex);
+      coppiedStateArray.splice(data.dragIndex, 1, data.hoverIndex);
+      coppiedStateArray.forEach((x, i: number) => obj[i] = { ...state.data[x], index: i });
+
+      return {
+        ...state, data: obj,
+      };
+    },
     setMovedCard: (
       state,
       { payload: data }: PayloadAction<{
@@ -29,7 +47,7 @@ const slice = createSlice({
       const coppiedStateArray = [...state.data[data.item.currentColumnIndex].items];
       const prevItem = coppiedStateArray.splice(data.hoverIndex, 1, data.dragItem);
       coppiedStateArray.splice(data.dragIndex, 1, prevItem[0]);
-      const arr = coppiedStateArray.filter((x) => x);
+      const arr = coppiedStateArray.filter((x) => x).map((x, i) => ({ ...x, index: i }));
 
       return {
         ...state,
@@ -157,6 +175,6 @@ const slice = createSlice({
   },
 });
 
-export const { setMovedCard } = slice.actions;
+export const { setMovedCard, setMovedBlock } = slice.actions;
 export default slice.reducer;
 export const selectBlocks = (state: RootState) => state.blocks.data;
