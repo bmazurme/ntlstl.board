@@ -1,10 +1,10 @@
 import {
-  Schema, Document, model, Model,
+  Schema, Document, model, Model, Types,
 } from 'mongoose';
 
 export interface IProject extends Document {
   label: string;
-  userId: Schema.Types.ObjectId;
+  userId: Types.ObjectId;
 }
 
 export interface ProjectModel extends Model<IProject> {
@@ -19,7 +19,7 @@ const ProjectSchema = new Schema({
     // maxlength: 30,
   },
   userId: {
-    type: Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: 'user',
     required: true,
   },
