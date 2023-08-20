@@ -12,7 +12,7 @@ import bookidSlice from './slices/book-current-slice';
 import booksSlice from './slices/books-slice';
 import historySlice from './slices/history-slice';
 import itemSlice from './slices/item-slice';
-import itemsSlice from './slices/items-slice';
+import itemTypesSlice from './slices/item-type-slice';
 import itemPopupSlice from './slices/item-popup-slice';
 import modulesSlice from './slices/modules-slice';
 import notificationSlice from './slices/notification-slice';
@@ -28,6 +28,8 @@ import {
   notificationApi,
   userApiEndpoints as userApi,
   itemsApiEndpoints as itemsApi,
+  itemTypesApiEndpoints as itemTypesApi,
+  fieldApiEndpoints as fieldApi,
 } from './api';
 
 declare global {
@@ -47,7 +49,7 @@ export const store = configureStore({
     bookid: bookidSlice,
     history: historySlice,
     item: itemSlice,
-    items: itemsSlice,
+    itemTypes: itemTypesSlice,
     itempopup: itemPopupSlice,
     modules: modulesSlice,
     notification: notificationSlice,
@@ -58,10 +60,12 @@ export const store = configureStore({
     [oauthApi.reducerPath]: oauthApi.reducer,
     [blocksApi.reducerPath]: blocksApi.reducer,
     [itemsApi.reducerPath]: itemsApi.reducer,
+    [itemTypesApi.reducerPath]: itemTypesApi.reducer,
     [bookApi.reducerPath]: bookApi.reducer,
     [projectApi.reducerPath]: projectApi.reducer,
     [notificationApi.reducerPath]: notificationApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [fieldApi.reducerPath]: fieldApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(
@@ -69,10 +73,12 @@ export const store = configureStore({
       oauthApi.middleware,
       blocksApi.middleware,
       itemsApi.middleware,
+      itemTypesApi.middleware,
       bookApi.middleware,
       projectApi.middleware,
       notificationApi.middleware,
       userApi.middleware,
+      fieldApi.middleware,
     ),
   devTools: true,
 });
