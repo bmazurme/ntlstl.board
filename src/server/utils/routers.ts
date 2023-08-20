@@ -18,8 +18,11 @@ export const UrlsApi = {
     INDEX: '/blocks',
     DELETE: '/blocks/:id',
   },
-  ITEM: {
+  ITEMS: {
     INDEX: '/items',
     DELETE: '/items/:id',
+  },
+  FIELDS: {
+    INDEX: '/fields',
   },
 };
