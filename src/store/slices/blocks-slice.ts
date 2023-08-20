@@ -6,7 +6,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-import { blocksApiEndpoints, itemsApiEndpoints } from '../api';
+import { blocksApiEndpoints, itemsApiEndpoints, fieldApiEndpoints } from '../api';
 
 type TypeBlocksState = { data: TypeBlock };
 
@@ -141,11 +141,11 @@ const slice = createSlice({
         (state, action) => console.log('rejected', state, action),
       )
       .addMatcher(
-        itemsApiEndpoints.endpoints.changeItemValues.matchFulfilled,
+        fieldApiEndpoints.endpoints.changeItemValues.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
       )
       .addMatcher(
-        itemsApiEndpoints.endpoints.changeItemValues.matchRejected,
+        fieldApiEndpoints.endpoints.changeItemValues.matchRejected,
         (state, action) => console.log('rejected', state, action),
       )
       .addMatcher(
