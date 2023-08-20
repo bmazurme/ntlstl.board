@@ -4,14 +4,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-import { items } from '../../mocks/items';
+// import { items } from '../../mocks/items';
 
-type TypeItem = { value: string; label: string; };
-type TypeItemState = { data: TypeItem };
+type TypeItemType = { name: string; description: string; } | null;
+type TypeItemTypeState = { data: TypeItemType };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
-const initialState: TypeItemState = {
-  data: items[0],
+const initialState: TypeItemTypeState = {
+  data: null,
 };
 
 const slice = createSlice({
@@ -20,7 +20,7 @@ const slice = createSlice({
   reducers: {
     setItem: (
       state,
-      { payload: data }: PayloadAction<TypeItem>,
+      { payload: data }: PayloadAction<TypeItemType>,
     ) => ({ ...state, data }),
   },
 });
