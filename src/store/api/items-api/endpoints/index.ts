@@ -23,22 +23,14 @@ const itemsApiEndpoints = itemsApi
       setMovedItem: builder.mutation<TypeBlock, any>({
         query: (data) => ({
           url: '/api/items',
-          method: 'PATCH',
-          body: data,
-        }),
-        invalidatesTags: ['blocks'],
-      }),
-      changeItemValues: builder.mutation<TypeBlock, any>({
-        query: (data) => ({
-          url: '/api/items/values',
-          method: 'PATCH',
+          method: 'PUT',
           body: data,
         }),
         invalidatesTags: ['blocks'],
       }),
       changeItemValue: builder.mutation<TypeBlock, any>({
         query: (data) => ({
-          url: '/api/items/value',
+          url: '/api/items',
           method: 'PATCH',
           body: data,
         }),
@@ -66,7 +58,6 @@ const itemsApiEndpoints = itemsApi
 export const {
   useRemoveItemMutation,
   useSetMovedItemMutation,
-  useChangeItemValuesMutation,
   useChangeItemValueMutation,
   useGetItemResultMutation,
   useAddItemMutation,
