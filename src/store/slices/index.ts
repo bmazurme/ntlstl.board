@@ -5,7 +5,7 @@ export * from './books-slice';
 export * from './item-slice';
 export * from './history-slice';
 export * from './item-popup-slice';
-export * from './items-slice';
+export * from './item-type-slice';
 export * from './modules-slice';
 export * from './notification-slice';
 export * from './user-slice';
