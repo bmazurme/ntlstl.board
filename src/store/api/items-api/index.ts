@@ -6,7 +6,7 @@ import { baseQueryWithRetry } from '../base-query';
 const itemsApi = createApi({
   reducerPath: 'itemsApi',
   baseQuery: baseQueryWithRetry,
-  tagTypes: ['blocks'],
+  tagTypes: ['items'],
   endpoints: () => ({}),
 });
 
