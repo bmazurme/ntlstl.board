@@ -4,7 +4,6 @@ import {
 
 export interface IBlock extends Document {
   bookId: Types.ObjectId;
-  // block: number;
   index: number;
   name: string;
 }
@@ -19,10 +18,6 @@ const BlockSchema = new Schema({
     ref: 'book',
     required: true,
   },
-  // block: {
-  //   type: Number,
-  //   required: true,
-  // },
   index: {
     type: Number,
     required: true,
