@@ -1,15 +1,56 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
-import { NextFunction, Response } from 'express';
+import { NextFunction, Response, Request } from 'express';
 import { config as dotEnvConfig } from 'dotenv';
 
+import { Types } from 'mongoose';
 import NotFoundError from '../../errors/not-found-error';
 
-import Fields from '../../models/field-model';
+import Fields, { IField } from '../../models/field-model';
+import Items, { IItem } from '../../models/item-model';
+import Blocks, { IBlock } from '../../models/block-model';
+import ItemTypes from '../../models/item-type-model';
+
+import wss
 
 dotEnvConfig();
 
-const addField = async (req: any, res: Response, next: NextFunction) => {
+const getData = async (blocks: IBlock[], items: IItem[], fields: IField[]) => {
+  const itemTypes = await ItemTypes.find({});
+  const getItem = (it: IItem) => {
+    if (!it.itemType) {
+      return { value: 'null', label: '-' };
+    }
+
+    const type = itemTypes.find((t) => it.itemType.equals(t._id));
+    return { value: type?._id, label: type?.name };
+  };
+
+  return blocks
+    .sort((a, b) => a.index - b.index)
+    .reduce((a, x, i) => ({
+      ...a,
+      [i]: {
+        blockId: x._id,
+        index: x.index,
+        name: x.name,
+        items: items
+          .filter((it) => it.blockId.equals(x._id))
+          .map((it) => ({
+            id: it._id,
+            item: it.itemType ? getItem(it) : null,
+            values: fields.filter((field) => field.itemId.equals(it._id)),
+            blockId: it.blockId,
+            bookId: it.blockId,
+            index: it.index,
+            result: it.result,
+          }))
+          .sort((b, c) => b.index - c.index),
+      },
+    }), {});
+};
+
+const addField = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const field = req.body;
     const data = await Fields.create({ ...field });
@@ -20,10 +61,10 @@ const addField = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-const getFields = async (req: any, res: Response, next: NextFunction) => {
+const getFields = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const field = req.body;
-    const data = await Fields.find({ itemId: field.itemId });
+    const { itemId } = req.body;
+    const data = await Fields.find({ itemId });
 
     if (!data) {
       return next(new NotFoundError('Field not found'));
@@ -35,15 +76,23 @@ const getFields = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-const updateField = async (req: any, res: Response, next: NextFunction) => {
+const updateFields = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id, ...newData } = req.body;
-    const options = { new: true };
-    const data = await Fields.findByIdAndUpdate(id, newData, options);
+    const { bookId, id: itemId, values } = req.body;
 
-    if (!data) {
-      return next(new NotFoundError('Field not found'));
+    const fieldsBulk = Fields.collection.initializeOrderedBulkOp();
+    (values as unknown as IField[]).forEach(({ _id, value }) => {
+      fieldsBulk.find({ _id: new Types.ObjectId(_id) }).update({ $set: { value } });
+    });
+
+    if (fieldsBulk.batches.length > 0) {
+      fieldsBulk.execute();
     }
+
+    const items = await Items.find({ bookId });
+    const fields = await Fields.find({ bookId });
+    const blocks = await Blocks.find({ bookId });
+    const data = await getData(blocks, items, fields);
 
     return res.status(200).send(data);
   } catch (err) {
@@ -51,7 +100,7 @@ const updateField = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-const deleteField = async (req: any, res: Response, next: NextFunction) => {
+const deleteField = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const data = await Fields.findByIdAndDelete(id);
@@ -67,5 +116,5 @@ const deleteField = async (req: any, res: Response, next: NextFunction) => {
 };
 
 export {
-  addField, getFields, updateField, deleteField,
+  addField, getFields, updateFields, deleteField,
 };
