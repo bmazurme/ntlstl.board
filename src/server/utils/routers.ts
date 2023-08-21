@@ -4,15 +4,17 @@ export const UrlsApi = {
     OUT: '/logout',
   },
   USER: {
+    INDEX: '/user',
     ME: '/users/me',
   },
   PROJECT: {
     INDEX: '/projects',
     DELETE: '/projects/:id',
   },
-  BOOK: {
+  BOOKS: {
     INDEX: '/books',
-    DELETE: '/books/:id',
+    ID: '/books/:id',
+    // DELETE: '/books/:id',
   },
   BLOCK: {
     INDEX: '/blocks',
@@ -24,5 +26,8 @@ export const UrlsApi = {
   },
   FIELDS: {
     INDEX: '/fields',
+  },
+  ITEM_TYPES: {
+    INDEX: '/item-types',
   },
 };
