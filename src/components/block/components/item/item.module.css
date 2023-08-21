@@ -32,14 +32,18 @@
   font-size: 14px;
 }
 
-.title {
+.text {
   margin: 0;
   padding: 0 10px;
   box-sizing: border-box;
   font-size: 14px;
+  width: auto;
+}
+
+.title {
+  composes: text;
   font-weight: 500;
   max-width: 150px;
-  width: auto;
 }
 
 .data {
@@ -49,11 +53,7 @@
 }
 
 .value {
-  margin: 0;
-  padding: 0 10px;
-  box-sizing: border-box;
-  font-size: 14px;
+  composes: text;
   font-weight: 400;
   max-width: 100px;
-  width: auto;
 }
