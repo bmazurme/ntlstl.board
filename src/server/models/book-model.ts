@@ -23,13 +23,13 @@ const BookSchema = new Schema({
     type: String,
     required: true,
     minlength: 2,
-    // maxlength: 30,
+    maxlength: 30,
   },
   typeBook: {
     type: String,
     required: true,
     minlength: 1,
-    // maxlength: 30,
+    maxlength: 30,
   },
 });
 
