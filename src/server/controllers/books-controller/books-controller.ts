@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
-import { NextFunction, Response } from 'express';
+import { NextFunction, Response, Request } from 'express';
 import { config as dotEnvConfig } from 'dotenv';
 
 import NotFoundError from '../../errors/not-found-error';
@@ -16,7 +16,7 @@ const packBooks = (books: IBook[]) => books.map((b) => ({
   typeBook: b.typeBook,
 }));
 
-const addBook = async (req: any, res: Response, next: NextFunction) => {
+const addBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const book = req.body;
     const newBook = { ...book, name: 'book' };
@@ -30,7 +30,7 @@ const addBook = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-const getBooks = async (req: any, res: Response, next: NextFunction) => {
+const getBooks = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const books = await Books.find({ projectId: req.params.id });
     const data = packBooks(books);
@@ -41,7 +41,7 @@ const getBooks = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-const updateBook = async (req: any, res: Response, next: NextFunction) => {
+const updateBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id, ...newData } = req.body;
     const options = { new: true };
@@ -57,7 +57,7 @@ const updateBook = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-const deleteBook = async (req: any, res: Response, next: NextFunction) => {
+const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const data = await Books.findByIdAndDelete(id);
@@ -72,7 +72,7 @@ const deleteBook = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-const renameBook = async (req: any, res: Response, next: NextFunction) => {
+const renameBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id, name } = req.body;
     const data = await Books.findByIdAndUpdate(id, { name });
