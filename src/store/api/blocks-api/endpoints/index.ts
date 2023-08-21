@@ -1,10 +1,10 @@
 import blockApi from '..';
 
-type TypeTest = {
-  currentItem: TypeItem & { currentColumnIndex: number, id: string };
-  columnName: number;
-  id: string;
-};
+// type TypeTest = {
+//   currentItem: TypeItem & { currentColumnIndex: number, id: string };
+//   columnName: number;
+//   id: string;
+// };
 
 const blocksApiEndpoints = blockApi
   .enhanceEndpoints({
