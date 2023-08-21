@@ -4,8 +4,6 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 
-// import { items } from '../../mocks/items';
-
 type TypeItemType = { name: string; description: string; } | null;
 type TypeItemTypeState = { data: TypeItemType };
 
