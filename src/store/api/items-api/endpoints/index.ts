@@ -1,14 +1,8 @@
 import itemsApi from '..';
 
-// type TypeTest = {
-//   currentItem: TypeItem & { currentColumnIndex: number, id: string };
-//   columnName: number;
-//   id: string;
-// };
-
 const itemsApiEndpoints = itemsApi
   .enhanceEndpoints({
-    addTagTypes: ['blocks'],
+    addTagTypes: ['items'],
   })
   .injectEndpoints({
     endpoints: (builder) => ({
@@ -18,7 +12,7 @@ const itemsApiEndpoints = itemsApi
           method: 'DELETE',
           body: data,
         }),
-        invalidatesTags: ['blocks'],
+        invalidatesTags: ['items'],
       }),
       setMovedItem: builder.mutation<TypeBlock, any>({
         query: (data) => ({
@@ -26,7 +20,7 @@ const itemsApiEndpoints = itemsApi
           method: 'PUT',
           body: data,
         }),
-        invalidatesTags: ['blocks'],
+        invalidatesTags: ['items'],
       }),
       changeItemValue: builder.mutation<TypeBlock, any>({
         query: (data) => ({
@@ -34,7 +28,7 @@ const itemsApiEndpoints = itemsApi
           method: 'PATCH',
           body: data,
         }),
-        invalidatesTags: ['blocks'],
+        invalidatesTags: ['items'],
       }),
       getItemResult: builder.mutation<TypeBlock, any>({
         query: (data) => ({
@@ -42,7 +36,7 @@ const itemsApiEndpoints = itemsApi
           method: 'PATCH',
           body: data,
         }),
-        invalidatesTags: ['blocks'],
+        invalidatesTags: ['items'],
       }),
       addItem: builder.mutation<TypeBlock, any>({
         query: (data) => ({
@@ -50,7 +44,7 @@ const itemsApiEndpoints = itemsApi
           method: 'POST',
           body: data,
         }),
-        invalidatesTags: ['blocks'],
+        invalidatesTags: ['items'],
       }),
     }),
   });
