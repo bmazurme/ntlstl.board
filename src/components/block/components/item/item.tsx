@@ -32,7 +32,7 @@ export default function Item({ itemData }: TypeItemData) {
       <div className={style.data}>
         <span className={style.position}>{index + 1}</span>
         <span className={style.title}>
-          {block.items.find((x: TypeItem) => x.id === id)!.item.label}
+          {block.items.find((x: TypeItem) => x.id === id)!.item?.label}
         </span>
         {block.items.find((x: TypeItem) => x.id === id)!.values
           .map((value: TypeValue) => (
