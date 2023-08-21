@@ -3,44 +3,10 @@
 import { NextFunction, Request, Response } from 'express';
 
 import {
-  getBlocks, addBlock, deleteBlock, renameBlock, setBlocks,
+  getBlocks, addBlock, deleteBlock, renameBlock, setBlocks, updateBlocks,
 } from './blocks-controller';
 
 import { blocks } from '../../mocks/db';
-
-// const setBlocks = (req: Request, res: Response, next: NextFunction) => {
-//   try {
-//     const { bookId, data } = req.body;
-//     blocks[bookId].value = data;
-
-//     return res.send(blocks[bookId].value);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-
-const updateBlocks = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { bookId, currentItem, columnName } = req.body;
-    const index = currentItem.currentColumnIndex;
-    const item = blocks[bookId].value[index];
-    blocks[bookId].value = {
-      ...blocks[bookId].value,
-      [index]: {
-        ...item,
-        items: item.items.filter((x: TypeItem) => x.id !== currentItem.id),
-      },
-      [columnName]: {
-        ...blocks[bookId].value[columnName],
-        items: [...blocks[bookId].value[columnName].items, currentItem],
-      },
-    };
-
-    return res.send(blocks[bookId].value);
-  } catch (err) {
-    next(err);
-  }
-};
 
 const setMovedBlock = (req: Request, res: Response, next: NextFunction) => {
   try {
