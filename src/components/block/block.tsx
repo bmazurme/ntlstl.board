@@ -9,8 +9,8 @@ import Column from './components/column';
 import MoveableItem from './components/moveable-item';
 
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, setMovedCard } from '../../store/slices';
-import { useSetMovedBlockMutation, useSetBlocksMutation } from '../../store/api';
+import { selectBlocks, setMovedCard, setMovedBlock } from '../../store/slices';
+import { useSetBlocksMutation, useSetMovedItemMutation } from '../../store/api';
 
 import { getBackgroundColor, TYPE, COLOR } from '../../utils';
 
@@ -19,8 +19,9 @@ import style from './block.module.css';
 export default function Block({ block }: { block: number; }) {
   const { bookId } = useParams();
   const dispatch = useAppDispatch();
-  const [setMovedBlock] = useSetMovedBlockMutation();
-  const [setBlock] = useSetBlocksMutation();
+  // const [setMovedBlock] = useSetMovedBlockMutation();
+  const [setItems] = useSetMovedItemMutation();
+  const [setBlocks] = useSetBlocksMutation();
   const ref = useRef<HTMLDivElement | null>(null);
   const blocks: TypeBlock = useAppSelector(selectBlocks);
 
@@ -38,7 +39,7 @@ export default function Block({ block }: { block: number; }) {
     }
   };
 
-  const moveItemDrop = async () => await setBlock({ data: blocks, bookId: bookId! });
+  const moveItemDrop = async () => await setItems({ data: blocks, bookId: bookId! });
 
   const returnItemsForColumn = (columnName: number) => blocks[columnName].items
     .map(({
@@ -65,9 +66,10 @@ export default function Block({ block }: { block: number; }) {
     const dragItem = blocks[item.index];
 
     if (dragItem) {
-      await setMovedBlock({
-        dragIndex, hoverIndex, item, bookId, // item !!!
-      });
+      dispatch(setMovedBlock({ dragIndex, hoverIndex, item }));
+      // await setMovedBlock({
+      //   dragIndex, hoverIndex, item, bookId, // item !!!
+      // });
     }
   };
 
@@ -115,6 +117,11 @@ export default function Block({ block }: { block: number; }) {
       item.index = hoverIndex;
     },
     collect: (monitor) => ({ isOver: monitor.isOver(), canDrop: monitor.canDrop() }),
+    async drop(item, monitor) {
+      // await moveItemDrop();
+      // console.log(123);
+      await setBlocks({ data: blocks, bookId: bookId! });
+    },
     canDrop: () => true,
   });
 
