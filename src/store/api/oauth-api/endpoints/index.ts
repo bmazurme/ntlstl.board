@@ -1,10 +1,5 @@
 import oauthApi from '..';
 
-// type ResponseToken = {
-//   accessToken: string;
-//   refreshToken: string;
-// };
-
 const oauthApiEndpoints = oauthApi
   .enhanceEndpoints({
     addTagTypes: ['oauth'],
