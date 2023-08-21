@@ -15,17 +15,8 @@ const itemTypesApiEndpoints = itemTypesApi
         }),
         providesTags: ['itemType'],
       }),
-      // getBlocks: builder.query<TypeBlock, string | void>({
-      //   query: (id) => ({
-      //     url: `/api/blocks/${id}`,
-      //     method: 'GET',
-      //   }),
-      //   providesTags: ['blocks'],
-      // }),
     }),
   });
 
-export const {
-  useGetItemTypesQuery,
-} = itemTypesApiEndpoints;
+export const { useGetItemTypesQuery } = itemTypesApiEndpoints;
 export { itemTypesApiEndpoints };
