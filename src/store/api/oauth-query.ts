@@ -1,11 +1,11 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
 
-// import { BASE_API } from '../../utils';
+import { Urls } from '../../utils';
 
 // Create our baseQuery instance
 const oauthQuery = fetchBaseQuery({
-  baseUrl: 'https://oauth.yandex.ru',
+  baseUrl: Urls.OAUTH.YANDEX,
   prepareHeaders: (headers) => headers,
 });
 
