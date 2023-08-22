@@ -25,6 +25,13 @@ const slice = createSlice({
         console.log('rejected', action);
       })
       .addMatcher(
+        authApiEndpoints.endpoints.signInWitOauthGithub.matchFulfilled,
+        (state, action) => ({ ...state, data: action.payload }),
+      )
+      .addMatcher(
+        authApiEndpoints.endpoints.signInWitOauthGithub.matchRejected,
+        (state, action) => console.log('rejected', action))
+      .addMatcher(
         userApiEndpoints.endpoints.getUserMe.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
       )
