@@ -1,3 +1,3 @@
-import { oauthYaSigninController } from './oauth-controller';
+import { oauthYaSigninController, oauthGithubSigninController } from './oauth-controller';
 
-export default oauthYaSigninController;
+export { oauthYaSigninController, oauthGithubSigninController };
