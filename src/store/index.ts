@@ -21,7 +21,6 @@ import workplaceSlice from './slices/workplace-slice';
 
 import {
   authApiEndpoints as authApi,
-  oauthApiEndpoints as oauthApi,
   blocksApiEndpoints as blocksApi,
   bookApiEndpoints as bookApi,
   projectApiEndpoints as projectApi,
@@ -57,7 +56,6 @@ export const store = configureStore({
     workplace: workplaceSlice,
     // Add the generated reducer as a specific top-level slice
     [authApi.reducerPath]: authApi.reducer,
-    [oauthApi.reducerPath]: oauthApi.reducer,
     [blocksApi.reducerPath]: blocksApi.reducer,
     [itemsApi.reducerPath]: itemsApi.reducer,
     [itemTypesApi.reducerPath]: itemTypesApi.reducer,
@@ -70,7 +68,6 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(
       authApi.middleware,
-      oauthApi.middleware,
       blocksApi.middleware,
       itemsApi.middleware,
       itemTypesApi.middleware,
@@ -86,7 +83,6 @@ export const store = configureStore({
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
 // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
 setupListeners(store.dispatch);
-
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
