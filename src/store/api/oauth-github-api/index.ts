@@ -1,14 +1,13 @@
 // https://redux-toolkit.js.org/rtk-query/overview
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithRetry } from '../base-query';
-// import { oauthQueryWithRetry } from '../oauth-query';
 
 // Define a service using a base URL and expected endpoints
-const oauthApi = createApi({
-  reducerPath: 'oauthApi',
+const oauthGithubApi = createApi({
+  reducerPath: 'oauthGithubApi',
   baseQuery: baseQueryWithRetry,
-  tagTypes: ['oauth'],
+  tagTypes: ['oauthGithub'],
   endpoints: () => ({}),
 });
 
-export default oauthApi;
+export default oauthGithubApi;
