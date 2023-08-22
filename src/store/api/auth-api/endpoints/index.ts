@@ -11,23 +11,16 @@ const authApiEndpoints = authApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      signUp: builder.mutation({
-        query: (data) => ({
-          url: '/auth/register',
-          method: 'POST',
-          body: data,
-        }),
-      }),
-      signIn: builder.mutation({
+      signInWitOauthYa: builder.mutation({
         query: (body) => ({
-          url: '/auth/login',
+          url: '/api/oauth',
           method: 'POST',
           body,
         }),
       }),
-      signInWitOauthYa: builder.mutation({
+      signInWitOauthGithub: builder.mutation({
         query: (body) => ({
-          url: '/api/oauth',
+          url: '/api/oauth/github',
           method: 'POST',
           body,
         }),
@@ -49,10 +42,8 @@ const authApiEndpoints = authApi
   });
 
 export const {
-  useSignUpMutation,
-  useSignInMutation,
   useSignOutMutation,
-  useRefreshTokenMutation,
   useSignInWitOauthYaMutation,
+  useSignInWitOauthGithubMutation,
 } = authApiEndpoints;
 export { authApiEndpoints };
