@@ -11,8 +11,6 @@ import Items, { IItem } from '../../models/item-model';
 import Blocks, { IBlock } from '../../models/block-model';
 import ItemTypes from '../../models/item-type-model';
 
-import wss
-
 dotEnvConfig();
 
 const getData = async (blocks: IBlock[], items: IItem[], fields: IField[]) => {
