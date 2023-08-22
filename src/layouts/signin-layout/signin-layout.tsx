@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import InputField from '../../components/input-field';
 import Button from '../../components/button';
 import Footer from '../../components/footer';
 
+import useUser from '../../hooks/use-user';
+
 import { Urls } from '../../utils';
 
 import style from './signin-layout.module.css';
 
 export default function SignInLayout() {
+  const userData = useUser();
+  const navigate = useNavigate();
   const [errors] = useState({ login: '123456', password: '234567' });
   const links = [
     {
-      id: uuidv4(), help: 'Нет аккаунта?', to: Urls.SIGN.UP, label: 'Зарегистрироваться',
+      id: uuidv4(), help: 'Войти по', to: Urls.SIGN.YANDEX, label: 'Yandex',
     },
     {
-      id: uuidv4(), help: 'Забыли пароль?', to: Urls.PASSWORD.FORGOT, label: 'Восстановить',
-    },
-    {
-      id: uuidv4(), help: 'Войти по', to: Urls.SIGN.OAUTH, label: 'OAUTH',
+      id: uuidv4(), help: 'Войти по', to: Urls.SIGN.GITHUB, label: 'GitHub',
     },
   ];
+
+  useEffect(() => {
+    if (userData) {
+      navigate(Urls.BASE.INDEX);
+    }
+  }, []);
 
   return (
     <div className={style.layout}>
