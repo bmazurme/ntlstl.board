@@ -22,6 +22,7 @@ const getData = async (blocks: IBlock[], items: IItem[], fields: IField[]) => {
     }
 
     const type = itemTypes.find((t) => it.itemType.equals(t._id));
+
     return { value: type?._id, label: type?.name };
   };
 
