@@ -27,11 +27,14 @@ const Urls = {
   },
   OAUTH: {
     INDEX: 'oauth',
+    GITHUB: 'oauth/github',
+    YANDEX: 'https://oauth.yandex.ru',
   },
   SIGN: {
     IN: '/signin',
     UP: '/signup',
-    OAUTH: 'https://oauth.yandex.ru/authorize?response_type=code&client_id=c709762dfe3e447999beb343da0bee9f',
+    YANDEX: 'https://oauth.yandex.ru/authorize?response_type=code&client_id=c709762dfe3e447999beb343da0bee9f',
+    GITHUB: 'https://github.com/login/oauth/authorize?client_id=d3a7b43f6b10622202cc',
   },
   SUPPORT: {
     INDEX: '/support',
