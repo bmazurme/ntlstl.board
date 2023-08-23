@@ -4,12 +4,14 @@ import { NextFunction, Response, Request } from 'express';
 import { config as dotEnvConfig } from 'dotenv';
 
 import { Types } from 'mongoose';
-import NotFoundError from '../../errors/not-found-error';
+import { NotFoundError } from '../../errors';
 
 import Fields, { IField } from '../../models/field-model';
 import Items, { IItem } from '../../models/item-model';
 import Blocks, { IBlock } from '../../models/block-model';
 import ItemTypes from '../../models/item-type-model';
+
+import { getThrottleDiameter } from '../../calcs/throttle';
 
 dotEnvConfig();
 
@@ -86,6 +88,18 @@ const updateFields = async (req: Request, res: Response, next: NextFunction) => 
     if (fieldsBulk.batches.length > 0) {
       fieldsBulk.execute();
     }
+
+    //
+    const itemType = 0;
+
+    if (itemType === 0) {
+      const name = values[0].value;
+      const q = Number(values[1].value);
+      const hdr = Number(values[2].value);
+      const result = getThrottleDiameter(q, hdr);
+      await Items.updateOne({ _id: itemId }, { result });
+    }
+    //
 
     const items = await Items.find({ bookId });
     const fields = await Fields.find({ bookId });
