@@ -26,12 +26,14 @@ const FieldSchema = new Schema({
   name: {
     type: String,
     required: true,
-    minlength: 2,
-    // maxlength: 30,
+    minlength: 1,
+    maxlength: 30,
   },
   value: {
-    type: Number,
+    type: String,
     required: true,
+    minlength: 1,
+    maxlength: 30,
   },
 });
 
