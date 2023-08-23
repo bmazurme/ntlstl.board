@@ -28,7 +28,5 @@ const slice = createSlice({
 });
 
 export const { setModules } = slice.actions;
-
 export default slice.reducer;
-
 export const selectModules = (state: RootState) => state.modules.data;
