@@ -41,9 +41,5 @@ const authApiEndpoints = authApi
     }),
   });
 
-export const {
-  useSignOutMutation,
-  useSignInWitOauthYaMutation,
-  useSignInWitOauthGithubMutation,
-} = authApiEndpoints;
+export const { useSignOutMutation, useSignInWitOauthYaMutation, useSignInWitOauthGithubMutation } = authApiEndpoints;
 export { authApiEndpoints };
