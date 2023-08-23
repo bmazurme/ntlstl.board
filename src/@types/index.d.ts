@@ -25,7 +25,7 @@ type TypeNotification = {
 type TypeValue = {
   id: number;
   name: string;
-  value: number;
+  value: string;
   column: string;
 };
 
