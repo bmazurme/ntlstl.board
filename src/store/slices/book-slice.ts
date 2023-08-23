@@ -37,7 +37,5 @@ const slice = createSlice({
 });
 
 export const { setBook } = slice.actions;
-
 export default slice.reducer;
-
 export const selectBook = (state: RootState) => state.book.data;
