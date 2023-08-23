@@ -2,19 +2,14 @@
 /* eslint-disable no-param-reassign */
 import { NextFunction, Response, Request } from 'express';
 import { config as dotEnvConfig } from 'dotenv';
-// import { Types } from 'mongoose';
 
-import NotFoundError from '../../errors/not-found-error';
+import { NotFoundError } from '../../errors';
 
 import Projects from '../../models/project-model';
 
 dotEnvConfig();
 
-const addProject = async (
-  req: any,
-  res: Response,
-  next: NextFunction,
-) => {
+const addProject = async ( req: any, res: Response, next: NextFunction) => {
   try {
     const projects = await Projects.find({ userId: req.user._id });
     const project = { label: `Project ${projects.length + 1}` };
@@ -26,11 +21,7 @@ const addProject = async (
   }
 };
 
-const getProjects = async (
-  req: any,
-  res: Response,
-  next: NextFunction,
-) => {
+const getProjects = async ( req: any, res: Response, next: NextFunction) => {
   try {
     const data = await Projects.find({ userId: req.user._id });
 
