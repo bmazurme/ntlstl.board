@@ -8,7 +8,6 @@ export default function Footer({ links }: { links: Record<string, string>[] }) {
     <ul className={style.footer}>
       {links.map((link) => (
         <li className={style.item} key={link.id}>
-          {link.help}
           <Link to={link.to} className={style.link}>{link.label}</Link>
         </li>
       ))}
