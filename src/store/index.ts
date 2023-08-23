@@ -17,7 +17,6 @@ import itemPopupSlice from './slices/item-popup-slice';
 import modulesSlice from './slices/modules-slice';
 import notificationSlice from './slices/notification-slice';
 import userSlice from './slices/user-slice';
-import workplaceSlice from './slices/workplace-slice';
 
 import {
   authApiEndpoints as authApi,
@@ -53,7 +52,6 @@ export const store = configureStore({
     modules: modulesSlice,
     notification: notificationSlice,
     user: userSlice,
-    workplace: workplaceSlice,
     // Add the generated reducer as a specific top-level slice
     [authApi.reducerPath]: authApi.reducer,
     [blocksApi.reducerPath]: blocksApi.reducer,
