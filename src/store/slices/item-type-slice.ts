@@ -37,7 +37,5 @@ const slice = createSlice({
 });
 
 export const { setItemTypes } = slice.actions;
-
 export default slice.reducer;
-
 export const selectItemTypes = (state: RootState) => state.itemTypes.data;
