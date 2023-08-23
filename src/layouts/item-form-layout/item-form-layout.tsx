@@ -42,7 +42,9 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
   const changeValue = async () => {
     const newValues: TypeValue[] = blocks[currentColumnIndex]
       .items.find((x: TypeItem) => x.id === id)!
-      .values.map((x: TypeValue, i: number) => ({ ...x, value: Number(values[`label${i}`]) }));
+      .values.map((x: TypeValue, i: number) => ({ ...x, value: values[`label${i}`] }));
+
+    // console.log(newValues);
 
     await changeItemValues({
       index: currentColumnIndex, id, values: newValues, bookId,
@@ -58,8 +60,8 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
       .map((x: TypeItem) => (x.id === id
         ? {
           ...x,
-          values: x.values.map((v: TypeValue, i: number) => (v.value !== Number(values[`label${i}`])
-            ? { ...v, value: Number(values[`label${i}`]) }
+          values: x.values.map((v: TypeValue, i: number) => (v.value !== values[`label${i}`]
+            ? { ...v, value: values[`label${i}`] }
             : v)),
         }
         : x));
