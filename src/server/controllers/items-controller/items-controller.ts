@@ -5,12 +5,14 @@ import { NextFunction, Response, Request } from 'express';
 import { config as dotEnvConfig } from 'dotenv';
 
 import { Types } from 'mongoose';
-import NotFoundError from '../../errors/not-found-error';
+import { NotFoundError } from '../../errors';
 
+import Books, { IBook } from '../../models/book-model';
 import Blocks, { IBlock } from '../../models/block-model';
 import Items, { IItem } from '../../models/item-model';
 import ItemTypes from '../../models/item-type-model';
 import Fields, { IField } from '../../models/field-model';
+// import ItemResults from '../../models/item-result-model';
 
 dotEnvConfig();
 
@@ -50,19 +52,29 @@ const getData = async (blocks: IBlock[], items: IItem[], fields: IField[]) => {
     }), {});
 };
 
+const bookSets: Record<number, any[]> = {
+  0: [{ name: 'name' }, { name: 'q' }, { name: 'hdr' }],
+  1: [{ name: 'name' }],
+};
+
 const addItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { bookId, index, blockId } = req.body;
+    const book: IBook | null | undefined = await Books.findById(bookId);
     const items = await Items.find({ bookId });
     const item = await Items.create({
       index: items.length, blockId, bookId, result: 0,
     });
 
-    const bookSet = [1, 2, 3];
+    const { typeBook } = book!;
+    const bookSet = bookSets[Number(typeBook)];
     const bookFields = bookSet.map((x) => ({
-      bookId, itemId: item._id, value: 0, name: `field${x}`,
+      bookId, itemId: item._id, value: 0, name: x.name,
     }));
 
+    // await ItemResults.create({
+    //   bookId, itemId: item._id, value: 0, name: name,
+    // });
     await Fields.insertMany(bookFields);
     items.push(item);
 
