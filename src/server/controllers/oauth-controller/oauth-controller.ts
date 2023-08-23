@@ -21,7 +21,6 @@ const oauthYaSigninController = async (req: Request, res: Response, next: NextFu
     const options: RequestInit = { method: 'POST', body: formdata, redirect: 'follow' };
     const rlst = await fetch('https://oauth.yandex.ru/token', options);
     const rs = await rlst.json();
-    // @ts-ignore
     const { access_token: token } = rs;
     const requestOptions: RequestInit = {
       method: 'POST',
