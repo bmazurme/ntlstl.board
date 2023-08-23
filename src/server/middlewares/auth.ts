@@ -2,7 +2,7 @@
 import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-import UnauthorizedError from '../errors/unauthorized-error';
+import { UnauthorizedError } from '../errors';
 import DEV_JWT_SECRET from '../../utils/dev-config';
 
 const auth = (req: any, _res: Response, next: NextFunction) => {
