@@ -24,7 +24,5 @@ const slice = createSlice({
 });
 
 export const { setHistory } = slice.actions;
-
 export default slice.reducer;
-
 export const selectHistory = (state: RootState) => state.history.data;
