@@ -24,7 +24,5 @@ const slice = createSlice({
 });
 
 export const { setItemPopup } = slice.actions;
-
 export default slice.reducer;
-
 export const selectItemPopup = (state: RootState) => state.itempopup.data;
