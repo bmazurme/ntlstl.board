@@ -9,4 +9,3 @@ export * from './item-type-slice';
 export * from './modules-slice';
 export * from './notification-slice';
 export * from './user-slice';
-export * from './workplace-slice';
