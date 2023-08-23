@@ -31,9 +31,7 @@ const slice = createSlice({
       coppiedStateArray.splice(data.dragIndex, 1, data.hoverIndex);
       coppiedStateArray.forEach((x, i: number) => obj[i] = { ...state.data[x], index: i });
 
-      return {
-        ...state, data: obj,
-      };
+      return { ...state, data: obj };
     },
     setMovedCard: (
       state,
