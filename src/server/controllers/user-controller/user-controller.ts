@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import { NextFunction, Request, Response } from 'express';
 
-import NotFoundError from '../../errors/not-found-error';
+import { NotFoundError } from '../../errors';
 
 import Users from '../../models/user-model';
 
