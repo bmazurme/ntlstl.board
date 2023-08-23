@@ -5,12 +5,12 @@ import { NextFunction, Response, Request } from 'express';
 import { config as dotEnvConfig } from 'dotenv';
 
 import { Types } from 'mongoose';
-import NotFoundError from '../../errors/not-found-error';
+import { NotFoundError } from '../../errors';
 
 import Blocks, { IBlock } from '../../models/block-model';
 import Items, { IItem } from '../../models/item-model';
-import Fields, { IField } from '../../models/field-model';
 import ItemTypes from '../../models/item-type-model';
+import Fields, { IField } from '../../models/field-model';
 
 dotEnvConfig();
 
