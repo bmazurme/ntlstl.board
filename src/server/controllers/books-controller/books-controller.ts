@@ -3,7 +3,7 @@
 import { NextFunction, Response, Request } from 'express';
 import { config as dotEnvConfig } from 'dotenv';
 
-import NotFoundError from '../../errors/not-found-error';
+import { NotFoundError } from '../../errors';
 
 import Books, { IBook } from '../../models/book-model';
 
