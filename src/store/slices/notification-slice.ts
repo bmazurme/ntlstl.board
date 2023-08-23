@@ -23,7 +23,5 @@ const slice = createSlice({
 });
 
 export const { setNotification } = slice.actions;
-
 export default slice.reducer;
-
 export const selectNotification = (state: RootState) => state.notification.data;
