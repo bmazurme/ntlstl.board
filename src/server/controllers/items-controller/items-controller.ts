@@ -12,7 +12,6 @@ import Blocks, { IBlock } from '../../models/block-model';
 import Items, { IItem } from '../../models/item-model';
 import ItemTypes from '../../models/item-type-model';
 import Fields, { IField } from '../../models/field-model';
-// import ItemResults from '../../models/item-result-model';
 
 dotEnvConfig();
 
