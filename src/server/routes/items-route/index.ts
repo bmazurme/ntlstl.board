@@ -4,7 +4,6 @@ import {
   deleteItem,
   setMovedItem,
   changeItemValue,
-  getItemResult,
   addItem,
 } from '../../controllers/items-controller';
 
@@ -16,7 +15,5 @@ router.post(UrlsApi.ITEMS.INDEX, addItem);
 router.patch(UrlsApi.ITEMS.INDEX, changeItemValue);
 router.put(UrlsApi.ITEMS.INDEX, setMovedItem);
 router.delete('/items', deleteItem);
-
-router.patch('/items/result', getItemResult);
 
 export default router;
