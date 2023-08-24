@@ -16,7 +16,7 @@ export const UrlsApi = {
     ID: '/books/:id',
     // DELETE: '/books/:id',
   },
-  BLOCK: {
+  BLOCKS: {
     INDEX: '/blocks',
     DELETE: '/blocks/:id',
   },
@@ -30,4 +30,7 @@ export const UrlsApi = {
   ITEM_TYPES: {
     INDEX: '/item-types',
   },
+  NOTIFICATION: {
+    INDEX: '/notification',
+  }
 };
