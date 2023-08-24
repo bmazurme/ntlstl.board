@@ -42,6 +42,9 @@ const Urls = {
   USERS: {
     INDEX: '/users',
   },
+  KIT: {
+    INDEX: '/kit',
+  },
   404: '*',
 };
 
