@@ -6,7 +6,7 @@ import IconButton from '../icon-button';
 
 import style from './logo.module.css';
 
-export default function App() {
+export default function Logo() {
   const navigate = useNavigate();
   const btn = { handler: () => navigate('/'), component: RectangleGroupIcon };
 
