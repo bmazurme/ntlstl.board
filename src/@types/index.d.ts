@@ -27,6 +27,7 @@ type TypeValue = {
   name: string;
   value: string;
   column: string;
+  type?: 'red' | 'blue' | 'green';
 };
 
 type TypeItem = {
