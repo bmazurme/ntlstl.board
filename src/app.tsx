@@ -6,6 +6,7 @@ import { TouchBackend } from 'react-dnd-touch-backend';
 
 import MainPage from './pages/main-page';
 import ChartPage from './pages/chart-page';
+import KitPage from './pages/kit-page';
 import SupportPage from './pages/support-page';
 import ProfileModalPage from './pages/profile-modal-page';
 import SignInPage from './pages/signin-page';
@@ -51,6 +52,7 @@ export default function App() {
           <Route path={Urls.SIGN.IN} element={(<SignInPage />)} />
           <Route path={Urls.OAUTH.INDEX} element={(<OauthPage />)} />
           <Route path={Urls.OAUTH.GITHUB} element={(<OauthGithubPage />)} />
+          <Route path={Urls.KIT.INDEX} element={(<KitPage />)} />
           <Route path={Urls[404]} element={(<NotFoundPage />)} />
         </Routes>
 
