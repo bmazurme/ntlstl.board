@@ -1,0 +1,39 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 5px;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 60px;
+  max-width: 100px;
+  /* border: 1px solid var(--border-color); */
+  border-radius: 6px;
+  /* min-height: 30px; */
+}
+
+.label {
+  font-size: 11px;
+  line-height: 12px;
+  margin-bottom: 3px;
+  width: auto;
+}
+
+.value {
+  font-size: 11px;
+  line-height: 11px;
+  width: auto;
+}
+
+.red {
+  color: indianred;
+}
+
+.blue {
+  color: dodgerblue;
+}
+
+.green {
+  color: #37be11;
+}
