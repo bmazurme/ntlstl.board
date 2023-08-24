@@ -20,7 +20,7 @@ export default function Oauth() {
       const { data }: any = await signInWitOauthGithub({ code });
 
       if (data) {
-        setTimeout(() => navigate(Urls.BASE.INDEX), 2000);
+        setTimeout(() => navigate(Urls.BASE.INDEX), 1000);
       }
     };
 
