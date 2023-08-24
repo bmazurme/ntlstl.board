@@ -6,10 +6,11 @@ import { ActionMeta } from 'react-select/dist/declarations/src/types';
 
 import { TypeModule } from '../../store/slices';
 
-export default function CustomSelect({ options, onChange, value }: {
-    options: unknown,
-    onChange?: ((newValue: any, actionMeta: ActionMeta<string>) => void) | undefined,
-    value?: PropsValue<string> | undefined,
+export default function CustomSelect({ options, onChange, value, name }: {
+    options: unknown;
+    onChange?: ((newValue: any, actionMeta: ActionMeta<string>) => void) | undefined;
+    value?: PropsValue<string> | undefined;
+    name?: string;
   }) {
   const customSelectStyle = {
     control: (baseStyles: any, state: { isFocused: boolean; }) => ({
@@ -52,11 +53,14 @@ export default function CustomSelect({ options, onChange, value }: {
     }),
   };
   return (
-    <Select
-      styles={customSelectStyle}
-      options={options as TypeModule}
-      onChange={onChange}
-      value={value}
-    />
+    <div>
+      {name && <span>{name}</span>}
+      <Select
+        styles={customSelectStyle}
+        options={options as TypeModule}
+        onChange={onChange}
+        value={value}
+      />
+    </div>
   );
 }
