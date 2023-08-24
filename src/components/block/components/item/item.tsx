@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { TrashIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 import Buttons from '../../../buttons';
+import Field from '../../../field';
 
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { selectBlocks, setItemPopup } from '../../../../store/slices';
@@ -34,14 +35,17 @@ export default function Item({ itemData }: TypeItemData) {
         <span className={style.title}>
           {block.items.find((x: TypeItem) => x.id === id)!.item?.label}
         </span>
+
         {block.items.find((x: TypeItem) => x.id === id)!.values
           .map((value: TypeValue) => (
-            <span key={uuidv4()} className={style.value}>
-              {`${value.name} - ${value.value}`}
-            </span>
+            <Field key={uuidv4()} label={value.name} value={value.value} />
           ))}
+
         <span className={style.value}>
-          {`Result - ${block.items.find((x: TypeItem) => x.id === id)!.result}`}
+          <Field
+            label="Result"
+            value={`${block.items.find((x: TypeItem) => x.id === id)!.result.toFixed(2)}`}
+          />
         </span>
       </div>
       <Buttons buttons={buttons} />
