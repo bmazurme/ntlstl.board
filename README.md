@@ -8,7 +8,7 @@
 ![Express](https://img.shields.io/badge/-Express-black?style=flat-square&logo=express)
 ![HTML5](https://img.shields.io/badge/-HTML5-black?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/-CSS3-black?style=flat-square&logo=css3)
-![Cyppress](https://img.shields.io/badge/-Cypress-black?style=flat-square&logo=cypress)
+![Cypress](https://img.shields.io/badge/-Cypress-black?style=flat-square&logo=cypress)
 ![Jest](https://img.shields.io/badge/-Jest-black?style=flat-square&logo=jest)
 
 - react-dnd, uuidv4, classnames, framer-motion, recharts
