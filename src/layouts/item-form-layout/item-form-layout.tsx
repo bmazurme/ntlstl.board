@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
+import { GroupBase, OptionsOrGroups } from 'react-select';
 
 import Button from '../../components/button';
 import CustomSelect from '../../components/custom-select';
@@ -11,12 +11,9 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import {
   useChangeItemValuesMutation,
   useChangeItemValueMutation,
-  // useGetItemResultMutation,
   useGetItemTypesQuery,
 } from '../../store/api';
-import {
-  selectBlocks, selectItemTypes, setItemPopup, setHistory,
-} from '../../store/slices';
+import { selectBlocks, setItemPopup, setHistory } from '../../store/slices';
 
 import style from './item-form-layout.module.css';
 
@@ -28,10 +25,9 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
   const dispatch = useAppDispatch();
   const [changeItemValues] = useChangeItemValuesMutation();
   const [changeItemValue] = useChangeItemValueMutation();
-  // const [getItemResult] = useGetItemResultMutation();
+
   const { data } = useGetItemTypesQuery();
 
-  // const items = useAppSelector(selectItemTypes) as unknown as OptionsOrGroups<string, GroupBase<string>>;
   const vls: TypeValue[] = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.values;
   const { values, handleChange, resetForm } = useFormWithValidation(
     vls.reduce((a: { [x: number]: number; }, x: TypeValue, i: number) => ({ ...a, [`label${i}`]: x.value }), {}),
@@ -43,8 +39,6 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
     const newValues: TypeValue[] = blocks[currentColumnIndex]
       .items.find((x: TypeItem) => x.id === id)!
       .values.map((x: TypeValue, i: number) => ({ ...x, value: values[`label${i}`] }));
-
-    // console.log(newValues);
 
     await changeItemValues({
       index: currentColumnIndex, id, values: newValues, bookId,
