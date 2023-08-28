@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { useErrorBoundary } from 'react-error-boundary';
 
 import IconButton from '../../../icon-button';
 import CustomSelect from '../../../custom-select';
@@ -17,17 +18,22 @@ type TypeIcon = React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGP
 export default function Header({ isOpen, button }
   : { isOpen: boolean, button: { handler: () => void; component: TypeIcon } }) {
   const [typeBook, setTypeBook] = useState(null);
+  const { showBoundary } = useErrorBoundary();
   const user = useAppSelector(selectCurrentUser)!;
   const [addBook] = useAddBookMutation();
   const modules = useAppSelector(selectModules);
   const addModule = {
     handler: async () => {
-      addBook({
-        name: 'book',
-        projectId: user.projectId,
-        typeBook: (typeBook as unknown as { value: string; label: string; }).value,
-      });
-      setTypeBook(null);
+      try {
+        await addBook({
+          name: 'book',
+          projectId: user.projectId,
+          typeBook: (typeBook as unknown as { value: string; label: string; }).value,
+        });
+        setTypeBook(null);
+      } catch (error) {
+        showBoundary(error);
+      }
     },
     component: PlusIcon,
   };
