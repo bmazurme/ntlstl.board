@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useErrorBoundary } from 'react-error-boundary';
 
 import Button from '../button';
 
@@ -11,11 +12,16 @@ import style from './profile.module.css';
 
 export default function Profile() {
   const navigate = useNavigate();
+  const { showBoundary } = useErrorBoundary();
   const { data } = useGetUserMeQuery() as unknown as { data: TypeUser };
   const [signOut] = useSignOutMutation();
   const onLogOut = async () => {
-    await signOut();
-    navigate(Urls.SIGN.IN);
+    try {
+      await signOut();
+      navigate(Urls.SIGN.IN);
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   return (
