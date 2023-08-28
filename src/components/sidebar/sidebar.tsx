@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
-// import { motion, AnimatePresence, motion, useCycle } from 'framer-motion';
+import { useErrorBoundary } from 'react-error-boundary';
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
+
 import Header from './components/header';
 import List from './components/list';
 
@@ -14,6 +15,7 @@ import style from './sidebar.module.css';
 
 export default function Sidebar() {
   const user = useAppSelector(selectCurrentUser);
+  const { showBoundary } = useErrorBoundary();
   const [isOpen, setIsOpen] = useLocalStorage('sidebar', false);
   const [getBookById, { isLoading }] = useGetBookByIdMutation();
 
@@ -27,8 +29,8 @@ export default function Sidebar() {
       if (user && 'projectId' in user && user?.projectId) {
         try {
           await getBookById(user?.projectId);
-        } catch (e) {
-          console.log(e);
+        } catch (err) {
+          showBoundary(err);
         }
       }
     };
@@ -37,7 +39,7 @@ export default function Sidebar() {
   }, [user?.projectId]);
 
   return (
-    <div className={classNames(style.sidebar, { [style.sidebar_open]: isOpen })}>
+    <div className={classNames(style.sidebar, { [style.open]: isOpen })}>
       <Header isOpen={isOpen} button={button} />
       <List isOpen={isOpen} isLoading={isLoading} />
     </div>

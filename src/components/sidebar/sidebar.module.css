@@ -11,6 +11,6 @@
   border-right: 1px solid var(--border-color);
 }
 
-.sidebar_open {
+.open {
   min-width: 250px;
 }
