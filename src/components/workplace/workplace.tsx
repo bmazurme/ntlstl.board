@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect } from 'react';
 import { Outlet, useParams } from 'react-router';
+import { useErrorBoundary } from 'react-error-boundary';
 
 import Blocks from '../blocks';
 import WorkplaceHeader from '../workplace-header';
@@ -29,6 +30,7 @@ export function Project() {
 
 export default function Workplace() {
   const dispatch = useAppDispatch();
+  const { showBoundary } = useErrorBoundary();
   const [blocksById] = useGetBlocksByIdMutation();
   const books = useAppSelector(selectBooks);
   const { bookId } = useParams();
@@ -37,7 +39,11 @@ export default function Workplace() {
   useEffect(() => {
     const getData = async () => {
       if (book) {
-        await blocksById(book.id);
+        try {
+          await blocksById(book.id);
+        } catch (error) {
+          showBoundary(error);
+        }
         dispatch(setCurrentBook(book));
       }
     };
