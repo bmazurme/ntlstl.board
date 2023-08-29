@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useErrorBoundary } from 'react-error-boundary';
 import {
   UsersIcon, Squares2X2Icon, RectangleStackIcon, DocumentArrowDownIcon,
 } from '@heroicons/react/24/outline';
@@ -22,6 +23,7 @@ import style from './workplace-header.module.css';
 
 export default function WorkplaceHeader() {
   const navigate = useNavigate();
+  const { showBoundary } = useErrorBoundary();
   const [renameBook] = useRenameBookMutation();
   const blocks = useAppSelector(selectBlocks);
   const { name, id } = useAppSelector(selectCurrentBook)!;
@@ -45,7 +47,11 @@ export default function WorkplaceHeader() {
 
   const rename = async () => {
     if (values.name !== '') {
-      const res = await renameBook({ name: values.name, id });
+      try {
+        const res = await renameBook({ name: values.name, id });
+      } catch (error) {
+        showBoundary(error);
+      }
     } else {
       resetForm({ name });
     }
