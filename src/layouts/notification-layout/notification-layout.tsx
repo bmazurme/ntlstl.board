@@ -23,7 +23,6 @@ export default function NotificationLayout() {
           <div className={style.icon}>
             <CheckCircleIcon className="h-6 w-6" />
           </div>
-
           <h3>{item.title}</h3>
           <p>{item.notification}</p>
         </div>
