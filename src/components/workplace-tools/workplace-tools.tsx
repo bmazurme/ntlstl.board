@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { useErrorBoundary } from 'react-error-boundary';
 
 import Button from '../button';
 
@@ -11,8 +12,15 @@ import style from './workplace-tools.module.css';
 
 export default function WorkplaceTools() {
   const { bookId } = useParams();
+  const { showBoundary } = useErrorBoundary();
   const [addBlocks] = useAddBlockMutation();
-  const onAddBlock = async () => await addBlocks({ bookId });
+  const onAddBlock = async () => {
+    try {
+      await addBlocks({bookId});
+    } catch (error) {
+      showBoundary(error);
+    }
+  };
 
   return (
     <div className={style.tools}>
