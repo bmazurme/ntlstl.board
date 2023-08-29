@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
+import { useErrorBoundary } from 'react-error-boundary';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
 import Button from '../button';
@@ -18,6 +19,7 @@ import style from './header-menu.module.css';
 
 export default function HeaderMenu() {
   const navigate = useNavigate();
+  const { showBoundary } = useErrorBoundary();
   const { data: options = [] } = useGetProjectsQuery();
   const user = useAppSelector(selectCurrentUser);
   const [addProject] = useAddProjectMutation();
@@ -30,8 +32,12 @@ export default function HeaderMenu() {
   const value: any = options.find((x) => x.value === projectId);
 
   const onChange = async (project: any) => {
-    updateUser({ ...user, projectId: project.value });
-    navigate('/projects');
+    try {
+      await updateUser({ ...user, projectId: project.value });
+      navigate('/projects');
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   return (
