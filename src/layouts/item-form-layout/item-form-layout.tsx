@@ -2,17 +2,14 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { GroupBase, OptionsOrGroups } from 'react-select';
+import { useErrorBoundary } from 'react-error-boundary';
 
 import Button from '../../components/button';
 import CustomSelect from '../../components/custom-select';
 
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import {
-  useChangeItemValuesMutation,
-  useChangeItemValueMutation,
-  useGetItemTypesQuery,
-} from '../../store/api';
+import { useChangeItemValuesMutation, useChangeItemValueMutation, useGetItemTypesQuery } from '../../store/api';
 import { selectBlocks, setItemPopup, setHistory } from '../../store/slices';
 
 import style from './item-form-layout.module.css';
@@ -23,6 +20,7 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
   const [itemType, setItemType] = useState<any>(initType);
   const { bookId } = useParams();
   const dispatch = useAppDispatch();
+  const { showBoundary } = useErrorBoundary();
   const [changeItemValues] = useChangeItemValuesMutation();
   const [changeItemValue] = useChangeItemValueMutation();
 
@@ -40,15 +38,22 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
       .items.find((x: TypeItem) => x.id === id)!
       .values.map((x: TypeValue, i: number) => ({ ...x, value: values[`label${i}`] }));
 
-    await changeItemValues({
-      index: currentColumnIndex, id, values: newValues, bookId,
-    });
-
-    // @ts-ignore
-    if (initType?.value !== itemType?.value) {
-      changeItemValue({ itemId: id, itemType: itemType.value, bookId });
+    try {
+      await changeItemValues({
+        index: currentColumnIndex, id, values: newValues, bookId,
+      });
+    } catch (error) {
+      showBoundary(error);
     }
-    // await getItemResult({ index: currentColumnIndex, id, bookId });
+
+    try {
+      // @ts-ignore
+      if (initType?.value !== itemType?.value) {
+        changeItemValue({ itemId: id, itemType: itemType.value, bookId });
+      }
+    } catch (error) {
+      showBoundary(error);
+    }
 
     const arr = blocks[currentColumnIndex].items
       .map((x: TypeItem) => (x.id === id
@@ -71,7 +76,6 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
 
     dispatch(setItemPopup({ index: null, id: null, isOpen: false }));
   };
-
   console.log(itemType, initType);
 
   return (
