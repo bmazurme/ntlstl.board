@@ -5,11 +5,11 @@ import Blocks from '../blocks';
 import WorkplaceHeader from '../workplace-header';
 import WorkplaceTools from '../workplace-tools';
 
-import { useAppSelector } from '../../hooks';
-import { selectCurrentBook } from '../../store/slices';
+import { useBook } from '../../hooks';
 
 export default function Board() {
-  const data = useAppSelector(selectCurrentBook);
+  const data = useBook();
+
   return (
     <>
       {data && (
