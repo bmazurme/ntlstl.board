@@ -6,7 +6,7 @@ import Modal from '../../components/modal';
 
 import { Urls } from '../../utils';
 
-import style from './support-modal-layout.module.css';
+// import style from './support-modal-layout.module.css';
 
 export default function SupportModalLayout() {
   const navigate = useNavigate();
@@ -15,5 +15,5 @@ export default function SupportModalLayout() {
     navigate(location.state || Urls.BASE.INDEX);
   }, [location.state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={<Support />} />);
+  return (<Modal onClose={handleClose} children={<Support />} />);
 }
