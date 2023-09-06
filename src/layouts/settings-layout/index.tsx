@@ -103,7 +103,7 @@ function MovableItem({
 }
 
 function Column({ children, className, title }
-  : { children: ReactNode, className: string, title: string }) {
+                  : { children: ReactNode, className: string, title: string }) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'Our first type',
     drop: () => ({ name: title }),
