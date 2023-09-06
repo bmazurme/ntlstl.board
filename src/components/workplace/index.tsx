@@ -7,14 +7,15 @@ import Blocks from '../blocks';
 import WorkplaceHeader from '../workplace-header';
 import WorkplaceTools from '../workplace-tools';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectCurrentBook, setCurrentBook, selectBooks } from '../../store/slices';
+import { useBook, useBooks, useAppDispatch } from '../../hooks';
+import { setCurrentBook } from '../../store/slices';
 import { useGetBlocksByIdMutation } from '../../store/api';
 
 import style from './workplace.module.css';
 
 export function Project() {
-  const data = useAppSelector(selectCurrentBook);
+  const data = useBook();
+
   return (
     <>
       {data && (
@@ -32,7 +33,7 @@ export default function Workplace() {
   const dispatch = useAppDispatch();
   const { showBoundary } = useErrorBoundary();
   const [blocksById] = useGetBlocksByIdMutation();
-  const books = useAppSelector(selectBooks);
+  const books = useBooks();
   const { bookId } = useParams();
   const book = books?.find((x) => x.id === bookId);
 
