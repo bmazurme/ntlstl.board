@@ -7,17 +7,15 @@ import { useParams } from 'react-router';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
-import { useAppSelector } from '../../../../hooks';
-import { selectBooks, selectCurrentUser } from '../../../../store/slices';
+import { useUser, useBooks } from '../../../../hooks';
 
 import style from './list.module.css';
 
-export default function List({ isOpen, isLoading }
-  : { isOpen: boolean; isLoading: boolean; }) {
+export default function List({ isOpen, isLoading }: { isOpen: boolean; isLoading: boolean; }) {
   const { bookId } = useParams();
   const navigate = useNavigate();
-  const user = useAppSelector(selectCurrentUser)!;
-  const books: TypeBook[] = useAppSelector(selectBooks);
+  const user = useUser()!;
+  const books: TypeBook[] = useBooks();
 
   const setCurrent = async (book: TypeBook | null) => {
     if (book?.name) {

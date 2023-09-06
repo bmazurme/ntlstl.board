@@ -5,9 +5,9 @@ import { useErrorBoundary } from 'react-error-boundary';
 import IconButton from '../../../icon-button';
 import CustomSelect from '../../../custom-select';
 
-import { useAppSelector } from '../../../../hooks';
 import { useAddBookMutation } from '../../../../store/api';
-import { selectModules, selectCurrentUser } from '../../../../store/slices';
+import { selectModules } from '../../../../store/slices';
+import { useUser, useAppSelector } from '../../../../hooks';
 
 import style from './header.module.css';
 
@@ -17,9 +17,9 @@ type TypeIcon = React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGP
 
 export default function Header({ isOpen, button }
   : { isOpen: boolean, button: { handler: () => void; component: TypeIcon } }) {
+  const user = useUser()!;
   const [typeBook, setTypeBook] = useState(null);
   const { showBoundary } = useErrorBoundary();
-  const user = useAppSelector(selectCurrentUser)!;
   const [addBook] = useAddBookMutation();
   const modules = useAppSelector(selectModules);
   const addModule = {
