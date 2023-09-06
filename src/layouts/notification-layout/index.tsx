@@ -1,6 +1,5 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
 import { InformationCircleIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 
 import { useAppSelector } from '../../hooks';
