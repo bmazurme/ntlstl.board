@@ -6,15 +6,14 @@ import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
 import Header from './components/header';
 import List from './components/list';
 
-import { useAppSelector } from '../../hooks';
+import { useUser } from '../../hooks';
 import { useLocalStorage } from '../../hooks/use-local-storage';
-import { selectCurrentUser } from '../../store/slices';
 import { useGetBookByIdMutation } from '../../store/api';
 
 import style from './sidebar.module.css';
 
 export default function Sidebar() {
-  const user = useAppSelector(selectCurrentUser);
+  const user = useUser();
   const { showBoundary } = useErrorBoundary();
   const [isOpen, setIsOpen] = useLocalStorage('sidebar', false);
   const [getBookById, { isLoading }] = useGetBookByIdMutation();
