@@ -1,13 +1,13 @@
 import React from 'react';
-import { useAppSelector } from '../../hooks';
-import { selectCurrentBook } from '../../store/slices';
+
+import useBook from '../../hooks/use-book';
 
 import Settings from '../../layouts/settings-layout';
 
-import style from './workplace-form.module.css';
+// import style from './workplace-form.module.css';
 
 export default function WorkplaceForm() {
-  const { name } = useAppSelector(selectCurrentBook)!;
+  const { name } = useBook()!;
 
   return (
     <>

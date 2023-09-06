@@ -12,9 +12,7 @@ import Buttons from '../buttons';
 import Modal from '../modal';
 
 import useFormWithValidation from '../../hooks/use-form-with-validation';
-import { useModal } from '../../hooks/use-modal';
-import { useAppSelector } from '../../hooks';
-import { selectCurrentBook, selectBlocks } from '../../store/slices';
+import { useBook, useBlocks, useModal } from '../../hooks';
 import { useRenameBookMutation } from '../../store/api';
 
 import { downloadAsJson, Urls } from '../../utils';
@@ -25,8 +23,8 @@ export default function WorkplaceHeader() {
   const navigate = useNavigate();
   const { showBoundary } = useErrorBoundary();
   const [renameBook] = useRenameBookMutation();
-  const blocks = useAppSelector(selectBlocks);
-  const { name, id } = useAppSelector(selectCurrentBook)!;
+  const blocks = useBlocks();
+  const { name, id } = useBook()!;
   const { isModalOpen, openModal, closeModal } = useModal();
   const {
     isModalOpen: isOpenHistory,
@@ -48,7 +46,7 @@ export default function WorkplaceHeader() {
   const rename = async () => {
     if (values.name !== '') {
       try {
-        const res = await renameBook({ name: values.name, id });
+        await renameBook({ name: values.name, id });
       } catch (error) {
         showBoundary(error);
       }
@@ -76,10 +74,8 @@ export default function WorkplaceHeader() {
         onBlur={rename}
       />
       <Buttons buttons={buttons} />
-      {isModalOpen
-        && (<Modal isOpen={isModalOpen} onClose={closeModal} children={<WorkplaceForm />} />)}
-      {isOpenHistory
-        && (<Modal isOpen={isOpenHistory} onClose={closeHistory} children={<HistoryLayout />} />)}
+      {isModalOpen && (<Modal onClose={closeModal} children={<WorkplaceForm />} />)}
+      {isOpenHistory && (<Modal onClose={closeHistory} children={<HistoryLayout />} />)}
     </form>
   );
 }

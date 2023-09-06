@@ -16,7 +16,7 @@ export default function WorkplaceTools() {
   const [addBlocks] = useAddBlockMutation();
   const onAddBlock = async () => {
     try {
-      await addBlocks({bookId});
+      await addBlocks({ bookId });
     } catch (error) {
       showBoundary(error);
     }
