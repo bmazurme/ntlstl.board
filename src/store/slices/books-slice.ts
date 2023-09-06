@@ -28,7 +28,8 @@ const slice = createSlice({
       )
       .addMatcher(
         bookApiEndpoints.endpoints.getBookById.matchRejected,
-        (state, action) => console.log('rejected', state, action))
+        (state, action) => console.log('rejected', state, action),
+      )
       .addMatcher(
         bookApiEndpoints.endpoints.addBook.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
@@ -48,7 +49,8 @@ const slice = createSlice({
       )
       .addMatcher(
         bookApiEndpoints.endpoints.renameBook.matchRejected,
-        (state, action) => console.log('rejected', state, action));
+        (state, action) => console.log('rejected', state, action),
+      );
   },
 });
 
