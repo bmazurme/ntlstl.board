@@ -10,7 +10,6 @@ type ErrorBoundaryWrapperProps = PropsWithChildren<unknown>;
 
 function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   const navigate = useNavigate();
-
   const onReset = () => {
     resetErrorBoundary();
     navigate('/');
