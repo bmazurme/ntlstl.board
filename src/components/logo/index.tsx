@@ -8,11 +8,11 @@ import style from './logo.module.css';
 
 export default function Logo() {
   const navigate = useNavigate();
-  const btn = { handler: () => navigate('/'), component: RectangleGroupIcon };
+  const button = { handler: () => navigate('/'), component: RectangleGroupIcon };
 
   return (
     <div className={style.logo}>
-      <IconButton {...btn} />
+      <IconButton {...button} />
     </div>
   );
 }
