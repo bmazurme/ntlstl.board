@@ -17,10 +17,9 @@ import UsersModalPage from './pages/users-modal-page';
 import NotFoundPage from './pages/not-found-page';
 import Board from './pages/board-page';
 
-import { selectHistory } from './store/slices';
+import useHistory from './hooks/use-history';
 import ThemeContext from './context/theme-context';
 
-import { useAppSelector } from './hooks';
 import useWindowDimensions, { getVisualProps } from './hooks/use-window-dimensions';
 import useDarkTheme from './hooks/use-dark-theme';
 
@@ -29,14 +28,13 @@ import { Urls } from './utils';
 export default function App() {
   const { providerValue } = useDarkTheme();
   const { blocks } = getVisualProps(useWindowDimensions());
-  const history = useAppSelector(selectHistory);
+  const history = useHistory();
   const isMobile = blocks === 1;
   const location = useLocation();
 
   useEffect(() => {
     location.state = null;
   }, []);
-
   console.log(history);
 
   return (
