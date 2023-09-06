@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { UnauthorizedError } from '../errors';
 import DEV_JWT_SECRET from '../../utils/dev-config';
 
-const auth = (req: any, _res: Response, next: NextFunction) => {
+const authMiddleware = (req: any, _res: Response, next: NextFunction) => {
   const { token } = req.cookies as unknown as Record<string, string>;
   // const { JWT_SECRET, NODE_ENV } = process.env;
 
@@ -26,4 +26,4 @@ const auth = (req: any, _res: Response, next: NextFunction) => {
   next();
 };
 
-export default auth;
+export default authMiddleware;
