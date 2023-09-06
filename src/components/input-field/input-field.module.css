@@ -1,4 +1,4 @@
-.inputfield {
+.field {
   display: flex;
   flex-direction: column;
   min-height: 30px;
@@ -17,7 +17,6 @@
 }
 
 .input {
-  /* height: 40px; */
   height: 30px;
   width: 100%;
   margin: 0;

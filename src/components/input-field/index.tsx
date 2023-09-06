@@ -2,18 +2,19 @@ import React from 'react';
 
 import style from './input-field.module.css';
 
-export default function InputField({
-  type, name, errors, onChange, value,
-}: {
+type TypeInputField = {
   type: 'text' | 'password';
   name: string;
   value?: string;
   errors: Record<string, string>;
   onChange?: () => void;
-}) {
+};
 
+export default function InputField({
+  type, name, errors, onChange, value,
+}: TypeInputField) {
   return (
-    <div className={style.inputfield}>
+    <div className={style.field}>
       <input
         type={type}
         className={style.input}
@@ -22,10 +23,12 @@ export default function InputField({
         placeholder={name}
         onChange={onChange}
       />
-      {errors[name] &&
+      {errors[name]
+        && (
         <span className={style.error}>
           {`${errors[name]}`}
-        </span>}
+        </span>
+        )}
     </div>
   );
 }
