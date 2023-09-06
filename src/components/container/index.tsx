@@ -7,7 +7,7 @@ import Sidebar from '../sidebar';
 import style from './container.module.css';
 
 export default function Container({ header, sidebar, children }
-  : PropsWithChildren & { header?: boolean, sidebar?: boolean }) {
+  : PropsWithChildren & { header?: boolean; sidebar?: boolean; }) {
   return (
     <>
       {header && <Header />}
