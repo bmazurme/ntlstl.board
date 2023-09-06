@@ -8,26 +8,22 @@ import Button from '../button';
 import CustomSelect from '../custom-select';
 import MobileMenu from './components/mobile-menu';
 
+import { useUser } from '../../hooks';
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
-import { useAppSelector } from '../../hooks';
-import { selectCurrentUser } from '../../store/slices';
-import {
-  useGetProjectsQuery, useAddProjectMutation, useUpdateUserMutation,
-} from '../../store/api';
+import { useGetProjectsQuery, useAddProjectMutation, useUpdateUserMutation } from '../../store/api';
 
 import style from './header-menu.module.css';
 
 export default function HeaderMenu() {
+  const user = useUser();
   const navigate = useNavigate();
   const { showBoundary } = useErrorBoundary();
   const { data: options = [] } = useGetProjectsQuery();
-  const user = useAppSelector(selectCurrentUser);
   const [addProject] = useAddProjectMutation();
   const [updateUser] = useUpdateUserMutation();
   const { blocks } = getVisualProps(useWindowDimensions());
 
   const isMobile = blocks === 1;
-  // @ts-ignore
   const projectId = user?.projectId;
   const value: any = options.find((x) => x.value === projectId);
 
