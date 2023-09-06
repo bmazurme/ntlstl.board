@@ -7,23 +7,23 @@ import { useErrorBoundary } from 'react-error-boundary';
 import Button from '../../components/button';
 import CustomSelect from '../../components/custom-select';
 
+import useBlocks from '../../hooks/use-blocks';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 import { useChangeItemValuesMutation, useChangeItemValueMutation, useGetItemTypesQuery } from '../../store/api';
-import { selectBlocks, setItemPopup, setHistory } from '../../store/slices';
+import { setItemPopup, setHistory } from '../../store/slices';
 
 import style from './item-form-layout.module.css';
 
 export default function ItemFormLayout({ currentColumnIndex, id }: { currentColumnIndex: number, id: string }) {
-  const blocks: TypeBlock = useAppSelector(selectBlocks);
+  const dispatch = useAppDispatch();
+  const blocks: TypeBlock = useBlocks();
   const initType = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.item as unknown as OptionsOrGroups<string, GroupBase<string>>;
   const [itemType, setItemType] = useState<any>(initType);
   const { bookId } = useParams();
-  const dispatch = useAppDispatch();
   const { showBoundary } = useErrorBoundary();
   const [changeItemValues] = useChangeItemValuesMutation();
   const [changeItemValue] = useChangeItemValueMutation();
-
   const { data } = useGetItemTypesQuery();
 
   const vls: TypeValue[] = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.values;
@@ -70,10 +70,8 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
         ...blocks,
         [currentColumnIndex]: { ...blocks[currentColumnIndex], items: arr },
       };
-
       dispatch(setHistory({ user: 'user', state: obj }));
     }
-
     dispatch(setItemPopup({ index: null, id: null, isOpen: false }));
   };
   console.log(itemType, initType);
