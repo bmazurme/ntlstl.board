@@ -4,16 +4,17 @@ import { useErrorBoundary } from 'react-error-boundary';
 
 import Button from '../button';
 
-import { useGetUserMeQuery, useSignOutMutation } from '../../store/api';
+import { useSignOutMutation } from '../../store/api';
+import { useUser } from '../../hooks';
 
 import { Urls } from '../../utils';
 
-import style from './profile.module.css';
+// import style from './profile.module.css';
 
 export default function Profile() {
+  const user = useUser();
   const navigate = useNavigate();
   const { showBoundary } = useErrorBoundary();
-  const { data } = useGetUserMeQuery() as unknown as { data: TypeUser };
   const [signOut] = useSignOutMutation();
   const onLogOut = async () => {
     try {
@@ -27,7 +28,7 @@ export default function Profile() {
   return (
     <>
       <h2>Profile</h2>
-      <h3>{data?.defaultEmail}</h3>
+      <h3>{user?.defaultEmail}</h3>
       <Button title="Logout" handler={onLogOut} />
     </>
   );
