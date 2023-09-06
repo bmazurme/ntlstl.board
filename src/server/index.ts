@@ -14,8 +14,8 @@ import index from './routes';
 import onConnection from './socket';
 import { NotFoundError } from './errors';
 
-import { errorLogger } from './middlewares/logger';
-import errorHandler from './middlewares/error-handler';
+import { errorLogger } from './middlewares/logger-middleware';
+import errorHandlerMiddleware from './middlewares/error-handler-middleware';
 
 import { helmetConfig } from './utils/helmet-config';
 import { corsOptions } from './utils/cors-options';
@@ -60,7 +60,7 @@ app.use('*', () => {
 
 app.use(errorLogger);
 // app.use(errors());
-app.use(errorHandler);
+app.use(errorHandlerMiddleware);
 
 // start server
 server.listen(portWss, () => {

@@ -14,7 +14,6 @@ export const UrlsApi = {
   BOOKS: {
     INDEX: '/books',
     ID: '/books/:id',
-    // DELETE: '/books/:id',
   },
   BLOCKS: {
     INDEX: '/blocks',
@@ -32,5 +31,5 @@ export const UrlsApi = {
   },
   NOTIFICATION: {
     INDEX: '/notification',
-  }
+  },
 };

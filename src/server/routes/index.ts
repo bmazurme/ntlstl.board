@@ -11,7 +11,7 @@ import notificationRoute from './notification-route';
 import userRoute from './user-route';
 import fieldsRoute from './fields-route';
 
-import authMiddleware from '../middlewares/auth';
+import authMiddleware from '../middlewares/auth-middleware';
 
 const router = Router();
 
