@@ -6,7 +6,7 @@ import Modal from '../../components/modal';
 
 import { Urls } from '../../utils';
 
-import style from './users-modal-layout.module.css';
+// import style from './users-modal-layout.module.css';
 
 export default function UsersModal() {
   const navigate = useNavigate();
@@ -15,5 +15,5 @@ export default function UsersModal() {
     navigate(location.state || Urls.BASE.INDEX);
   }, [location.state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={<Users />} />);
+  return (<Modal onClose={handleClose} children={<Users />} />);
 }
