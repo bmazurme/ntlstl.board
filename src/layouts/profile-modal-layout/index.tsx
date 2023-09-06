@@ -6,7 +6,7 @@ import Profile from '../../components/profile';
 
 import { Urls } from '../../utils';
 
-import style from './profile-modal-layout.module.css';
+// import style from './profile-modal-layout.module.css';
 
 export default function ProfileModalLayout() {
   const navigate = useNavigate();
@@ -15,5 +15,5 @@ export default function ProfileModalLayout() {
     navigate(location.state || Urls.BASE.INDEX);
   }, [location.state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={<Profile />} />);
+  return (<Modal onClose={handleClose} children={<Profile />} />);
 }
