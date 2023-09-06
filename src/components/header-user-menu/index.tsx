@@ -13,7 +13,7 @@ import Buttons from '../buttons';
 import Modal from '../modal';
 import Notification from '../../layouts/notification-layout';
 
-import { useModal } from '../../hooks/use-modal';
+import { useModal } from '../../hooks';
 import { Urls } from '../../utils';
 
 import style from './header-user-menu.module.css';
@@ -50,8 +50,7 @@ export default function HeaderUserMenu() {
   return (
     <>
       <Buttons buttons={buttons} extraClass={style.menu} />
-      {isModalOpen
-        && (<Modal isOpen={isModalOpen} onClose={closeModal} children={<Notification />} />)}
+      {isModalOpen && (<Modal onClose={closeModal} children={<Notification />} />)}
     </>
   );
 }
