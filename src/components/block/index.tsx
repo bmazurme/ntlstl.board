@@ -8,8 +8,9 @@ import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
 import Column from './components/column';
 import MoveableItem from './components/moveable-item';
 
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectBlocks, setMovedCard, setMovedBlock } from '../../store/slices';
+import useBlocks from '../../hooks/use-blocks';
+import { useAppDispatch } from '../../hooks';
+import { setMovedCard, setMovedBlock } from '../../store/slices';
 import { useSetBlocksMutation, useSetMovedItemMutation } from '../../store/api';
 
 import { getBackgroundColor, TYPE, COLOR } from '../../utils';
@@ -19,11 +20,10 @@ import style from './block.module.css';
 export default function Block({ block }: { block: number; }) {
   const { bookId } = useParams();
   const dispatch = useAppDispatch();
-  // const [setMovedBlock] = useSetMovedBlockMutation();
   const [setItems] = useSetMovedItemMutation();
   const [setBlocks] = useSetBlocksMutation();
   const ref = useRef<HTMLDivElement | null>(null);
-  const blocks: TypeBlock = useAppSelector(selectBlocks);
+  const blocks: TypeBlock = useBlocks();
 
   const moveCardHandler = async (
     dragIndex: number,

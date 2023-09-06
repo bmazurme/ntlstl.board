@@ -6,8 +6,8 @@ import { TrashIcon, PencilIcon } from '@heroicons/react/24/outline';
 import Buttons from '../../../buttons';
 import Field from '../../../field';
 
-import { useAppDispatch, useAppSelector } from '../../../../hooks';
-import { selectBlocks, setItemPopup } from '../../../../store/slices';
+import { useAppDispatch, useBlocks } from '../../../../hooks';
+import { setItemPopup } from '../../../../store/slices';
 import { useRemoveItemMutation } from '../../../../store/api';
 
 import style from './item.module.css';
@@ -19,7 +19,7 @@ export default function Item({ itemData }: TypeItemData) {
   const { bookId } = useParams();
   const [removeItem] = useRemoveItemMutation();
   const dispatch = useAppDispatch();
-  const blocks: TypeBlock = useAppSelector(selectBlocks);
+  const blocks: TypeBlock = useBlocks();
   const block = blocks[currentColumnIndex];
   const openPopup = () => dispatch(setItemPopup({ index: currentColumnIndex, id, isOpen: true }));
   const deleteItem = () => removeItem({ block: currentColumnIndex, id, bookId });

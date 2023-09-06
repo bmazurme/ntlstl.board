@@ -7,11 +7,16 @@ import { getBackgroundColor, TYPE, COLOR } from '../../../../utils';
 
 import style from './column.module.css';
 
+type TypeColumnProps = {
+  children: ReactNode;
+  index: number;
+  title: string;
+  blockId: string;
+};
+
 export default function Column({
   children, index, title, blockId,
-}: {
-  children: ReactNode, index: number, title: string; blockId: string;
-}) {
+}: TypeColumnProps) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: [TYPE.ITEM, TYPE.BLOCK],
     drop: () => ({ name: index }),

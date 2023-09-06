@@ -12,8 +12,13 @@ import {
 
 import style from './column-form.module.css';
 
-export default function ColumnForm({ index, title, blockId }
-  : { index: number, title: string; blockId: string; }) {
+type TypeColumnFormProps = {
+  index: number;
+  title: string;
+  blockId: string;
+};
+
+export default function ColumnForm({ index, title, blockId }: TypeColumnFormProps) {
   const { bookId } = useParams();
   const { values, handleChange, resetForm } = useFormWithValidation({ name: title });
   const [addItem] = useAddItemMutation();
