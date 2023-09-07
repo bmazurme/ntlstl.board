@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import Button from '../button';
+import Button from '../button/button';
 
 import { useAddBlockMutation } from '../../store/api';
 
