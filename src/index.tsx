@@ -15,10 +15,10 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
   <Provider store={store}>
-    <ErrorBoundaryWrapper>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ErrorBoundaryWrapper>
         <App />
-      </BrowserRouter>
-    </ErrorBoundaryWrapper>
+      </ErrorBoundaryWrapper>
+    </BrowserRouter>
   </Provider>,
 );
