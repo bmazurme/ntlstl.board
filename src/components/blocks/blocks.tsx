@@ -1,9 +1,9 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import Block from '../block';
-import Modal from '../modal';
-import ItemFormLayout from '../../layouts/item-form-layout';
+import Block from '../block/block';
+import Modal from '../modal/modal';
+import ItemFormLayout from '../../layouts/item-form-layout/item-form-layout';
 
 import { useBlocks, useAppDispatch, usePopup } from '../../hooks';
 import { setItemPopup } from '../../store/slices';
@@ -22,12 +22,7 @@ export default function Blocks() {
         && (
           <Modal
             onClose={closeModal}
-            children={(
-              <ItemFormLayout
-                currentColumnIndex={index!}
-                id={id!}
-              />
-            )}
+            children={(<ItemFormLayout currentColumnIndex={index!} id={id!} />)}
           />
         )}
     </>
