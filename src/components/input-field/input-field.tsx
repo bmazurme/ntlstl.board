@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './input-field.module.css';
 
-type TypeInputField = {
+type TypeInputFieldProps = {
   type: 'text' | 'password';
   name: string;
   value?: string;
@@ -12,7 +12,7 @@ type TypeInputField = {
 
 export default function InputField({
   type, name, errors, onChange, value,
-}: TypeInputField) {
+}: TypeInputFieldProps) {
   return (
     <div className={style.field}>
       <input
