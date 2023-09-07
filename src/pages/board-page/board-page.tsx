@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BoardLayout from '../../layouts/board-layout';
+import BoardLayout from '../../layouts/board-layout/board-layout';
 
 import withUser from '../../hocs/with-user';
 
