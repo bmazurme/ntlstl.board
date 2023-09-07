@@ -13,7 +13,7 @@ export const initialState: AuthState = {
 
 const slice = createSlice({
   name: 'user',
-  initialState: { data: null } as AuthState,
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

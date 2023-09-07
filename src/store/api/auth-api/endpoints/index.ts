@@ -18,7 +18,7 @@ const authApiEndpoints = authApi
           body,
         }),
       }),
-      signInWitOauthGithub: builder.mutation({
+      signInWitOauthGithub: builder.mutation<any, any>({
         query: (body) => ({
           url: '/api/oauth/github',
           method: 'POST',
