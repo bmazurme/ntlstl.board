@@ -3,8 +3,8 @@ import { useParams } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 import { TrashIcon, PencilIcon } from '@heroicons/react/24/outline';
 
-import Buttons from '../../../buttons';
-import Field from '../../../field';
+import Buttons from '../../../buttons/buttons';
+import Field from '../../../field/field';
 
 import { useAppDispatch, useBlocks } from '../../../../hooks';
 import { setItemPopup } from '../../../../store/slices';

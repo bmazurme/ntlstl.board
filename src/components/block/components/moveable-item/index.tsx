@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
 import React, { useRef } from 'react';
 import { useParams } from 'react-router';

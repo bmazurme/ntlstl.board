@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { ArchiveBoxXMarkIcon, PlusIcon } from '@heroicons/react/24/outline';
 
-import Buttons from '../../../buttons';
+import Buttons from '../../../buttons/buttons';
 
 import useFormWithValidation from '../../../../hooks/use-form-with-validation';
 import {
