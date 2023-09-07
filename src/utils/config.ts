@@ -1,5 +1,5 @@
-const BASE_API = 'http://localhost:3001';
-const WSS_API = 'ws://localhost:3002';
+const BASE_API = 'http://localhost:3000';
+const WSS_API = 'ws://localhost:3001';
 const ESC_CLOSE_ON = false;
 const OVERLAY_CLOSE_ON = false;
 

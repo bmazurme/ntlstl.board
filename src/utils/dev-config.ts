@@ -1,5 +1,4 @@
 const DEV_JWT_SECRET = 'super-strong-secret';
-
 const OAUTH = {
   YANDEX: {
     CLIENT_ID: 'c709762dfe3e447999beb343da0bee9f',
