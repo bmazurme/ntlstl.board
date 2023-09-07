@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+// @ts-ignore
 import { GroupBase, OptionsOrGroups, PropsValue } from 'react-select';
 import { useErrorBoundary } from 'react-error-boundary';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
-import Button from '../button';
-import CustomSelect from '../custom-select';
+import Button from '../button/button';
+import CustomSelect from '../custom-select/custom-select';
 import MobileMenu from './components/mobile-menu';
 
 import { useUser } from '../../hooks';

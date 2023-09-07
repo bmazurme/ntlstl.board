@@ -1,8 +1,8 @@
 import React from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
-import IconButton from '../../icon-button';
-import Modal from '../../modal';
+import IconButton from '../../icon-button/icon-button';
+import Modal from '../../modal/modal';
 
 import { useModal } from '../../../hooks';
 
