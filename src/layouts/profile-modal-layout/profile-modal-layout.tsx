@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import Modal from '../../components/modal';
-import Profile from '../../components/profile';
+import Modal from '../../components/modal/modal';
+import Profile from '../../components/profile/profile';
 
 import { Urls } from '../../utils';
 
