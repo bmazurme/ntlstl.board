@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import Button from '../button';
+import Button from '../button/button';
 
 import { useSignOutMutation } from '../../store/api';
 import { useUser } from '../../hooks';
