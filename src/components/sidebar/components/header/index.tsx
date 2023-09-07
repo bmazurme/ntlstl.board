@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import IconButton from '../../../icon-button';
-import CustomSelect from '../../../custom-select';
+import IconButton from '../../../icon-button/icon-button';
+import CustomSelect from '../../../custom-select/custom-select';
 
 import { useAddBookMutation } from '../../../../store/api';
 import { selectModules } from '../../../../store/slices';
