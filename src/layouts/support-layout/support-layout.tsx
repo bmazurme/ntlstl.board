@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Support from '../../components/support';
-import Container from '../../components/container';
+import Support from '../../components/support/support';
+import Container from '../../components/container/container';
 
 // import style from './support-layout.module.css';
 
