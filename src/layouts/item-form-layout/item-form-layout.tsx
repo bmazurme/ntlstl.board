@@ -4,8 +4,8 @@ import { useParams } from 'react-router';
 import { GroupBase, OptionsOrGroups } from 'react-select';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import Button from '../../components/button';
-import CustomSelect from '../../components/custom-select';
+import Button from '../../components/button/button';
+import CustomSelect from '../../components/custom-select/custom-select';
 
 import useBlocks from '../../hooks/use-blocks';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
@@ -27,6 +27,7 @@ export default function ItemFormLayout({ currentColumnIndex, id }: { currentColu
   const { data } = useGetItemTypesQuery();
 
   const vls: TypeValue[] = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.values;
+  // @ts-ignore
   const { values, handleChange, resetForm } = useFormWithValidation(
     vls.reduce((a: { [x: number]: number; }, x: TypeValue, i: number) => ({ ...a, [`label${i}`]: x.value }), {}),
   );
