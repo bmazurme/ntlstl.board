@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/no-unused-prop-types */
 import React, { useState, useRef, ReactNode } from 'react';
 import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
