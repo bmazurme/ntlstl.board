@@ -6,9 +6,11 @@ import style from './icon-button.module.css';
 type TypeIcon = React.ForwardRefExoticComponent<React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>
   & { title?: string; titleId?: string; }
   & React.RefAttributes<SVGSVGElement>>;
+type TypeIconButtonProps = { handler: () => void; component: TypeIcon; disabled?: boolean; };
 
-export default function IconButton({ handler, component: Component, disabled }
-  : { handler: () => void; component: TypeIcon; disabled?: boolean; }) {
+export default function IconButton({
+  handler, component: Component, disabled,
+}: TypeIconButtonProps) {
   return (
     <button
       type="button"
