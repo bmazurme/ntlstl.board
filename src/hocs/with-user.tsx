@@ -1,7 +1,7 @@
 import React, { type ComponentType, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import Preloader from '../components/preloader';
+import Preloader from '../components/preloader/preloader';
 
 import { useGetIamMutation } from '../store/api';
 import useUser from '../hooks/use-user';
@@ -13,7 +13,6 @@ export default function withUser<P extends Record<string, unknown>>(
 ) {
   return function WithUser(pageProps: P & { user?: TypeUser }) {
     let user: TypeUser | null = useUser();
-
     const [getUser, {
       isUninitialized,
       isLoading,
