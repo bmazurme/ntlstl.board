@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import Users from '../../components/users';
-import Modal from '../../components/modal';
+import Users from '../../components/users/users';
+import Modal from '../../components/modal/modal';
 
 import { Urls } from '../../utils';
 
 // import style from './users-modal-layout.module.css';
 
-export default function UsersModal() {
+export default function UsersModalLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const handleClose = useCallback(() => {
