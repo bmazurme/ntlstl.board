@@ -9,13 +9,13 @@ import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON, MODAL_CONFIG } from '../../utils';
 
 import style from './modal.module.css';
 
-type TypeModal = {
+type TypeModalProps = {
   title?: string;
   children: ReactNode;
   onClose: () => void;
 };
 
-export default function Modal({ title, children, onClose }: TypeModal) {
+export default function Modal({ title, children, onClose }: TypeModalProps) {
   const reactModals = document.getElementById('modals');
   const handleEscape = (e: KeyboardEvent) => {
     if (e.type === 'keydown' && e.code === 'Escape') {
@@ -24,7 +24,6 @@ export default function Modal({ title, children, onClose }: TypeModal) {
       }
     }
   };
-
   const closeModal = () => OVERLAY_CLOSE_ON && onClose();
 
   useEffect(() => {
