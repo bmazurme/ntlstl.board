@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-import Footer from '../../components/footer';
+import Footer from '../../components/footer/footer';
 
 import useUser from '../../hooks/use-user';
 
