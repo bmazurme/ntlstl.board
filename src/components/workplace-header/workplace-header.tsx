@@ -7,9 +7,9 @@ import {
 } from '@heroicons/react/24/outline';
 
 import WorkplaceForm from '../workplace-form';
-import HistoryLayout from '../../layouts/history-layout';
-import Buttons from '../buttons';
-import Modal from '../modal';
+import HistoryLayout from '../../layouts/history-layout/history-layout';
+import Buttons from '../buttons/buttons';
+import Modal from '../modal/modal';
 
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useBook, useBlocks, useModal } from '../../hooks';
@@ -43,7 +43,7 @@ export default function WorkplaceHeader() {
     { handler: openPopup, component: Squares2X2Icon },
   ];
 
-  const rename = async () => {
+  const onRename = async () => {
     if (values.name !== '') {
       try {
         await renameBook({ name: values.name, id });
@@ -55,13 +55,13 @@ export default function WorkplaceHeader() {
     }
   };
 
-  useMemo(() => {
-    resetForm({ name });
-  }, [name]);
-
   const onSubmit = (e: any) => {
     e.preventDefault();
   };
+
+  useMemo(() => {
+    resetForm({ name });
+  }, [name]);
 
   return (
     <form className={style.header} onSubmit={onSubmit}>
@@ -71,7 +71,7 @@ export default function WorkplaceHeader() {
         value={values.name}
         onChange={handleChange}
         className={style.title}
-        onBlur={rename}
+        onBlur={onRename}
       />
       <Buttons buttons={buttons} />
       {isModalOpen && (<Modal onClose={closeModal} children={<WorkplaceForm />} />)}
