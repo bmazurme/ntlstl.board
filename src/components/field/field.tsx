@@ -3,8 +3,9 @@ import classNames from 'classnames';
 
 import style from './field.module.css';
 
-export default function Field({ label, value, type }
-  : { label: string; value?: string; type?: 'red'| 'blue' | 'green'; }) {
+type TypeFieldProps = { label: string; value?: string; type?: 'red'| 'blue' | 'green'; };
+
+export default function Field({ label, value, type }: TypeFieldProps) {
   return (
     <div className={
       classNames(
