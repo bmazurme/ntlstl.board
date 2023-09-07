@@ -1,6 +1,6 @@
 import React from 'react';
 
-import KitLayout from '../../layouts/kit-layout';
+import KitLayout from '../../layouts/kit-layout/kit-layout';
 
 import withUser from '../../hocs/with-user';
 
