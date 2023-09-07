@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { GroupBase, OptionsOrGroups } from 'react-select';
 
-import CustomSelect from '../custom-select';
-import InputField from '../input-field';
-import Field from '../field';
+import CustomSelect from '../custom-select/custom-select';
+import InputField from '../input-field/input-field';
+import Field from '../field/field';
 
 import style from './kit.module.css';
 
