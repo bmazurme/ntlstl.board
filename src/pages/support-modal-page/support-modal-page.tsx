@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SupportModal from '../../layouts/support-modal-layout';
+import SupportModal from '../../layouts/support-modal-layout/support-modal-layout';
 
 export default function SupportModalPage() {
   return (<SupportModal />);
