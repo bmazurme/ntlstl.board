@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 
 import style from './footer.module.css';
 
-export default function Footer({ links }: { links: Record<string, string>[]; }) {
+type TypeFooterProps = {
+  links: { id: string; to: string; label: string; }[];
+};
+
+export default function Footer({ links }: TypeFooterProps) {
   return (
     <ul className={style.footer}>
       {links.map((link) => (
