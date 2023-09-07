@@ -51,6 +51,7 @@ const getData = async (blocks: IBlock[], items: IItem[], fields: IField[]) => {
     }), {});
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const bookSets: Record<number, any[]> = {
   0: [{ name: 'name' }, { name: 'q' }, { name: 'hdr' }],
   1: [{ name: 'name' }],
@@ -58,7 +59,11 @@ const bookSets: Record<number, any[]> = {
 
 const addItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { bookId, index, blockId } = req.body;
+    const {
+      bookId,
+      // index,
+      blockId,
+    } = req.body;
     const book: IBook | null | undefined = await Books.findById(bookId);
     const items = await Items.find({ bookId });
     const item = await Items.create({

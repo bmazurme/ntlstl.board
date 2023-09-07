@@ -144,7 +144,10 @@ const renameBlock = async (req: Request, res: Response, next: NextFunction) => {
 
 const setBlocks = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { bookId, data } = req.body;
+    const {
+      // bookId,
+      data,
+    } = req.body;
     const blocksBulk = Blocks.collection.initializeOrderedBulkOp();
 
     Object.keys(data).forEach((key) => {

@@ -9,6 +9,7 @@ import Projects from '../../models/project-model';
 
 dotEnvConfig();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const addProject = async (req: any, res: Response, next: NextFunction) => {
   try {
     const projects = await Projects.find({ userId: req.user._id });
@@ -21,6 +22,7 @@ const addProject = async (req: any, res: Response, next: NextFunction) => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getProjects = async (req: any, res: Response, next: NextFunction) => {
   try {
     const data = await Projects.find({ userId: req.user._id });

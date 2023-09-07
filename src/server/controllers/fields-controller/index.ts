@@ -93,7 +93,7 @@ const updateFields = async (req: Request, res: Response, next: NextFunction) => 
     const itemType = 0;
 
     if (itemType === 0) {
-      const name = values[0].value;
+      // const name = values[0].value;
       const q = Number(values[1].value);
       const hdr = Number(values[2].value);
       const result = getThrottleDiameter(q, hdr);
