@@ -33,7 +33,7 @@
     "react-dnd-html5-backend": "16.0.1",
     "react-dnd-touch-backend": "16.0.1",
     "react-dom": "18.2.0",
-    "react-error-boundary": "4.0.10",
+    "react-error-boundary": "4.0.11",
     "react-redux": "8.0.5",
     "react-router": "6.11.1",
     "react-router-dom": "6.11.1",
@@ -50,10 +50,9 @@
     "ws": "8.13.0"
   },
   "scripts": {
-    "dev": "webpack serve --mode development --open --hot --stats-error-details --config webpack.dev.ts",
-    "start": "node ./build/server.js",
-    "api": "node ./src/server/index.ts",
-    "build": "webpack --mode production --config webpack.prod.ts",
+    "dev": "webpack --watch --mode development",
+    "start": "node dist/server",
+    "build": "webpack --mode production",
     "eslint": "npx eslint ./src",
     "stlint": "npx stylelint '**/*.css' --fix",
     "clear": "rm -rf build/",
@@ -63,8 +62,8 @@
     "test": "jest",
     "cy:run": "cypress run",
     "prepare:run": "npm run cy:run --record --key --spec & npm run build",
-    "dockerize": "docker build -t wi .",
-    "docker:run": "docker run -d --rm -p 3001:3001 wi"
+    "dockerize": "docker-compose build",
+    "start-container": "docker-compose up"
   },
   "eslintConfig": {
     "extends": [
