@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
+import 'dotenv/config';
 import express from 'express';
 import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { config as dotEnvConfig } from 'dotenv';
 import http from 'http';
 import WebSocket from 'ws';
 
@@ -20,11 +20,9 @@ import errorHandlerMiddleware from './middlewares/error-handler-middleware';
 import { helmetConfig } from './utils/helmet-config';
 import { corsOptions } from './utils/cors-options';
 
-dotEnvConfig();
-
 const pth = process.env.PTH ?? 'mongodb://127.0.0.1:27017/wapi';
-const port = process.env.PORT ?? 3001;
-const portWss = process.env.PORT_WSS ?? 3002;
+const port = process.env.PORT ?? 3000;
+const portWss = process.env.PORT_WSS ?? 3001;
 
 const app = express();
 
