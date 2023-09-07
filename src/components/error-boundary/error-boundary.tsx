@@ -16,9 +16,9 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   };
 
   return (
-    <div className={style['error-boundary']}>
+    <div className={style.boundary}>
       <h2 className={style.title}>APP-ERROR</h2>
-      <p className={style.message}>{error.message}</p>
+      <p className={style.message}>{error?.message}</p>
       <div className={style.block}>
         Try to
         <button className={style.button} onClick={resetErrorBoundary}>
@@ -35,7 +35,12 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
 
 export default function ErrorBoundaryWrapper({ children }: ErrorBoundaryWrapperProps) {
   return (
-    <ErrorBoundary onReset={() => console.log('reset')} FallbackComponent={ErrorFallback}>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onReset={(details) => {
+        // Reset the state of your app so the error doesn't happen again
+      }}
+    >
       {children}
     </ErrorBoundary>
   );
