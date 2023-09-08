@@ -9,9 +9,9 @@ import {
 import ThemeContext from '../../context/theme-context';
 import { useGetNotificationQuery } from '../../store/api';
 
-import Buttons from '../buttons/buttons';
-import Modal from '../modal/modal';
-import Notification from '../../layouts/notification-layout/notification-layout';
+import Buttons from '../buttons';
+import Modal from '../modal';
+import Notification from '../../layouts/notification-layout';
 
 import { useModal } from '../../hooks';
 import { Urls } from '../../utils';
