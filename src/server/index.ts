@@ -26,10 +26,12 @@ const portWss = process.env.PORT_WSS ?? 3001;
 
 const app = express();
 
+// if (pth) {
 mongoose.connect(pth, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 } as ConnectOptions);
+// }
 
 app.use(cors(corsOptions));
 app.use(helmet.contentSecurityPolicy(helmetConfig));
