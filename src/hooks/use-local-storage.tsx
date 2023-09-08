@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 
 const decode = (value: any) => JSON.stringify(value);
-
 const encode = (value: any) => JSON.parse(value);
 
 const useLocalStorage = (key: string, defaultState: string | boolean) => {
