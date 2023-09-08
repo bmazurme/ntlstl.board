@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import Preloader from '../../components/preloader/preloader';
-import WelcomeBlock from '../../components/welcome-block/welcome-block';
+import Preloader from '../../components/preloader';
+import WelcomeBlock from '../../components/welcome-block';
 
 import { useSignInWitOauthYaMutation } from '../../store/api';
 
