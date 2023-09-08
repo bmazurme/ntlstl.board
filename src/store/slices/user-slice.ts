@@ -33,14 +33,14 @@ const slice = createSlice({
         authApiEndpoints.endpoints.signInWitOauthGithub.matchRejected,
         (state, action) => console.log('rejected', action),
       )
-      .addMatcher(
-        userApiEndpoints.endpoints.getUserMe.matchFulfilled,
-        (state, action) => ({ ...state, data: action.payload }),
-      )
-      .addMatcher(
-        userApiEndpoints.endpoints.getUserMe.matchRejected,
-        (state, action) => console.log('rejected', action),
-      )
+      // .addMatcher(
+      //   userApiEndpoints.endpoints.getUserMe.matchFulfilled,
+      //   (state, action) => ({ ...state, data: action.payload }),
+      // )
+      // .addMatcher(
+      //   userApiEndpoints.endpoints.getUserMe.matchRejected,
+      //   (state, action) => console.log('rejected', action),
+      // )
       .addMatcher(
         userApiEndpoints.endpoints.getIam.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),

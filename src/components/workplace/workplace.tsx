@@ -29,7 +29,9 @@ export default function Workplace() {
       }
     };
 
-    getData();
+    if (book?.id) {
+      getData();
+    }
   }, [book?.id]);
 
   return (
