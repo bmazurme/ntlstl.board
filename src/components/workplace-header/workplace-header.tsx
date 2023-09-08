@@ -7,9 +7,9 @@ import {
 } from '@heroicons/react/24/outline';
 
 import WorkplaceForm from '../workplace-form';
-import HistoryLayout from '../../layouts/history-layout/history-layout';
-import Buttons from '../buttons/buttons';
-import Modal from '../modal/modal';
+import HistoryLayout from '../../layouts/history-layout';
+import Buttons from '../buttons';
+import Modal from '../modal';
 
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import { useBook, useBlocks, useModal } from '../../hooks';
