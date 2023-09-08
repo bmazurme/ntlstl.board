@@ -1,5 +1,6 @@
 import React, { type ComponentType, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 import Preloader from '../components/preloader/preloader';
 
@@ -40,7 +41,7 @@ export default function withUser<P extends Record<string, unknown>>(
       return <Page {...pagePropsWithUser} />;
     }
 
-    if (isError && (error as any).response?.status !== 401 && !shouldBeAuthorized) {
+    if (isError && (error as FetchBaseQueryError)?.status !== 401 && !shouldBeAuthorized) {
       return <div>Something went wrong</div>;
     }
 
