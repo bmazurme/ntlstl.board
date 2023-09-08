@@ -1,8 +1,8 @@
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 
-import Header from '../header/header';
-import Sidebar from '../sidebar/sidebar';
+import Header from '../header';
+import Sidebar from '../sidebar';
 
 import style from './container.module.css';
 
