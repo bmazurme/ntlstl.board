@@ -1,6 +1,6 @@
 import authApi from '..';
 
-type ResponseToken = {
+type TypeResponseToken = {
   accessToken: string;
   refreshToken: string;
 };
@@ -11,14 +11,14 @@ const authApiEndpoints = authApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      signInWitOauthYa: builder.mutation({
+      signInWitOauthYa: builder.mutation<TypeUser, { code: string; }>({
         query: (body) => ({
           url: '/api/oauth',
           method: 'POST',
           body,
         }),
       }),
-      signInWitOauthGithub: builder.mutation<any, any>({
+      signInWitOauthGithub: builder.mutation<TypeUser, { code: string; }>({
         query: (body) => ({
           url: '/api/oauth/github',
           method: 'POST',
@@ -31,7 +31,7 @@ const authApiEndpoints = authApi
           method: 'POST',
         }),
       }),
-      refreshToken: builder.mutation<ResponseToken, Record<string, string>>({
+      refreshToken: builder.mutation<TypeResponseToken, Record<string, string>>({
         query: ({ token }) => ({
           url: '/auth/token',
           method: 'POST',
