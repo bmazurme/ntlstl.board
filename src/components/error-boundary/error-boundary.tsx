@@ -39,6 +39,7 @@ export default function ErrorBoundaryWrapper({ children }: ErrorBoundaryWrapperP
       FallbackComponent={ErrorFallback}
       onReset={(details) => {
         // Reset the state of your app so the error doesn't happen again
+        console.log(details);
       }}
     >
       {children}
