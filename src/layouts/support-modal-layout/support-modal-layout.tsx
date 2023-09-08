@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import Support from '../../components/support/support';
-import Modal from '../../components/modal/modal';
+import Support from '../../components/support';
+import Modal from '../../components/modal';
 
 import { Urls } from '../../utils';
 
