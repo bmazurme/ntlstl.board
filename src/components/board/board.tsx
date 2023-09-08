@@ -2,8 +2,8 @@
 import React from 'react';
 
 import Blocks from '../blocks/blocks';
-import WorkplaceHeader from '../workplace-header/workplace-header';
-import WorkplaceTools from '../workplace-tools/workplace-tools';
+import WorkplaceHeader from '../workplace-header';
+import WorkplaceTools from '../workplace-tools';
 
 import { useBook } from '../../hooks';
 
