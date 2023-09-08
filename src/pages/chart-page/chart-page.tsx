@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChartLayout from '../../layouts/chart-layout/chart-layout';
+import ChartLayout from '../../layouts/chart-layout';
 
 import withUser from '../../hocs/with-user';
 
