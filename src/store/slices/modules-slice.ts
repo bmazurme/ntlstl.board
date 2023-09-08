@@ -8,7 +8,6 @@ import { RootState } from '..';
 import { modules } from '../../mocks/modules';
 
 export type TypeModule = OptionsOrGroups<string, GroupBase<string>>;
-
 type TypeModulesState = { data: TypeModule[] };
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
