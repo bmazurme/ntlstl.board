@@ -1,11 +1,10 @@
-/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { GroupBase, OptionsOrGroups } from 'react-select';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import Button from '../../components/button/button';
-import CustomSelect from '../../components/custom-select/custom-select';
+import Button from '../../components/button';
+import CustomSelect from '../../components/custom-select';
 
 import useBlocks from '../../hooks/use-blocks';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
@@ -15,23 +14,23 @@ import { setItemPopup, setHistory } from '../../store/slices';
 
 import style from './item-form-layout.module.css';
 
-export default function ItemFormLayout({ currentColumnIndex, id }: { currentColumnIndex: number, id: string }) {
+export default function ItemFormLayout({ currentColumnIndex, id }
+  : { currentColumnIndex: number, id: string }) {
   const dispatch = useAppDispatch();
   const blocks: TypeBlock = useBlocks();
-  const initType = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.item as unknown as OptionsOrGroups<string, GroupBase<string>>;
+  const initType = blocks[currentColumnIndex].items
+    .find((x: TypeItem) => x.id === id)!.item as unknown as OptionsOrGroups<string, GroupBase<string>>;
   const [itemType, setItemType] = useState<any>(initType);
   const { bookId } = useParams();
   const { showBoundary } = useErrorBoundary();
   const [changeItemValues] = useChangeItemValuesMutation();
   const [changeItemValue] = useChangeItemValueMutation();
   const { data } = useGetItemTypesQuery();
-
-  const vls: TypeValue[] = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.values;
+  const vls = blocks[currentColumnIndex].items.find((x: TypeItem) => x.id === id)!.values;
   // @ts-ignore
-  const { values, handleChange, resetForm } = useFormWithValidation(
+  const { values, handleChange } = useFormWithValidation(
     vls.reduce((a: { [x: number]: number; }, x: TypeValue, i: number) => ({ ...a, [`label${i}`]: x.value }), {}),
   );
-
   const items = data?.map(({ _id, name }) => ({ value: _id, label: name }));
 
   const changeValue = async () => {
