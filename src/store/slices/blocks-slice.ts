@@ -154,14 +154,14 @@ const slice = createSlice({
         itemsApiEndpoints.endpoints.changeItemValue.matchRejected,
         (state, action) => console.log('rejected', state, action),
       )
-      .addMatcher(
-        itemsApiEndpoints.endpoints.getItemResult.matchFulfilled,
-        (state, action) => ({ ...state, data: action.payload }),
-      )
-      .addMatcher(
-        itemsApiEndpoints.endpoints.getItemResult.matchRejected,
-        (state, action) => console.log('rejected', state, action),
-      )
+      // .addMatcher(
+      //   itemsApiEndpoints.endpoints.getItemResult.matchFulfilled,
+      //   (state, action) => ({ ...state, data: action.payload }),
+      // )
+      // .addMatcher(
+      //   itemsApiEndpoints.endpoints.getItemResult.matchRejected,
+      //   (state, action) => console.log('rejected', state, action),
+      // )
       .addMatcher(
         itemsApiEndpoints.endpoints.addItem.matchFulfilled,
         (state, action) => ({ ...state, data: action.payload }),
