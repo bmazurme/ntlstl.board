@@ -1,5 +1,17 @@
 import blockApi from '..';
 
+type TypeItemBlock = {
+  dragIndex: number;
+  hoverIndex: number;
+  item: TypeItem & { currentColumnIndex: number, index: number };
+};
+type TypeBlockUpdateProps = {
+  bookId: string | undefined;
+  columnName?: number;
+  currentItem: TypeItem & { currentColumnIndex: number; id: string; columnName?: number; };
+};
+type TypeBlockRenameProps = { name: string; index: number; bookId: string | undefined; };
+
 const blocksApiEndpoints = blockApi
   .enhanceEndpoints({
     addTagTypes: ['blocks'],
@@ -20,7 +32,7 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      updateBlocks: builder.mutation<TypeBlock, any>({
+      updateBlocks: builder.mutation<TypeBlock, TypeBlockUpdateProps>({
         query: (data) => ({
           url: '/api/blocks',
           method: 'PATCH',
@@ -28,7 +40,7 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      removeBlock: builder.mutation<TypeBlock, any>({
+      removeBlock: builder.mutation<TypeBlock, { index: number; bookId: string | undefined; }>({
         query: (data) => ({
           url: '/api/blocks/book',
           method: 'PUT',
@@ -36,7 +48,7 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      setBlocks: builder.mutation<TypeBlock, any>({
+      setBlocks: builder.mutation<TypeBlock, { bookId: string | undefined; data: TypeBlock; }>({
         query: (data) => ({
           url: '/api/blocks',
           method: 'PUT',
@@ -44,7 +56,7 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      addBlock: builder.mutation<TypeBlock, any>({
+      addBlock: builder.mutation<TypeBlock, { bookId: string | undefined; }>({
         query: (data) => ({
           url: '/api/blocks',
           method: 'POST',
@@ -52,7 +64,7 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      renameBlocks: builder.mutation<TypeBlock, any>({
+      renameBlocks: builder.mutation<TypeBlock, TypeBlockRenameProps>({
         query: (data) => ({
           url: '/api/blocks/rename',
           method: 'PATCH',
@@ -60,7 +72,7 @@ const blocksApiEndpoints = blockApi
         }),
         invalidatesTags: ['blocks'],
       }),
-      setMovedBlock: builder.mutation<TypeBlock, any>({
+      setMovedBlock: builder.mutation<TypeBlock, TypeItemBlock>({
         query: (data) => ({
           url: '/api/blocks/set-moved-block',
           method: 'PATCH',
