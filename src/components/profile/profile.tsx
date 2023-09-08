@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useErrorBoundary } from 'react-error-boundary';
 
-import Button from '../button/button';
+import Button from '../button';
 
 import { useSignOutMutation } from '../../store/api';
 import { useUser } from '../../hooks';
@@ -16,6 +16,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const { showBoundary } = useErrorBoundary();
   const [signOut] = useSignOutMutation();
+
   const onLogOut = async () => {
     try {
       await signOut();
