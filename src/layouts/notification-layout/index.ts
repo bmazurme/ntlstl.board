@@ -1,3 +1,3 @@
-import NotFoundLayout from 'layouts/not-found-layout';
+import NotificationLayout from './notification-layout';
 
-export default NotFoundLayout;
+export default NotificationLayout;
