@@ -2,7 +2,7 @@ import React from 'react';
 
 import Logo from '../logo/logo';
 import HeaderUserMenu from '../header-user-menu';
-import HeaderMenu from '../header-menu/header-menu';
+import HeaderMenu from '../header-menu';
 
 import style from './header.module.css';
 
