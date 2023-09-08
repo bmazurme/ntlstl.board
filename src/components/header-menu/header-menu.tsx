@@ -6,7 +6,7 @@ import { useErrorBoundary } from 'react-error-boundary';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
 import Button from '../button/button';
-import CustomSelect from '../custom-select/custom-select';
+import CustomSelect from '../custom-select';
 import MobileMenu from './components/mobile-menu';
 
 import { useUser } from '../../hooks';
