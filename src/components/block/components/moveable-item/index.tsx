@@ -65,7 +65,6 @@ export default function MovableItem({ moveCardHandler, moveItemDrop, ...props }:
       // but it's good here for the sake of performance
       // to avoid expensive index searches.
       item.index = hoverIndex;
-      if (monitor.didDrop()) alert(1);
     },
     collect: (monitor) => ({ isOver: monitor.isOver(), canDrop: monitor.canDrop() }),
     async drop(item, monitor) {
