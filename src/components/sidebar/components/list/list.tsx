@@ -19,7 +19,7 @@ export default function List({ isOpen, isLoading }: { isOpen: boolean; isLoading
 
   const setCurrent = async (book: TypeBook | null) => {
     if (book?.name) {
-      navigate(bookId === book?.id ? '/projects' : `/projects/${user.projectId}/${book.id}`);
+      navigate(bookId === book?.id ? `/projects/${user.projectId}` : `/projects/${user.projectId}/${book.id}`);
     }
   };
 
