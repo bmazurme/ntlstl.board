@@ -7,7 +7,7 @@ import WorkplaceTools from '../workplace-tools';
 
 import { useBook } from '../../hooks';
 
-export default function Board() {
+export default function Book() {
   const data = useBook();
 
   return (
