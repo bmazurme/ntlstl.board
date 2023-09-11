@@ -9,4 +9,4 @@ function MainPage() {
   return (<MainLayout />);
 }
 
-export default withUser(MainPage, true);
+export default withUser(MainPage, false);
