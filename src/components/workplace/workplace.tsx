@@ -14,8 +14,10 @@ export default function Workplace() {
   const { showBoundary } = useErrorBoundary();
   const [blocksById] = useGetBlocksByIdMutation();
   const books = useBooks();
-  const { bookId } = useParams();
+  const { bookId, projectId } = useParams();
   const book = books?.find((x) => x.id === bookId);
+
+  console.log(bookId, projectId);
 
   useEffect(() => {
     const getData = async () => {
@@ -36,7 +38,8 @@ export default function Workplace() {
 
   return (
     <div className={style.workplace}>
-      {book && (<Outlet />)}
+      {/* {book && (<Outlet />)} */}
+      <Outlet />
     </div>
   );
 }
