@@ -14,12 +14,14 @@ import { setItemPopup, setHistory } from '../../store/slices';
 
 import style from './item-form-layout.module.css';
 
+type TypeOptions = OptionsOrGroups<string, GroupBase<string>>;
+
 export default function ItemFormLayout({ currentColumnIndex, id }
   : { currentColumnIndex: number, id: string }) {
   const dispatch = useAppDispatch();
   const blocks: TypeBlock = useBlocks();
   const initType = blocks[currentColumnIndex].items
-    .find((x: TypeItem) => x.id === id)!.item as unknown as OptionsOrGroups<string, GroupBase<string>>;
+    .find((x: TypeItem) => x.id === id)!.item as unknown as TypeOptions;
   const [itemType, setItemType] = useState<any>(initType);
   const { bookId } = useParams();
   const { showBoundary } = useErrorBoundary();
