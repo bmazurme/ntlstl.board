@@ -4,18 +4,20 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 
-import MainPage from './pages/main-page/main-page';
-import ChartPage from './pages/chart-page/chart-page';
-import KitPage from './pages/kit-page/kit-page';
-import SupportPage from './pages/support-page/support-page';
-import ProfileModalPage from './pages/profile-modal-page/profile-modal-page';
-import SignInPage from './pages/signin-page/signin-page';
-import OauthPage from './pages/oauth-page/oauth-page';
-import OauthGithubPage from './pages/oauth-github-page/oauth-github-page';
-import SupportModalPage from './pages/support-modal-page/support-modal-page';
-import UsersModalPage from './pages/users-modal-page/users-modal-page';
-import NotFoundPage from './pages/not-found-page/not-found-page';
-import Board from './pages/board-page/board-page';
+import MainPage from './pages/main-page';
+import ChartPage from './pages/chart-page';
+import KitPage from './pages/kit-page';
+import SupportPage from './pages/support-page';
+import ProfileModalPage from './pages/profile-modal-page';
+import SignInPage from './pages/signin-page';
+import OauthPage from './pages/oauth-page';
+import OauthGithubPage from './pages/oauth-github-page';
+import SupportModalPage from './pages/support-modal-page';
+import UsersModalPage from './pages/users-modal-page';
+import NotFoundPage from './pages/not-found-page';
+import BookPage from './pages/book-page';
+import ProjectPage from './pages/project-page';
+import ProjectsPage from './pages/projects-page';
 
 import useHistory from './hooks/use-history';
 import ThemeContext from './context/theme-context';
@@ -41,9 +43,14 @@ export default function App() {
     <ThemeContext.Provider value={providerValue}>
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
         <Routes location={location.state?.pathname || location}>
-          <Route path={Urls.BASE.INDEX} element={(<MainPage />)}>
-            <Route path={Urls.BASE.PROJECT} element={(<Board />)} />
+
+          <Route path={Urls.BASE.INDEX} element={(<MainPage />)} />
+
+          <Route path={Urls.PROJECTS.INDEX} element={(<ProjectsPage />)}>
+            <Route path={Urls.PROJECTS.ID} element={(<ProjectPage />)} />
+            <Route path={Urls.PROJECTS.BOOK_ID} element={(<BookPage />)} />
           </Route>
+
           <Route path={Urls.SUPPORT.INDEX} element={(<SupportPage />)} />
           <Route path={Urls.CHART.INDEX} element={(<ChartPage />)} />
           <Route path={Urls.SIGN.IN} element={(<SignInPage />)} />
