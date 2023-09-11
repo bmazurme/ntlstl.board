@@ -10,7 +10,7 @@ import { useUpdateBlocksMutation } from '../../../../store/api';
 
 import { TYPE } from '../../../../utils';
 
-export default function MovableItem({ moveCardHandler, moveItemDrop, ...props }: TypeMovableItem | any) {
+export default function MoveableItem({ moveCardHandler, moveItemDrop, ...props }: TypeMovableItem | any) {
   const childRef = useRef<HTMLLIElement | null>(null);
   const [updateBlocks] = useUpdateBlocksMutation();
   const { bookId } = useParams();
