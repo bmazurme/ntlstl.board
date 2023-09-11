@@ -20,18 +20,18 @@ import errorHandlerMiddleware from './middlewares/error-handler-middleware';
 import { helmetConfig } from './utils/helmet-config';
 import { corsOptions } from './utils/cors-options';
 
-const pth = process.env.PTH ?? 'mongodb://127.0.0.1:27017/wapi';
+const pth = process.env.PTH; //  ?? 'mongodb://127.0.0.1:27017/wapi';
 const port = process.env.PORT ?? 3000;
 const portWss = process.env.PORT_WSS ?? 3001;
 
 const app = express();
 
-// if (pth) {
-mongoose.connect(pth, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-} as ConnectOptions);
-// }
+if (pth) {
+  mongoose.connect(pth, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  } as ConnectOptions);
+}
 
 app.use(cors(corsOptions));
 app.use(helmet.contentSecurityPolicy(helmetConfig));
@@ -50,7 +50,7 @@ app.use(express.static(path.resolve(__dirname), { extensions: ['css', 'js', 'wof
 
 app.use('/api/', index);
 
-app.get('/:page', (_req, res) => {
+app.get('/*', (_req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
 });
 
