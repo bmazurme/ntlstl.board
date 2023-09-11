@@ -27,7 +27,7 @@ export default function OauthGithubLayout() {
         showBoundary(error?.status);
       }
 
-      setTimeout(() => navigate(Urls.BASE.INDEX), 1000);
+      setTimeout(() => navigate(Urls.PROJECTS.INDEX), 1000);
     };
 
     if (code) {
