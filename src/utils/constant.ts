@@ -11,8 +11,15 @@ const COLOR = {
 
 const Urls = {
   BASE: {
+    INDEX: '/',
+    PROJECT: {
+      BOOK: ':projectId/:bookId',
+    },
+  },
+  PROJECTS: {
     INDEX: '/projects',
-    PROJECT: '/projects/:projectId/:bookId',
+    ID: ':projectId',
+    BOOK_ID: ':projectId/:bookId',
   },
   CHART: {
     INDEX: '/chart',
