@@ -13,3 +13,12 @@
 
 - react-dnd, uuidv4, classnames, framer-motion, recharts
 
+### About
+...
+
+## Demo
+...
+
+### Installation
+```bash
+```
