@@ -1,4 +1,4 @@
-# W.I
+# Project: ntlstl.board
 
 ### Tech Stack
 ![TypeScript](https://img.shields.io/badge/-TypeScript-black?style=flat-square&logo=typescript)
