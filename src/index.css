@@ -1,9 +1,0 @@
-/* normalize */
-@import url("./vendor/normalize.css");
-@import url("./vendor/fonts.css");
-
-/* root */
-@import url("./styles/root/root.css");
-
-/* modal */
-@import url("./styles/modal/modal.css");
